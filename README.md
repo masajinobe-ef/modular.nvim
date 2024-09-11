@@ -95,3 +95,5 @@ sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ```
 
 </details>
+
+based on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
