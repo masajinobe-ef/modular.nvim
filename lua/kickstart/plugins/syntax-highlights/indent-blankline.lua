@@ -12,10 +12,5 @@ return {
         show_exact_scope = false,
       },
     },
-    config = function()
-      vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#C678DD' })
-
-      require('ibl').setup { indent = { highlight = { 'IndentBlanklineChar' } } }
-    end,
   },
 }
