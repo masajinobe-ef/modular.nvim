@@ -1,5 +1,9 @@
 -- [[ Basic Keymaps ]]
 
+-- Terminal
+vim.keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal<CR>', { noremap = true, silent = true, desc = 'Terminal: Horizontal' })
+vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>', { noremap = true, silent = true, desc = 'Terminal: Vertical' })
+
 -- Save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { noremap = true, silent = true, desc = 'Save file' })
 

@@ -35,6 +35,7 @@ require('lazy').setup({
   require 'kickstart/plugins/util/mini',
   require 'kickstart/plugins/util/misc',
   require 'kickstart/plugins/util/better-escape',
+  require 'kickstart/plugins/util/toggleterm',
 
   -- Custom
   { import = 'custom/plugins' },
