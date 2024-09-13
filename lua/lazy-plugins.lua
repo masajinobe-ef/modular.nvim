@@ -34,6 +34,7 @@ require('lazy').setup({
   require 'kickstart/plugins/util/telescope',
   require 'kickstart/plugins/util/mini',
   require 'kickstart/plugins/util/misc',
+  require 'kickstart/plugins/util/better-escape',
 
   -- Custom
   { import = 'custom/plugins' },
