@@ -7,6 +7,7 @@ require('lazy').setup({
   -- Complections
   require 'kickstart/plugins/complections/nvim-cmp',
   require 'kickstart/plugins/complections/nvim-autopairs',
+  require 'kickstart/plugins/complections/nvim-ts-autotag',
 
   -- Linting/Formatting
   require 'kickstart/plugins/linting-formatting/none-ls',
@@ -28,6 +29,7 @@ require('lazy').setup({
   require 'kickstart/plugins/ui/alpha-nvim',
 
   -- Util
+  require 'kickstart/plugins/util/Comment',
   require 'kickstart/plugins/util/which-key',
   require 'kickstart/plugins/util/telescope',
   require 'kickstart/plugins/util/mini',
