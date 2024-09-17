@@ -1,14 +1,17 @@
 -- [[ Basic Keymaps ]]
 
 -- Terminal
-vim.keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal<CR>', { noremap = true, silent = true, desc = 'Terminal: Horizontal' })
-vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>', { noremap = true, silent = true, desc = 'Terminal: Vertical' })
+vim.keymap.set('n', '<leader>tv', ':ToggleTerm direction=vertical<CR>',
+  { noremap = true, silent = true, desc = 'Terminal: Vertical' })
+vim.keymap.set('n', '<leader>th', ':ToggleTerm direction=horizontal<CR>',
+  { noremap = true, silent = true, desc = 'Terminal: Horizontal' })
 
 -- Save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', { noremap = true, silent = true, desc = 'Save file' })
 
 -- Save file without auto-formatting
-vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', { noremap = true, silent = true, desc = 'Save file without auto-formatting' })
+vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>',
+  { noremap = true, silent = true, desc = 'Save file without auto-formatting' })
 
 -- Quit
 vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', { noremap = true, silent = true, desc = 'Quit Neovim' })
@@ -62,10 +65,14 @@ vim.keymap.set('v', '>', '>gv', { noremap = true, silent = true, desc = 'Stay in
 vim.keymap.set('v', 'p', '"_dP', { noremap = true, silent = true, desc = 'Paste without losing last yanked text' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = 'Go to previous diagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = 'Go to next diagnostic message' })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, silent = true, desc = 'Open floating diagnostic message' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open diagnostics list' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev,
+  { noremap = true, silent = true, desc = 'Go to previous diagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next,
+  { noremap = true, silent = true, desc = 'Go to next diagnostic message' })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float,
+  { noremap = true, silent = true, desc = 'Open floating diagnostic message' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
+  { noremap = true, silent = true, desc = 'Open diagnostics list' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { noremap = true, silent = true, desc = 'Clear search highlights' })
