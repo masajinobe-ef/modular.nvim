@@ -10,7 +10,8 @@ require('lazy').setup({
   require 'kickstart/plugins/complections/nvim-ts-autotag',
 
   -- Linting/Formatting
-  require 'kickstart/plugins/linting-formatting/none-ls',
+  require 'kickstart/plugins/linting-formatting/conform',
+  --require 'kickstart/plugins/linting-formatting/nvim-lint',
 
   -- LSP
   require 'kickstart/plugins/lsp/nvim-lspconfig',
