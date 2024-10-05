@@ -96,32 +96,6 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Resize window left' }
 )
 
--- Buffers
-vim.keymap.set(
-    'n',
-    '<Tab>',
-    ':bnext<CR>',
-    { noremap = true, silent = true, desc = 'Go to next buffer' }
-)
-vim.keymap.set(
-    'n',
-    '<S-Tab>',
-    ':bprevious<CR>',
-    { noremap = true, silent = true, desc = 'Go to previous buffer' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>x',
-    ':Bdelete!<CR>',
-    { noremap = true, silent = true, desc = 'Close current buffer' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>b',
-    '<cmd> new <CR>',
-    { noremap = true, silent = true, desc = 'Open new buffer' }
-)
-
 -- Window management
 vim.keymap.set(
     'n',
@@ -143,7 +117,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
     'n',
-    '<leader>xs',
+    '<leader>sx',
     ':close<CR>',
     { noremap = true, silent = true, desc = 'Close current split window' }
 )
@@ -251,7 +225,57 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Clear search highlights' }
 )
 
--- formatting with Conform
+-- Buffers
+vim.keymap.set(
+    'n',
+    '<Tab>',
+    ':bnext<CR>',
+    { noremap = true, silent = true, desc = 'Go to next buffer' }
+)
+vim.keymap.set(
+    'n',
+    '<S-Tab>',
+    ':bprevious<CR>',
+    { noremap = true, silent = true, desc = 'Go to previous buffer' }
+)
+-- Close the current buffer
+vim.keymap.set(
+    'n',
+    '<leader>x',
+    ':Bdelete!<CR>',
+    { noremap = true, silent = true, desc = 'Close current buffer' }
+)
+-- Close all buffers
+vim.api.nvim_create_user_command('BdeleteAll', function()
+    -- Get a list of all buffers
+    local buffers = vim.api.nvim_list_bufs()
+    for _, buf in ipairs(buffers) do
+        -- Check if the buffer is listed and not the current buffer
+        if
+            vim.api.nvim_buf_is_loaded(buf)
+            and buf ~= vim.api.nvim_get_current_buf()
+        then
+            vim.api.nvim_buf_delete(buf, { force = true })
+        end
+    end
+    -- Optionally, close the current buffer as well
+    vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), { force = true })
+end, { desc = 'Close all buffers' })
+-- Key mapping to close all buffers
+vim.keymap.set(
+    'n',
+    '<leader>X',
+    ':BdeleteAll<CR>',
+    { noremap = true, silent = true, desc = 'Close all buffers' }
+)
+vim.keymap.set(
+    'n',
+    '<leader>b',
+    '<cmd> new <CR>',
+    { noremap = true, silent = true, desc = 'Open new buffer' }
+)
+
+-- Formatting with Conform
 vim.keymap.set(
     'n',
     '<leader>f',
@@ -274,6 +298,7 @@ vim.api.nvim_create_user_command('Format', function(args)
         lsp_format = 'fallback',
         range = range,
     }
+    vim.notify('Formatting complete', vim.log.levels.INFO)
 end, { range = true })
 
 -- [[ Basic Autocommands ]]
