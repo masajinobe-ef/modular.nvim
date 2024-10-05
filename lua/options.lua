@@ -48,9 +48,6 @@ vim.opt.swapfile = false -- Create swapfile (default: true)
 vim.opt.backup = false -- Create backup file (default: false)
 vim.opt.writebackup = false -- Prevent editing if file is modified (default: true)
 
--- Runtime path settings
-vim.opt.runtimepath:remove '/usr/share/vim/vimfiles' -- Separate Vim plugins (default: includes this path)
-
 -- Line number settings
 vim.opt.number = true -- Show absolute line numbers
 vim.opt.relativenumber = true -- Show relative line numbers
@@ -58,11 +55,6 @@ vim.opt.relativenumber = true -- Show relative line numbers
 -- Mouse and mode settings
 vim.opt.mouse = 'a' -- Enable mouse mode
 vim.opt.showmode = false -- Don't show the mode in the status line
-
--- Clipboard settings
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim
-end)
 
 -- Search settings
 vim.opt.ignorecase = true -- Case-insensitive searching
@@ -75,6 +67,10 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Define whites
 -- Live substitution preview
 vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
 
--- Additional settings
-vim.opt.cursorline = true -- Highlight current line
-vim.opt.scrolloff = 10 -- Minimal number of screen lines to keep above and below the cursor
+-- Clipboard settings
+vim.schedule(function()
+    vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim
+end)
+
+-- Runtime path settings
+vim.opt.runtimepath:remove '/usr/share/vim/vimfiles' -- Separate Vim plugins (default: includes this path)
