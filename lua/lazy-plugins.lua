@@ -4,6 +4,7 @@
 --    :Lazy
 
 require('lazy').setup({
+
     -- Colorscheme
     require 'kickstart/plugins/colorscheme/cyberdream',
 
@@ -14,27 +15,26 @@ require('lazy').setup({
 
     -- Linting/Formatting
     require 'kickstart/plugins/linting-formatting/conform',
-    --require("kickstart/plugins/linting-formatting/nvim-lint"),
-
-    -- LSP
-    --require 'kickstart/plugins/lsp/nvim-lspconfig',
+    -- require("kickstart/plugins/linting-formatting/nvim-lint"),
+    -- require 'kickstart/plugins/linting-formatting/nvim-lspconfig',
 
     -- Syntax highlights
-    require 'kickstart/plugins/syntax-highlights/gitsigns',
     require 'kickstart/plugins/syntax-highlights/nvim-colorizer',
     require 'kickstart/plugins/syntax-highlights/nvim-treesitter',
     require 'kickstart/plugins/syntax-highlights/todo-comments',
 
     -- UI
+    require 'kickstart/plugins/ui/which-key',
+    require 'kickstart/plugins/ui/gitsigns',
     require 'kickstart/plugins/ui/lualine',
     require 'kickstart/plugins/ui/neo-tree',
     require 'kickstart/plugins/ui/bufferline',
     require 'kickstart/plugins/ui/alpha-nvim',
+    require 'kickstart/plugins/ui/telescope',
 
     -- Util
+    require 'kickstart/plugins/util/mason',
     require 'kickstart/plugins/util/comment',
-    require 'kickstart/plugins/util/which-key',
-    -- require 'kickstart/plugins/util/telescope',
     require 'kickstart/plugins/util/mini',
     require 'kickstart/plugins/util/misc',
     require 'kickstart/plugins/util/better-escape',
