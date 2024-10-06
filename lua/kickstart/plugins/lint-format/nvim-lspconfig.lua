@@ -41,16 +41,16 @@ return {
         config = function()
             local lspconfig = require 'lspconfig'
 
-            lspconfig.lua_ls.setup {
-                settings = {
-                    Lua = {
-                        completion = {
-                            callSnippet = 'Replace',
-                        },
-                        diagnostics = { disable = { 'missing-fields' } },
-                    },
-                },
-            }
+            -- lspconfig.lua_ls.setup {
+            --     settings = {
+            --         Lua = {
+            --             completion = {
+            --                 callSnippet = 'Replace',
+            --             },
+            --             diagnostics = { disable = { 'missing-fields' } },
+            --         },
+            --     },
+            -- }
 
             lspconfig.ruff.setup {
                 settings = {
@@ -136,12 +136,6 @@ return {
                     { name = 'nvim_lsp' },
                 },
             }
-        end,
-    },
-    {
-        'j-hui/fidget.nvim',
-        config = function()
-            require('fidget').setup {}
         end,
     },
 }

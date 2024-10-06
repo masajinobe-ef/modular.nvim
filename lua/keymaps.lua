@@ -1,6 +1,15 @@
+-- Function to show notification after action
+local function notify_action(action_desc)
+    vim.notify = require 'notify'
+    vim.notify(action_desc .. ' ', vim.log.levels.INFO)
+end
+
 -- [[ Basic Keymaps ]]
 
--- Terminal
+-- -----------------------------
+-- Terminal Management
+-- -----------------------------
+
 vim.keymap.set(
     'n',
     '<leader>tv',
@@ -14,22 +23,17 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Terminal: Horizontal' }
 )
 
--- Save file
-vim.keymap.set(
-    'n',
-    '<C-s>',
-    '<cmd> w <CR>',
-    { noremap = true, silent = true, desc = 'Save file' }
-)
+-- -----------------------------
+-- File Management
+-- -----------------------------
 
--- Save file without auto-formatting
-vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', {
-    noremap = true,
-    silent = true,
-    desc = 'Save file without auto-formatting',
-})
+-- Save file with notification
+vim.keymap.set('n', '<C-s>', function()
+    vim.cmd 'w' -- Save file
+    notify_action 'File saved' -- Notify after saving
+end, { noremap = true, silent = true, desc = 'Save file' })
 
--- Quit
+-- Quit Neovim
 vim.keymap.set(
     'n',
     '<C-q>',
@@ -37,12 +41,40 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Quit Neovim' }
 )
 
+-- -----------------------------
+-- Deleting and Searching
+-- -----------------------------
+
 -- Delete single character without copying into register
 vim.keymap.set('n', 'x', '"_x', {
     noremap = true,
     silent = true,
     desc = 'Delete character without copying',
 })
+
+-- Find and center
+vim.keymap.set('n', 'n', 'nzzzv', {
+    noremap = true,
+    silent = true,
+    desc = 'Search next occurrence and center',
+})
+vim.keymap.set('n', 'N', 'Nzzzv', {
+    noremap = true,
+    silent = true,
+    desc = 'Search previous occurrence and center',
+})
+
+-- Clear highlights on search when pressing <Esc> in normal mode
+vim.keymap.set(
+    'n',
+    '<Esc>',
+    '<cmd>nohlsearch<CR>',
+    { noremap = true, silent = true, desc = 'Clear search highlights' }
+)
+
+-- -----------------------------
+-- Scrolling
+-- -----------------------------
 
 -- Vertical scroll and center
 vim.keymap.set(
@@ -58,17 +90,9 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Scroll up and center' }
 )
 
--- Find and center
-vim.keymap.set('n', 'n', 'nzzzv', {
-    noremap = true,
-    silent = true,
-    desc = 'Search next occurrence and center',
-})
-vim.keymap.set('n', 'N', 'Nzzzv', {
-    noremap = true,
-    silent = true,
-    desc = 'Search previous occurrence and center',
-})
+-- -----------------------------
+-- Window Management
+-- -----------------------------
 
 -- Resize with arrows
 vim.keymap.set(
@@ -96,7 +120,7 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Resize window left' }
 )
 
--- Window management
+-- Split and manage windows
 vim.keymap.set(
     'n',
     '<leader>v',
@@ -148,7 +172,10 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Move to the window on the right' }
 )
 
--- Tabs
+-- -----------------------------
+-- Tab Management
+-- -----------------------------
+
 vim.keymap.set(
     'n',
     '<leader>to',
@@ -174,6 +201,10 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Go to previous tab' }
 )
 
+-- -----------------------------
+-- Visual Mode Keymaps
+-- -----------------------------
+
 -- Stay in indent mode
 vim.keymap.set('v', '<', '<gv', {
     noremap = true,
@@ -193,7 +224,10 @@ vim.keymap.set('v', 'p', '"_dP', {
     desc = 'Paste without losing last yanked text',
 })
 
--- Diagnostic keymaps
+-- -----------------------------
+-- Diagnostic Keymaps
+-- -----------------------------
+
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {
     noremap = true,
     silent = true,
@@ -217,15 +251,11 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Open diagnostics list' }
 )
 
--- Clear highlights on search when pressing <Esc> in normal mode
-vim.keymap.set(
-    'n',
-    '<Esc>',
-    '<cmd>nohlsearch<CR>',
-    { noremap = true, silent = true, desc = 'Clear search highlights' }
-)
+-- -----------------------------
+-- Buffer Management
+-- -----------------------------
 
--- Buffers
+-- Navigate buffers
 vim.keymap.set(
     'n',
     '<Tab>',
@@ -238,6 +268,7 @@ vim.keymap.set(
     ':bprevious<CR>',
     { noremap = true, silent = true, desc = 'Go to previous buffer' }
 )
+
 -- Close the current buffer
 vim.keymap.set(
     'n',
@@ -245,12 +276,11 @@ vim.keymap.set(
     ':Bdelete!<CR>',
     { noremap = true, silent = true, desc = 'Close current buffer' }
 )
--- Close all buffers
+
+-- Close all buffers command
 vim.api.nvim_create_user_command('BdeleteAll', function()
-    -- Get a list of all buffers
     local buffers = vim.api.nvim_list_bufs()
     for _, buf in ipairs(buffers) do
-        -- Check if the buffer is listed and not the current buffer
         if
             vim.api.nvim_buf_is_loaded(buf)
             and buf ~= vim.api.nvim_get_current_buf()
@@ -258,10 +288,9 @@ vim.api.nvim_create_user_command('BdeleteAll', function()
             vim.api.nvim_buf_delete(buf, { force = true })
         end
     end
-    -- Optionally, close the current buffer as well
     vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), { force = true })
 end, { desc = 'Close all buffers' })
--- Key mapping to close all buffers
+
 vim.keymap.set(
     'n',
     '<leader>X',
@@ -275,14 +304,28 @@ vim.keymap.set(
     { noremap = true, silent = true, desc = 'Open new buffer' }
 )
 
--- Formatting with Conform
+-- -----------------------------
+-- Neotree Management
+-- -----------------------------
+
 vim.keymap.set(
     'n',
-    '<leader>f',
-    ':Format<CR>',
-    { noremap = true, silent = true, desc = 'Format file' }
+    '<leader>e',
+    ':Neotree toggle position=left<CR>',
+    { noremap = true, silent = true, desc = 'Toggle file explorer' }
+)
+vim.keymap.set(
+    'n',
+    '<leader>ngs',
+    ':Neotree float git_status<CR>',
+    { noremap = true, silent = true, desc = 'Open git status window' }
 )
 
+-- -----------------------------
+-- Formatting
+-- -----------------------------
+
+-- Formatting with Conform and notification
 vim.api.nvim_create_user_command('Format', function(args)
     local range = nil
     if args.count ~= -1 then
@@ -298,8 +341,16 @@ vim.api.nvim_create_user_command('Format', function(args)
         lsp_format = 'fallback',
         range = range,
     }
-    vim.notify('Formatting complete', vim.log.levels.INFO)
+    vim.notify = require 'notify'
+    vim.notify('Formatting', vim.log.levels.INFO)
 end, { range = true })
+
+vim.keymap.set(
+    'n',
+    '<leader>f',
+    ':Format<CR>',
+    { noremap = true, silent = true, desc = 'Open git status window' }
+)
 
 -- [[ Basic Autocommands ]]
 

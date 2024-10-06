@@ -15,7 +15,7 @@ require('lazy').setup({
 
     -- Linting/Formatting
     require 'kickstart/plugins/lint-format/conform',
-    require("kickstart/plugins/lint-format/nvim-lint"),
+    require 'kickstart/plugins/lint-format/nvim-lint',
     require 'kickstart/plugins/lint-format/nvim-lspconfig',
 
     -- Syntax highlights
@@ -24,13 +24,12 @@ require('lazy').setup({
     require 'kickstart/plugins/syntax/todo-comments',
 
     -- UI
-    require 'kickstart/plugins/ui/which-key',
-    require 'kickstart/plugins/ui/gitsigns',
-    require 'kickstart/plugins/ui/lualine',
     require 'kickstart/plugins/ui/neo-tree',
+    require 'kickstart/plugins/ui/which-key',
+    require 'kickstart/plugins/ui/lualine',
     require 'kickstart/plugins/ui/bufferline',
     require 'kickstart/plugins/ui/alpha-nvim',
-    -- require 'kickstart/plugins/ui/telescope',
+    require 'kickstart/plugins/ui/nvim-notify',
 
     -- Util
     require 'kickstart/plugins/util/comment',
