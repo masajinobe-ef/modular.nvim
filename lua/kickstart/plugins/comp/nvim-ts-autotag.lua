@@ -10,11 +10,7 @@ return {
                     enable_close_on_slash = false, -- Auto close on trailing </
                 },
                 -- Also override individual filetype configs, these take priority.
-                per_filetype = {
-                    ['html'] = {
-                        enable_close = false,
-                    },
-                },
+                per_filetype = {},
             }
         end,
     },
