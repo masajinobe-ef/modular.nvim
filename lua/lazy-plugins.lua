@@ -9,19 +9,19 @@ require('lazy').setup({
     require 'kickstart/plugins/colorscheme/cyberdream',
 
     -- Completions
-    -- require 'kickstart/plugins/completions/nvim-cmp',
-    -- require 'kickstart/plugins/completions/nvim-autopairs',
-    -- require 'kickstart/plugins/completions/nvim-ts-autotag',
+    require 'kickstart/plugins/comp/nvim-cmp',
+    require 'kickstart/plugins/comp/nvim-autopairs',
+    require 'kickstart/plugins/comp/nvim-ts-autotag',
 
     -- Linting/Formatting
-    require 'kickstart/plugins/linting-formatting/conform',
-    -- require("kickstart/plugins/linting-formatting/nvim-lint"),
-    -- require 'kickstart/plugins/linting-formatting/nvim-lspconfig',
+    require 'kickstart/plugins/lint-format/conform',
+    require("kickstart/plugins/lint-format/nvim-lint"),
+    require 'kickstart/plugins/lint-format/nvim-lspconfig',
 
     -- Syntax highlights
-    require 'kickstart/plugins/syntax-highlights/nvim-colorizer',
-    require 'kickstart/plugins/syntax-highlights/nvim-treesitter',
-    require 'kickstart/plugins/syntax-highlights/todo-comments',
+    require 'kickstart/plugins/syntax/nvim-colorizer',
+    require 'kickstart/plugins/syntax/nvim-treesitter',
+    require 'kickstart/plugins/syntax/todo-comments',
 
     -- UI
     require 'kickstart/plugins/ui/which-key',
@@ -30,10 +30,9 @@ require('lazy').setup({
     require 'kickstart/plugins/ui/neo-tree',
     require 'kickstart/plugins/ui/bufferline',
     require 'kickstart/plugins/ui/alpha-nvim',
-    require 'kickstart/plugins/ui/telescope',
+    -- require 'kickstart/plugins/ui/telescope',
 
     -- Util
-    require 'kickstart/plugins/util/mason',
     require 'kickstart/plugins/util/comment',
     require 'kickstart/plugins/util/mini',
     require 'kickstart/plugins/util/misc',
