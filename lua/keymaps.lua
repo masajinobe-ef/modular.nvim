@@ -228,28 +228,28 @@ vim.keymap.set('v', 'p', '"_dP', {
 -- Diagnostic Keymaps
 -- -----------------------------
 
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {
-    noremap = true,
-    silent = true,
-    desc = 'Go to previous diagnostic message',
-})
-vim.keymap.set(
-    'n',
-    ']d',
-    vim.diagnostic.goto_next,
-    { noremap = true, silent = true, desc = 'Go to next diagnostic message' }
-)
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {
-    noremap = true,
-    silent = true,
-    desc = 'Open floating diagnostic message',
-})
-vim.keymap.set(
-    'n',
-    '<leader>q',
-    vim.diagnostic.setloclist,
-    { noremap = true, silent = true, desc = 'Open diagnostics list' }
-)
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, {
+--     noremap = true,
+--     silent = true,
+--     desc = 'Go to previous diagnostic message',
+-- })
+-- vim.keymap.set(
+--     'n',
+--     ']d',
+--     vim.diagnostic.goto_next,
+--     { noremap = true, silent = true, desc = 'Go to next diagnostic message' }
+-- )
+-- vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, {
+--     noremap = true,
+--     silent = true,
+--     desc = 'Open floating diagnostic message',
+-- })
+-- vim.keymap.set(
+--     'n',
+--     '<leader>q',
+--     vim.diagnostic.setloclist,
+--     { noremap = true, silent = true, desc = 'Open diagnostics list' }
+-- )
 
 -- -----------------------------
 -- Buffer Management
@@ -314,12 +314,6 @@ vim.keymap.set(
     ':Neotree toggle position=left<CR>',
     { noremap = true, silent = true, desc = 'Toggle file explorer' }
 )
-vim.keymap.set(
-    'n',
-    '<leader>ngs',
-    ':Neotree float git_status<CR>',
-    { noremap = true, silent = true, desc = 'Open git status window' }
-)
 
 -- -----------------------------
 -- Formatting
@@ -349,7 +343,7 @@ vim.keymap.set(
     'n',
     '<leader>f',
     ':Format<CR>',
-    { noremap = true, silent = true, desc = 'Open git status window' }
+    { noremap = true, silent = true, desc = 'Format file' }
 )
 
 -- [[ Basic Autocommands ]]
