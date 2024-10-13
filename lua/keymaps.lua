@@ -123,13 +123,13 @@ vim.keymap.set(
 -- Split and manage windows
 vim.keymap.set(
     'n',
-    '<leader>v',
+    '<leader>sv',
     '<C-w>v',
     { noremap = true, silent = true, desc = 'Split window vertically' }
 )
 vim.keymap.set(
     'n',
-    '<leader>h',
+    '<leader>sh',
     '<C-w>s',
     { noremap = true, silent = true, desc = 'Split window horizontally' }
 )
@@ -176,30 +176,30 @@ vim.keymap.set(
 -- Tab Management
 -- -----------------------------
 
-vim.keymap.set(
-    'n',
-    '<leader>to',
-    ':tabnew<CR>',
-    { noremap = true, silent = true, desc = 'Open new tab' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>tx',
-    ':tabclose<CR>',
-    { noremap = true, silent = true, desc = 'Close current tab' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>tn',
-    ':tabn<CR>',
-    { noremap = true, silent = true, desc = 'Go to next tab' }
-)
-vim.keymap.set(
-    'n',
-    '<leader>tp',
-    ':tabp<CR>',
-    { noremap = true, silent = true, desc = 'Go to previous tab' }
-)
+-- vim.keymap.set(
+--     'n',
+--     '<leader>to',
+--     ':tabnew<CR>',
+--     { noremap = true, silent = true, desc = 'Open new tab' }
+-- )
+-- vim.keymap.set(
+--     'n',
+--     '<leader>tx',
+--     ':tabclose<CR>',
+--     { noremap = true, silent = true, desc = 'Close current tab' }
+-- )
+-- vim.keymap.set(
+--     'n',
+--     '<leader>tn',
+--     ':tabn<CR>',
+--     { noremap = true, silent = true, desc = 'Go to next tab' }
+-- )
+-- vim.keymap.set(
+--     'n',
+--     '<leader>tp',
+--     ':tabp<CR>',
+--     { noremap = true, silent = true, desc = 'Go to previous tab' }
+-- )
 
 -- -----------------------------
 -- Visual Mode Keymaps
