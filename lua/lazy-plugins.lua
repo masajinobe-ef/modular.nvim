@@ -25,6 +25,7 @@ require('lazy').setup({
 
     -- UI
     require 'kickstart/plugins/ui/neo-tree',
+    require 'kickstart/plugins/ui/gitsigns',
     require 'kickstart/plugins/ui/which-key',
     require 'kickstart/plugins/ui/lualine',
     require 'kickstart/plugins/ui/bufferline',
