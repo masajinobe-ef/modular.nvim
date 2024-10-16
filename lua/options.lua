@@ -40,7 +40,7 @@ vim.opt.iskeyword:append '-' -- Hyphenated words (default: does not include '-')
 vim.opt.formatoptions:remove { 'c', 'r', 'o' } -- No auto comment leader (default: 'croql')
 
 -- Performance settings
-vim.opt.updatetime = 250 -- Update time (default: 4000)
+vim.opt.updatetime = 500 -- Update time (default: 4000)
 vim.opt.timeoutlen = 300 -- Mapped sequence timeout (default: 1000)
 
 -- Backup settings

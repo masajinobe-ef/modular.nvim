@@ -14,9 +14,9 @@ require('lazy').setup({
     require 'kickstart/plugins/comp/nvim-ts-autotag',
 
     -- Linting/Formatting
-    require 'kickstart/plugins/lint-format/conform',
     require 'kickstart/plugins/lint-format/nvim-lint',
     require 'kickstart/plugins/lint-format/nvim-lspconfig',
+    require 'kickstart/plugins/lint-format/conform-nvim',
 
     -- Syntax highlights
     require 'kickstart/plugins/syntax/nvim-colorizer',
@@ -31,6 +31,7 @@ require('lazy').setup({
     require 'kickstart/plugins/ui/bufferline',
     require 'kickstart/plugins/ui/alpha-nvim',
     require 'kickstart/plugins/ui/nvim-notify',
+    require 'kickstart/plugins/ui/indent-blankline',
 
     -- Util
     require 'kickstart/plugins/util/comment',

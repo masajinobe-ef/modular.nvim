@@ -326,7 +326,6 @@ vim.keymap.set(
 -- Formatting
 -- -----------------------------
 
--- Formatting with Conform and notification
 vim.api.nvim_create_user_command('Format', function(args)
     local range = nil
     if args.count ~= -1 then

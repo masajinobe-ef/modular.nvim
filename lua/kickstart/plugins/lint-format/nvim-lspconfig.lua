@@ -41,16 +41,18 @@ return {
         config = function()
             local lspconfig = require 'lspconfig'
 
-            -- lspconfig.lua_ls.setup {
-            --     settings = {
-            --         Lua = {
-            --             completion = {
-            --                 callSnippet = 'Replace',
-            --             },
-            --             diagnostics = { disable = { 'missing-fields' } },
-            --         },
-            --     },
-            -- }
+            lspconfig.lua_ls.setup {
+                settings = {
+                    Lua = {
+                        completion = {
+                            callSnippet = 'Replace',
+                        },
+                        diagnostics = {
+                            disable = { 'missing-fields', 'undefined-global' },
+                        },
+                    },
+                },
+            }
 
             lspconfig.ruff.setup {
                 settings = {

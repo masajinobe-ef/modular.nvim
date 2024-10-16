@@ -11,17 +11,14 @@ return {
                     return ' ' .. str
                 end,
             }
-
             local filename = {
                 'filename',
                 file_status = false,
                 path = 0,
             }
-
             local hide_in_width = function()
                 return vim.fn.winwidth(0) > 79
             end
-
             local diagnostics = {
                 'diagnostics',
                 sources = { 'nvim_diagnostic' },
@@ -37,7 +34,6 @@ return {
                 always_visible = false,
                 cond = hide_in_width,
             }
-
             local diff = {
                 'diff',
                 colored = true,
