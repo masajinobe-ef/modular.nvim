@@ -34,25 +34,25 @@ return {
 
             -- Custom args
             formatters = {
-                ruff = {
-                    command = 'ruff',
-                    args = {
-                        'check',
-                        '--fix',
-                        '--use-single-quotes',
-                        '--max-line-length',
-                        '79',
-                        '--indent-width',
-                        '4',
-                        '--indent-style',
-                        'space',
-                        '--ignore',
-                        'F403',
-                        '$FILENAME',
-                    },
-                    stdin = true,
-                    exit_codes = { 0, 1 },
-                },
+                -- ruff = {
+                --     command = 'ruff',
+                --     args = {
+                --         'check',
+                --         '--fix',
+                --         '--use-single-quotes',
+                --         '--max-line-length',
+                --         '79',
+                --         '--indent-width',
+                --         '4',
+                --         '--indent-style',
+                --         'space',
+                --         '--ignore',
+                --         'F403',
+                --         '$FILENAME',
+                --     },
+                --     stdin = true,
+                --     exit_codes = { 0, 1 },
+                -- },
                 -- stylua = {
                 --     command = 'stylua',
                 --     args = {
