@@ -3,6 +3,16 @@ local opts = { noremap = true, silent = true }
 
 
 -- -----------------------------
+-- [[ Neogit ]]
+-- -----------------------------
+vim.keymap.set(
+    'n',
+    '<leader>g',
+    ':Neogit<CR>',
+    vim.tbl_extend('force', opts, { desc = 'open neo[g]it' })
+)
+
+-- -----------------------------
 -- [[ Lazy.nvim Plugin Manager ]]
 -- -----------------------------
 vim.keymap.set(
@@ -11,6 +21,7 @@ vim.keymap.set(
     ':Lazy<CR>',
     vim.tbl_extend('force', opts, { desc = 'open [l]azy plugin manager' })
 )
+
 
 -- -----------------------------
 -- [[ Replace ]]
