@@ -13,6 +13,35 @@ vim.keymap.set(
 )
 
 -- -----------------------------
+-- [[ Replace ]]
+-- -----------------------------
+vim.keymap.set(
+    'n',
+    '<leader>rw',
+    function()
+        local search_word = vim.fn.input("Enter word to search: ")
+        if search_word == "" then
+            print("Search word cannot be empty.")
+            return
+        end
+
+        local replace_word = vim.fn.input("Enter word to replace: ")
+        if replace_word == "" then
+            print("Replace word cannot be empty.")
+            return
+        end
+
+        local escaped_search = search_word:gsub("/", "\\/")
+        local escaped_replace = replace_word:gsub("/", "\\/")
+
+        local command = string.format("%%s/%s/%s/gc", escaped_search, escaped_replace)
+
+        vim.cmd(command)
+    end,
+    { desc = '[r]eplace word with confirmation' }
+)
+
+-- -----------------------------
 -- [[ File Management ]]
 -- -----------------------------
 -- vim.keymap.set('n', '<leader>sf', function()
