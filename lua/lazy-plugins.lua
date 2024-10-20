@@ -30,19 +30,15 @@ require('lazy').setup({
     require 'kickstart/plugins/ui/lualine',
     require 'kickstart/plugins/ui/bufferline',
     require 'kickstart/plugins/ui/alpha-nvim',
-    require 'kickstart/plugins/ui/nvim-notify',
     require 'kickstart/plugins/ui/indent-blankline',
 
     -- Util
     require 'kickstart/plugins/util/comment',
+    require 'kickstart/plugins/util/telescope',
     require 'kickstart/plugins/util/mini',
     require 'kickstart/plugins/util/misc',
     require 'kickstart/plugins/util/better-escape',
-    require 'kickstart/plugins/util/toggleterm',
     require 'kickstart/plugins/util/auto-save',
-
-    -- Custom
-    { import = 'custom/plugins' },
 }, {
     ui = {
         icons = vim.g.have_nerd_font and {} or {

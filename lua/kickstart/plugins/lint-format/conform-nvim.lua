@@ -5,7 +5,6 @@ return {
     lazy = true,
     config = function()
         require('conform').setup {
-            -- Map of filetype to formatters
             formatters_by_ft = {
                 lua = { 'stylua' },
                 python = { 'ruff' },
@@ -34,25 +33,6 @@ return {
 
             -- Custom args
             formatters = {
-                -- ruff = {
-                --     command = 'ruff',
-                --     args = {
-                --         'check',
-                --         '--fix',
-                --         '--use-single-quotes',
-                --         '--max-line-length',
-                --         '79',
-                --         '--indent-width',
-                --         '4',
-                --         '--indent-style',
-                --         'space',
-                --         '--ignore',
-                --         'F403',
-                --         '$FILENAME',
-                --     },
-                --     stdin = true,
-                --     exit_codes = { 0, 1 },
-                -- },
                 -- stylua = {
                 --     command = 'stylua',
                 --     args = {
@@ -85,11 +65,6 @@ return {
                     lsp_format = 'fallback',
                     timeout_ms = 500,
                 },
-
-                -- Log level and notifications
-                log_level = vim.log.levels.ERROR,
-                notify_on_error = true,
-                notify_no_formatters = true,
             },
         }
     end,

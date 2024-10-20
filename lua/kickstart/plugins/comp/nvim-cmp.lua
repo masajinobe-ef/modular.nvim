@@ -7,7 +7,6 @@ return {
     },
     config = function()
         local cmp = require 'cmp'
-
         local kind_icons = {
             Text = '󰉿',
             Method = 'm',
@@ -38,7 +37,6 @@ return {
         cmp.setup {
             completion = { completeopt = 'menu,menuone,noinsert' },
 
-            -- Настраиваем выбор по Enter
             mapping = cmp.mapping.preset.insert {
                 ['<C-n>'] = cmp.mapping.select_next_item(),
                 ['<C-p>'] = cmp.mapping.select_prev_item(),
