@@ -33,31 +33,46 @@ return {
 
             -- Custom args
             formatters = {
-                -- stylua = {
-                --     command = 'stylua',
-                --     args = {
-                --         '--column-width',
-                --         '79',
-                --         '--line-endings',
-                --         'Unix',
-                --         '--indent-type',
-                --         'Spaces',
-                --         '--indent-width',
-                --         '4',
-                --         '--quote-style',
-                --         'AutoPreferSingle',
-                --         '--call-parentheses',
-                --         'None',
-                --         '$FILENAME',
-                --     },
-                --     stdin = true,
-                --     exit_codes = { 0, 1 },
-                -- },
-                gofmt = {
-                    command = 'gofmt',
-                    args = { '$FILENAME' },
-                    stdin = false,
-                    exit_codes = { 0 },
+                formatters = {
+                    ruff = {
+                        command = "ruff",
+                        args = { "check", "--stdin", "--fix" },
+                        stdin = true,
+                        cwd = require("conform.util").root_file({ ".editorconfig", "pyproject.toml" }),
+                        require_cwd = true,
+                        tmpfile_format = ".conform.$RANDOM.$FILENAME",
+                        condition = function(self, ctx)
+                            return vim.fs.basename(ctx.filename) ~= "README.md"
+                        end,
+                        exit_codes = { 0, 1 },
+                        env = {
+                            LINE_LENGTH = "79",
+                            EOL = "LF",
+                            INDENT_STYLE = "space",
+                            TAB_SIZE = "4",
+                            QUOTE_STYLE = "single",
+                        },
+                        inherit = true,
+                        prepend_args = {},
+                        append_args = {},
+                    },
+                },
+
+                stylua = {
+                    command = "stylua",
+                    args = { "--stdin", "--config-path", ".stylua.toml" },
+                    stdin = true,
+                    cwd = require("conform.util").root_file({ ".editorconfig", "stylua.toml" }),
+                    require_cwd = true,
+                    tmpfile_format = ".conform.$RANDOM.$FILENAME",
+                    condition = function(self, ctx)
+                        return vim.fs.basename(ctx.filename) ~= "README.md"
+                    end,
+                    exit_codes = { 0, 1 },
+                    env = {},
+                    inherit = true,
+                    prepend_args = {},
+                    append_args = {},
                 },
 
                 -- Set default options for formatters
