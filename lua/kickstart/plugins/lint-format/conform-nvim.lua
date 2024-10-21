@@ -35,44 +35,30 @@ return {
             formatters = {
                 formatters = {
                     ruff = {
-                        command = "ruff",
-                        args = { "check", "--stdin", "--fix" },
+                        command = 'ruff',
+                        args = { 'check', '--stdin', '--fix' },
                         stdin = true,
-                        cwd = require("conform.util").root_file({ ".editorconfig", "pyproject.toml" }),
+                        cwd = require('conform.util').root_file {
+                            '.editorconfig',
+                            'pyproject.toml',
+                        },
                         require_cwd = true,
-                        tmpfile_format = ".conform.$RANDOM.$FILENAME",
+                        tmpfile_format = '.conform.$RANDOM.$FILENAME',
                         condition = function(self, ctx)
-                            return vim.fs.basename(ctx.filename) ~= "README.md"
+                            return vim.fs.basename(ctx.filename) ~= 'README.md'
                         end,
                         exit_codes = { 0, 1 },
                         env = {
-                            LINE_LENGTH = "79",
-                            EOL = "LF",
-                            INDENT_STYLE = "space",
-                            TAB_SIZE = "4",
-                            QUOTE_STYLE = "single",
+                            LINE_LENGTH = '79',
+                            EOL = 'LF',
+                            INDENT_STYLE = 'space',
+                            TAB_SIZE = '4',
+                            QUOTE_STYLE = 'single',
                         },
                         inherit = true,
                         prepend_args = {},
                         append_args = {},
                     },
-                },
-
-                stylua = {
-                    command = "stylua",
-                    args = { "--stdin", "--config-path", ".stylua.toml" },
-                    stdin = true,
-                    cwd = require("conform.util").root_file({ ".editorconfig", "stylua.toml" }),
-                    require_cwd = true,
-                    tmpfile_format = ".conform.$RANDOM.$FILENAME",
-                    condition = function(self, ctx)
-                        return vim.fs.basename(ctx.filename) ~= "README.md"
-                    end,
-                    exit_codes = { 0, 1 },
-                    env = {},
-                    inherit = true,
-                    prepend_args = {},
-                    append_args = {},
                 },
 
                 -- Set default options for formatters

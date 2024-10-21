@@ -1,75 +1,78 @@
--- [[ Setting options ]]
-
 -- Line number settings
-vim.opt.number = true -- Show absolute line numbers
-vim.opt.relativenumber = true -- Show relative line numbers
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- Mouse settings
-vim.opt.mouse = 'a' -- Enable mouse mode
+vim.opt.mouse = 'a'
 
 -- Mode settings
-vim.opt.showmode = false -- Don't show the mode in the status line
+vim.opt.showmode = false
 
 -- Clipboard settings
 vim.schedule(function()
-    vim.opt.clipboard = 'unnamedplus' -- Sync clipboard between OS and Neovim
+    vim.opt.clipboard = 'unnamedplus'
 end)
 
 -- Text settings
-vim.opt.textwidth = 79 -- Text width
-vim.opt.breakindent = true -- Enable break indent (default: false)
-vim.opt.hlsearch = true -- Highlight search (default: true)
-vim.opt.fileencoding = 'utf-8' -- File encoding (default: 'utf-8')
-vim.opt.undofile = true -- Save undo history (default: false)
+vim.opt.wrap = true
+vim.opt.textwidth = 80
+vim.opt.breakindent = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+vim.opt.fileencoding = 'utf-8'
+vim.opt.undofile = true
 
 -- Search settings
-vim.opt.ignorecase = true -- Case-insensitive searching
-vim.opt.smartcase = true -- Case-sensitive if uppercase letters are used
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Visual settings
-vim.opt.linebreak = true -- Don't split words (default: false)
-vim.opt.scrolloff = 10 -- Lines above/below cursor (default: 0)
-vim.opt.sidescrolloff = 8 -- Columns beside cursor (default: 0)
-vim.opt.cursorline = true -- Highlight current line (default: false)
-vim.opt.termguicolors = true -- Enable highlight groups (default: false)
-vim.opt.numberwidth = 4 -- Number column width (default: 4)
-vim.opt.signcolumn = 'yes' -- Always show signcolumn (default: 'auto')
+vim.opt.linebreak = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
+vim.opt.cursorline = true
+vim.opt.termguicolors = true
+vim.opt.numberwidth = 4
+vim.opt.signcolumn = 'yes'
+vim.opt.colorcolumn = '81'
 
 -- Performance settings
-vim.opt.updatetime = 250 -- Update time (default: 4000)
-vim.opt.timeoutlen = 300 -- Mapped sequence timeout (default: 1000)
+vim.opt.updatetime = 50
+vim.opt.timeoutlen = 300
 
 -- Window settings
-vim.opt.splitbelow = true -- Horizontal splits below (default: false)
-vim.opt.splitright = true -- Vertical splits right (default: false)
+vim.opt.splitbelow = true
+vim.opt.splitright = true
 
 -- Whitespace settings
-vim.opt.list = true -- Show whitespace characters
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' } -- Define whitespace characters
+vim.opt.list = true
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Live substitution preview
-vim.opt.inccommand = 'split' -- Preview substitutions live, as you type!
+vim.opt.inccommand = 'split'
 
 -- Indentation and tab settings
-vim.opt.autoindent = true -- Copy indent (default: true)
-vim.opt.shiftwidth = 4 -- Spaces for indentation (default: 8)
-vim.opt.tabstop = 4 -- Spaces for tab (default: 8)
-vim.opt.softtabstop = 4 -- Spaces for editing tabs (default: 0)
-vim.opt.expandtab = true -- Use spaces instead of tabs
-vim.opt.smartindent = true -- Smarter indenting (default: false)
+vim.opt.autoindent = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
 
 -- Interaction settings
-vim.opt.backspace = 'indent,eol,start' -- Allow backspace (default: 'indent,eol,start')
-vim.opt.pumheight = 10 -- Popup menu height (default: 0)
-vim.opt.completeopt = 'menuone,noselect' -- Better completion (default: 'menu,preview')
-vim.opt.shortmess:append 'c' -- Suppress completion messages (default: does not include 'c')
-vim.opt.iskeyword:append '-' -- Hyphenated words (default: does not include '-')
-vim.opt.formatoptions:remove { 'c', 'r', 'o' } -- No auto comment leader (default: 'croql')
+vim.opt.backspace = 'indent,eol,start'
+vim.opt.pumheight = 10
+vim.opt.completeopt = 'menuone,noselect'
+vim.opt.shortmess:append 'c'
+vim.opt.iskeyword:append '-'
+vim.opt.formatoptions:remove { 'c', 'r', 'o' }
 
 -- Backup settings
-vim.opt.swapfile = false -- Create swapfile (default: true)
-vim.opt.backup = false -- Create backup file (default: false)
-vim.opt.writebackup = false -- Prevent editing if file is modified (default: true)
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.writebackup = false
+vim.opt.undodir = os.getenv 'HOME' .. '/.vim/undodir'
+vim.opt.undofile = true
 
 -- Runtime path settings
-vim.opt.runtimepath:remove '/usr/share/vim/vimfiles' -- Separate Vim plugins (default: includes this path)
+vim.opt.runtimepath:remove '/usr/share/vim/vimfiles'

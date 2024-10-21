@@ -88,7 +88,7 @@ return {
                 tabline = {},
                 winbar = {},
                 inactive_winbar = {},
-                extensions = { 'fugitive' },
+                extensions = {},
             }
         end,
     },

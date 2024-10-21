@@ -1,8 +1,3 @@
--- [[ Configure and install plugins ]]
-
---  To check the current status of your plugins, run
---    :Lazy
-
 require('lazy').setup({
 
     -- Colorscheme
@@ -40,7 +35,6 @@ require('lazy').setup({
     require 'kickstart/plugins/util/better-escape',
     require 'kickstart/plugins/util/auto-save',
     require 'kickstart/plugins/util/neogit',
-
 }, {
     ui = {
         icons = vim.g.have_nerd_font and {} or {
