@@ -15,9 +15,9 @@ end)
 
 -- Text settings
 vim.opt.wrap = true
-vim.opt.textwidth = 80
+vim.opt.textwidth = 79
 vim.opt.breakindent = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 vim.opt.fileencoding = 'utf-8'
 vim.opt.undofile = true
@@ -34,7 +34,7 @@ vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.numberwidth = 4
 vim.opt.signcolumn = 'yes'
-vim.opt.colorcolumn = '0'
+vim.opt.colorcolumn = '80'
 
 -- Performance settings
 vim.opt.updatetime = 50

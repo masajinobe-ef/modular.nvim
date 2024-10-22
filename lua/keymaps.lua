@@ -182,7 +182,11 @@ vim.keymap.set(
     'n',
     'x',
     '"_x',
-    vim.tbl_extend('force', opts, { desc = 'delete character without copying' })
+    vim.tbl_extend(
+        'force',
+        opts,
+        { desc = 'delete character without copying' }
+    )
 )
 
 -- -----------------------------
@@ -393,12 +397,16 @@ vim.keymap.set(
     'n',
     'Q',
     '<nop>',
-    vim.tbl_extend('force', opts, { desc = 'Disable Q command' })
+    vim.tbl_extend('force', opts, { desc = 'disable Q command' })
 )
 
 vim.keymap.set(
     'n',
     '<leader>mx',
     '<cmd>!chmod +x %<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Make current file executable' })
+    vim.tbl_extend(
+        'force',
+        opts,
+        { desc = '[m]ake current file e[x]ecutable' }
+    )
 )
