@@ -23,11 +23,11 @@ require('lazy').setup({
     require 'kickstart/plugins/ui/gitsigns',
     require 'kickstart/plugins/ui/which-key',
     require 'kickstart/plugins/ui/lualine',
-    require 'kickstart/plugins/ui/bufferline',
-    require 'kickstart/plugins/ui/alpha-nvim',
+    -- require 'kickstart/plugins/ui/bufferline',
     require 'kickstart/plugins/ui/indent-blankline',
 
     -- Util
+    require 'kickstart/plugins/util/harpoon',
     require 'kickstart/plugins/util/comment',
     require 'kickstart/plugins/util/telescope',
     require 'kickstart/plugins/util/mini',

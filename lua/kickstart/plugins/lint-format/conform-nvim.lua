@@ -34,30 +34,26 @@ return {
             -- Custom args
             formatters = {
                 formatters = {
+                    stylua = {
+                        command = 'stylua',
+                        args = {
+                            "--column-width", "80",
+                            "--line-endings", "Unix",
+                            "--indent-type", "Spaces",
+                            "--indent-width", "4",
+                            "--quote-style", "AutoPreferSingle",
+                            "--call-parentheses", "None",
+                        },
+                    },
                     ruff = {
                         command = 'ruff',
-                        args = { 'check', '--stdin', '--fix' },
-                        stdin = true,
-                        cwd = require('conform.util').root_file {
-                            '.editorconfig',
-                            'pyproject.toml',
+                        args = {
+                            "--fix",
+                            "--line-length", "79",
+                            "--indent-width", "4",
+                            "--quote-style", "single",
+                            "--indent-style", "space",
                         },
-                        require_cwd = true,
-                        tmpfile_format = '.conform.$RANDOM.$FILENAME',
-                        condition = function(self, ctx)
-                            return vim.fs.basename(ctx.filename) ~= 'README.md'
-                        end,
-                        exit_codes = { 0, 1 },
-                        env = {
-                            LINE_LENGTH = '79',
-                            EOL = 'LF',
-                            INDENT_STYLE = 'space',
-                            TAB_SIZE = '4',
-                            QUOTE_STYLE = 'single',
-                        },
-                        inherit = true,
-                        prepend_args = {},
-                        append_args = {},
                     },
                 },
 
