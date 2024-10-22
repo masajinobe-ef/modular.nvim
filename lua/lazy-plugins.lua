@@ -1,40 +1,40 @@
 require('lazy').setup({
 
     -- Colorscheme
-    require 'kickstart/plugins/colorscheme/cyberdream',
+    require 'modular/plugins/colorscheme/cyberdream',
 
     -- Completions
-    require 'kickstart/plugins/comp/nvim-cmp',
-    require 'kickstart/plugins/comp/nvim-autopairs',
-    require 'kickstart/plugins/comp/nvim-ts-autotag',
+    require 'modular/plugins/comp/nvim-cmp',
+    require 'modular/plugins/comp/nvim-autopairs',
+    require 'modular/plugins/comp/nvim-ts-autotag',
 
     -- Linting/Formatting
-    require 'kickstart/plugins/lint-format/nvim-lint',
-    require 'kickstart/plugins/lint-format/nvim-lspconfig',
-    require 'kickstart/plugins/lint-format/conform-nvim',
+    require 'modular/plugins/lint-format/nvim-lint',
+    require 'modular/plugins/lint-format/nvim-lspconfig',
+    require 'modular/plugins/lint-format/conform-nvim',
 
     -- Syntax highlights
-    require 'kickstart/plugins/syntax/nvim-colorizer',
-    require 'kickstart/plugins/syntax/nvim-treesitter',
-    require 'kickstart/plugins/syntax/todo-comments',
+    require 'modular/plugins/syntax/nvim-colorizer',
+    require 'modular/plugins/syntax/nvim-treesitter',
+    require 'modular/plugins/syntax/todo-comments',
 
     -- UI
-    require 'kickstart/plugins/ui/neo-tree',
-    require 'kickstart/plugins/ui/gitsigns',
-    require 'kickstart/plugins/ui/which-key',
-    require 'kickstart/plugins/ui/lualine',
-    -- require 'kickstart/plugins/ui/bufferline',
-    require 'kickstart/plugins/ui/indent-blankline',
+    require 'modular/plugins/ui/neo-tree',
+    require 'modular/plugins/ui/gitsigns',
+    require 'modular/plugins/ui/which-key',
+    require 'modular/plugins/ui/lualine',
+    -- require 'modular/plugins/ui/bufferline',
+    require 'modular/plugins/ui/indent-blankline',
 
     -- Util
-    require 'kickstart/plugins/util/harpoon',
-    require 'kickstart/plugins/util/comment',
-    require 'kickstart/plugins/util/telescope',
-    require 'kickstart/plugins/util/mini',
-    require 'kickstart/plugins/util/misc',
-    require 'kickstart/plugins/util/better-escape',
-    require 'kickstart/plugins/util/auto-save',
-    require 'kickstart/plugins/util/neogit',
+    require 'modular/plugins/util/harpoon',
+    require 'modular/plugins/util/comment',
+    require 'modular/plugins/util/telescope',
+    require 'modular/plugins/util/mini',
+    require 'modular/plugins/util/misc',
+    require 'modular/plugins/util/better-escape',
+    require 'modular/plugins/util/auto-save',
+    require 'modular/plugins/util/neogit',
 }, {
     ui = {
         icons = vim.g.have_nerd_font and {} or {
