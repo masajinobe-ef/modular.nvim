@@ -34,7 +34,7 @@ vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.numberwidth = 4
 vim.opt.signcolumn = 'yes'
-vim.opt.colorcolumn = '81'
+vim.opt.colorcolumn = '0'
 
 -- Performance settings
 vim.opt.updatetime = 50
