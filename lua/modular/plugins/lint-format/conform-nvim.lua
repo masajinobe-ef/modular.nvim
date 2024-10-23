@@ -65,21 +65,21 @@ return {
                             'space',
                         },
                     },
-                    prettier = {
-                        command = 'prettier',
-                        args = {
-                            '--print-width',
-                            '80',
-                            '--single-quote',
-                            'true',
-                            '--trailing-comma',
-                            'es5',
-                            '--bracket-spacing',
-                            'true',
-                            '--prose-wrap',
-                            'preserve',
-                        },
-                    },
+                    -- prettier = {
+                    --     command = 'prettier',
+                    --     args = {
+                    --         '--print-width',
+                    --         '80',
+                    --         '--single-quote',
+                    --         'true',
+                    --         '--trailing-comma',
+                    --         'es5',
+                    --         '--bracket-spacing',
+                    --         'true',
+                    --         '--prose-wrap',
+                    --         'preserve',
+                    --     },
+                    -- },
                 },
 
                 -- Set default options for formatters

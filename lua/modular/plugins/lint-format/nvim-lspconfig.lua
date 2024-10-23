@@ -130,6 +130,7 @@ return {
                         },
                     },
                 },
+
             }
 
             -- Extend `ensure_installed` with your list of servers and tools
@@ -151,7 +152,11 @@ return {
                 'sqlls',
                 'kotlin_language_server',
                 'lua_ls',
+                'jdtls',
             })
+
+            require('java').setup()
+
 
             require('mason').setup()
             require('mason-tool-installer').setup {

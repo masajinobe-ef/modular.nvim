@@ -61,7 +61,7 @@ return {
                 'n',
                 '<leader>ss',
                 builtin.builtin,
-                { desc = '[s]earch [s]elect Telescope' }
+                { desc = '[s]earch [s]elect telescope' }
             )
             vim.keymap.set(
                 'n',
@@ -91,7 +91,7 @@ return {
                 'n',
                 '<leader>s.',
                 builtin.oldfiles,
-                { desc = '[s]earch Recent Files ("." for repeat)' }
+                { desc = '[s]earch recent files ("." for repeat)' }
             )
             vim.keymap.set(
                 'n',
@@ -100,9 +100,9 @@ return {
                 { desc = '[ ] find existing buffers' }
             )
 
-            -- Slightly advanced example of overriding default behavior and theme
+            -- slightly advanced example of overriding default behavior and theme
             vim.keymap.set('n', '<leader>/', function()
-                -- You can pass additional configuration to Telescope to change the theme, layout, etc.
+                -- you can pass additional configuration to telescope to change the theme, layout, etc.
                 builtin.current_buffer_fuzzy_find(
                     require('telescope.themes').get_dropdown {
                         winblend = 10,
@@ -111,16 +111,16 @@ return {
                 )
             end, { desc = '[/] fuzzily search in current buffer' })
 
-            -- It's also possible to pass additional configuration options.
-            --  See `:help telescope.builtin.live_grep()` for information about particular keys
+            -- it's also possible to pass additional configuration options.
+            --  see `:help telescope.builtin.live_grep()` for information about particular keys
             vim.keymap.set('n', '<leader>s/', function()
                 builtin.live_grep {
                     grep_open_files = true,
-                    prompt_title = 'Live Grep in Open Files',
+                    prompt_title = 'live grep in open files',
                 }
             end, { desc = '[s]earch [/] in open files' })
 
-            -- Shortcut for searching your Neovim configuration files
+            -- shortcut for searching your neovim configuration files
             vim.keymap.set('n', '<leader>sn', function()
                 builtin.find_files { cwd = vim.fn.stdpath 'config' }
             end, { desc = '[s]earch [n]eovim files' })
