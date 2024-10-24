@@ -125,6 +125,7 @@ return {
                         Lua = {
                             completion = { callSnippet = 'Replace' },
                             diagnostics = {
+                                enable = false,
                                 globals = { 'vim' }, -- Ignore 'vim' as undefined global
                             },
                         },
