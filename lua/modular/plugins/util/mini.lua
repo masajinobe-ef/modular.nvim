@@ -44,38 +44,19 @@ return {
         end,
     },
     {
-        'echasnovski/mini.jump',
-        version = '*',
-        config = function()
-            require('mini.jump').setup {
-                mappings = {
-                    forward = 'f',
-                    backward = 'F',
-                    forward_till = 't',
-                    backward_till = 'T',
-                    repeat_jump = ';',
-                },
-                delay = {
-                    highlight = 100,
-                    idle_stop = 10000000,
-                },
-            }
-        end,
-    },
-    {
         'echasnovski/mini.surround',
         version = '*',
         config = function()
             require('mini.surround').setup {
                 highlight_duration = 500,
                 mappings = {
-                    add = 'gsa', -- Add surrounding in Normal and Visual modes
-                    delete = 'gsd', -- Delete surrounding
-                    find = 'gsf', -- Find surrounding (to the right)
-                    find_left = 'gsF', -- Find surrounding (to the left)
-                    highlight = 'gsh', -- Highlight surrounding
-                    replace = 'gsr', -- Replace surrounding
-                    update_n_lines = 'gsn', -- Update `n_lines`
+                    add = 'gsa',
+                    delete = 'gsd',
+                    find = 'gsf',
+                    find_left = 'gsF',
+                    highlight = 'gsh',
+                    replace = 'gsr',
+                    update_n_lines = 'gsn',
                 },
                 n_lines = 20,
                 respect_selection_type = false,
@@ -119,7 +100,7 @@ return {
             require('mini.indentscope').setup {
                 draw = {
                     delay = 50,
-                    -- animation = require("mini.indentscope").gen_animation.none()
+                    animation = require('mini.indentscope').gen_animation.none(),
                 },
                 mappings = {
                     object_scope = 'ii',

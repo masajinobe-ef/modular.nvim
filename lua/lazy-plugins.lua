@@ -8,6 +8,7 @@ require('lazy').setup({
     require 'modular/plugins/util/auto-save',
     require 'modular/plugins/util/mini',
     require 'modular/plugins/util/misc',
+    require 'modular/plugins/util/flash',
     -- UI
     require 'modular/plugins/ui/cyberdream',
     require 'modular/plugins/ui/neo-tree',
