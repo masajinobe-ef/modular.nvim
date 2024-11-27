@@ -67,7 +67,6 @@ return {
                         { 'n', 'x' }
                     )
                     map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
-
                     local client =
                         vim.lsp.get_client_by_id(event.data.client_id)
                     if

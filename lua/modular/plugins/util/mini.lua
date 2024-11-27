@@ -56,7 +56,7 @@ return {
                     repeat_jump = ';',
                 },
                 delay = {
-                    highlight = 50,
+                    highlight = 100,
                     idle_stop = 10000000,
                 },
             }
