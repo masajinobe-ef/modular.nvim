@@ -1,6 +1,5 @@
 require('lazy').setup({
     -- Util
-    -- require 'modular/plugins/util/neogit',
     require 'modular/plugins/util/trouble',
     require 'modular/plugins/util/harpoon',
     require 'modular/plugins/util/telescope',
