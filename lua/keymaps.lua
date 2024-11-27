@@ -7,7 +7,7 @@ local opts = { noremap = true, silent = true }
 -- [[ Lazy.nvim Plugin Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>L',
+    '<leader>nL',
     '<cmd>Lazy<CR>',
     vim.tbl_extend('force', opts, { desc = 'Lazy: Plugin Manager' })
 )
@@ -15,7 +15,7 @@ vim.keymap.set(
 -- [[ Mason Package Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>M',
+    '<leader>nM',
     '<cmd>Mason<CR>',
     vim.tbl_extend('force', opts, { desc = 'Mason: Package Manager' })
 )
@@ -41,7 +41,14 @@ vim.keymap.set(
     'n',
     '<leader>f',
     '<cmd>Format<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Format' })
+    vim.tbl_extend('force', opts, { desc = 'Conform: Format' })
+)
+
+vim.keymap.set(
+    'n',
+    '<leader>T',
+    '<cmd>TodoTelescope<CR>',
+    vim.tbl_extend('force', opts, { desc = 'ToDo: Comments' })
 )
 
 -------------------------------------------------------------------------------
@@ -64,7 +71,7 @@ vim.keymap.set(
     { 'n', 'v' },
     '<leader>d',
     [["_d]],
-    vim.tbl_extend('force', opts, { desc = 'Delete without yanking' })
+    vim.tbl_extend('force', opts, { desc = 'Delete: without yanking' })
 )
 
 vim.keymap.set(
@@ -90,7 +97,7 @@ vim.keymap.set(
 )
 
 -- [[ Replace Words ]]
-vim.keymap.set('n', '<leader>rw', function()
+vim.keymap.set('n', '<leader>r', function()
     local search_word = vim.fn.input 'Enter word to search: '
     if search_word == '' then
         print 'Search word cannot be empty.'
@@ -110,7 +117,7 @@ vim.keymap.set('n', '<leader>rw', function()
         string.format('%%s/%s/%s/gc', escaped_search, escaped_replace)
 
     vim.cmd(command)
-end, { desc = 'Replace Word' })
+end, { desc = 'Replace: Word' })
 
 -- [[ Searching ]]
 vim.keymap.set(
@@ -248,7 +255,7 @@ vim.keymap.set(
 -- [[ Buffer ]]
 vim.keymap.set(
     'n',
-    '<leader>x',
+    '<leader>bx',
     '<cmd>Bdelete!<CR>',
     vim.tbl_extend('force', opts, { desc = 'Buffer: Close' })
 )
@@ -268,14 +275,14 @@ end, { desc = 'Buffer: Close All' })
 
 vim.keymap.set(
     'n',
-    '<leader>X',
+    '<leader>bX',
     '<cmd>BdeleteAll<CR>',
     vim.tbl_extend('force', opts, { desc = 'Buffer: Close All' })
 )
 
 vim.keymap.set(
     'n',
-    '<leader>b',
+    '<leader>bn',
     '<cmd>new<CR>',
     vim.tbl_extend('force', opts, { desc = 'Buffer: New' })
 )
@@ -308,7 +315,7 @@ vim.keymap.set(
 
 vim.keymap.set(
     'n',
-    '<leader>me',
+    '<leader>ne',
     ':!chmod +x %<CR>',
     vim.tbl_extend('force', opts, { desc = 'Make Executable' })
 )
