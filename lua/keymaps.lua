@@ -7,7 +7,7 @@ local opts = { noremap = true, silent = true }
 -- [[ Lazy.nvim Plugin Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>nL',
+    '<leader>L',
     '<cmd>Lazy<CR>',
     vim.tbl_extend('force', opts, { desc = 'Lazy: Plugin Manager' })
 )
@@ -15,7 +15,7 @@ vim.keymap.set(
 -- [[ Mason Package Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>nM',
+    '<leader>M',
     '<cmd>Mason<CR>',
     vim.tbl_extend('force', opts, { desc = 'Mason: Package Manager' })
 )

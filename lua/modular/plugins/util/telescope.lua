@@ -43,7 +43,7 @@ return {
                             '.git',
                             '.venv',
                         },
-                        hidden = true,
+                        hidden = false,
                     },
                     buffers = {
                         initial_mode = 'normal',
