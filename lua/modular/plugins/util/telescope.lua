@@ -86,7 +86,7 @@ return {
             local builtin = require 'telescope.builtin'
             vim.keymap.set(
                 'n',
-                '<leader>u',
+                '<leader>su',
                 '<cmd>Telescope undo<cr>',
                 { desc = 'Telescope: Undo Tree' }
             )

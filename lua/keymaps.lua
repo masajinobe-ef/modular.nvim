@@ -7,7 +7,7 @@ local opts = { noremap = true, silent = true }
 -- [[ Lazy.nvim Plugin Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>L',
+    '<leader>nl',
     '<cmd>Lazy<CR>',
     vim.tbl_extend('force', opts, { desc = 'Lazy: Plugin Manager' })
 )
@@ -15,7 +15,7 @@ vim.keymap.set(
 -- [[ Mason Package Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>M',
+    '<leader>nm',
     '<cmd>Mason<CR>',
     vim.tbl_extend('force', opts, { desc = 'Mason: Package Manager' })
 )
@@ -44,13 +44,6 @@ vim.keymap.set(
     vim.tbl_extend('force', opts, { desc = 'Conform: Format' })
 )
 
-vim.keymap.set(
-    'n',
-    '<leader>T',
-    '<cmd>TodoTelescope<CR>',
-    vim.tbl_extend('force', opts, { desc = 'ToDo: Comments' })
-)
-
 -------------------------------------------------------------------------------
 
 -- Neovim Keymaps
@@ -71,7 +64,7 @@ vim.keymap.set(
     { 'n', 'v' },
     '<leader>d',
     [["_d]],
-    vim.tbl_extend('force', opts, { desc = 'Delete: without yanking' })
+    vim.tbl_extend('force', opts, { desc = 'Delete: Without Yanking' })
 )
 
 vim.keymap.set(
@@ -310,6 +303,17 @@ vim.keymap.set(
         'force',
         opts,
         { desc = '[Modular] Disable Ctrl-C command' }
+    )
+)
+
+vim.keymap.set(
+    'n',
+    'q',
+    '<nop>',
+    vim.tbl_extend(
+        'force',
+        opts,
+        { desc = '[Modular] Disable Q command' }
     )
 )
 

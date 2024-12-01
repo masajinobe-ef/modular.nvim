@@ -232,9 +232,9 @@ return {
                 'yamlls',
             })
             require('mason').setup()
-            require("mason-conform").setup({
-                ignore_install = {} -- List of formatters to ignore during install
-            })
+            require('mason-conform').setup {
+                ignore_install = {}, -- List of formatters to ignore during install
+            }
             require('mason-tool-installer').setup {
                 ensure_installed = ensure_installed,
             }

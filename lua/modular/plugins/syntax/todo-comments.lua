@@ -5,5 +5,15 @@ return {
         opts = {
             signs = false,
         },
+        vim.keymap.set(
+            'n',
+            '<leader>st',
+            '<cmd>TodoTelescope<CR>',
+            {
+                noremap = true,
+                silent = true,
+                desc = 'Telescope: ToDo Comments',
+            }
+        ),
     },
 }
