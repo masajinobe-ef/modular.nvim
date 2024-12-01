@@ -290,19 +290,12 @@ vim.keymap.set(
 
 vim.keymap.set(
     'n',
-    'Q',
-    '<nop>',
-    vim.tbl_extend('force', opts, { desc = '[Modular] Disable Q command' })
-)
-
-vim.keymap.set(
-    'n',
     '<C-c>',
     '<nop>',
     vim.tbl_extend(
         'force',
         opts,
-        { desc = '[Modular] Disable Ctrl-C command' }
+        { desc = '[Modular] Disable Ctrl-c' }
     )
 )
 
@@ -313,7 +306,7 @@ vim.keymap.set(
     vim.tbl_extend(
         'force',
         opts,
-        { desc = '[Modular] Disable Q command' }
+        { desc = '[Modular] Disable q' }
     )
 )
 
