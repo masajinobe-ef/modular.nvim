@@ -91,6 +91,7 @@ return {
                 { name = 'buffer' },
                 { name = 'path' },
                 { name = 'luasnip' },
+                { name = 'orgmode' },
             },
             formatting = {
                 fields = { 'kind', 'abbr', 'menu' },
