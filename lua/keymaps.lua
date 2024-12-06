@@ -1,26 +1,22 @@
--- Constants
 local opts = { noremap = true, silent = true }
--------------------------------------------------------------------------------
 
--- Plugins Keymaps
-
--- [[ Lazy.nvim Plugin Manager ]]
+-- [[ Lazy: Plugin Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>nl',
+    '<leader>L',
     '<cmd>Lazy<CR>',
     vim.tbl_extend('force', opts, { desc = 'Lazy: Plugin Manager' })
 )
 
--- [[ Mason Package Manager ]]
+-- [[ Mason: Package Manager ]]
 vim.keymap.set(
     'n',
-    '<leader>nm',
+    '<leader>M',
     '<cmd>Mason<CR>',
     vim.tbl_extend('force', opts, { desc = 'Mason: Package Manager' })
 )
 
--- [[ Conform ]]
+-- [[ Conform: Format ]]
 vim.api.nvim_create_user_command('Format', function(args)
     local range = nil
     if args.count ~= -1 then
@@ -44,10 +40,6 @@ vim.keymap.set(
     vim.tbl_extend('force', opts, { desc = 'Conform: Format' })
 )
 
--------------------------------------------------------------------------------
-
--- Neovim Keymaps
-
 -- [[ Clipboard ]]
 vim.keymap.set(
     'x',
@@ -64,7 +56,7 @@ vim.keymap.set(
     { 'n', 'v' },
     '<leader>d',
     [["_d]],
-    vim.tbl_extend('force', opts, { desc = 'Delete: Without Yanking' })
+    vim.tbl_extend('force', opts, { desc = 'Delete w/o yank' })
 )
 
 vim.keymap.set(
@@ -89,7 +81,7 @@ vim.keymap.set(
     )
 )
 
--- [[ Replace Words ]]
+-- [[ Replace word ]]
 vim.keymap.set('n', '<leader>r', function()
     local search_word = vim.fn.input 'Enter word to search: '
     if search_word == '' then
@@ -165,63 +157,6 @@ vim.keymap.set(
     vim.tbl_extend('force', opts, { desc = '[Modular] Scroll up and center' })
 )
 
--- [[ Windows ]]
-vim.keymap.set(
-    'n',
-    '<C-w-h>',
-    '<cmd>wincmd h<CR>',
-    vim.tbl_extend('force', opts, { desc = '[Modular] Move to left window' })
-)
-
-vim.keymap.set(
-    'n',
-    '<C-w-j>',
-    '<cmd>wincmd j<CR>',
-    vim.tbl_extend('force', opts, { desc = '[Modular] Move to bottom window' })
-)
-
-vim.keymap.set(
-    'n',
-    '<C-w-k>',
-    '<cmd>wincmd k<CR>',
-    vim.tbl_extend('force', opts, { desc = '[Modular] Move to top window' })
-)
-
-vim.keymap.set(
-    'n',
-    '<C-w-l>',
-    '<cmd>wincmd l<CR>',
-    vim.tbl_extend('force', opts, { desc = '[Modular] Move to right window' })
-)
-
-vim.keymap.set(
-    'n',
-    '<leader>wv',
-    '<C-w>v',
-    vim.tbl_extend('force', opts, { desc = 'Window: Split Vertical' })
-)
-
-vim.keymap.set(
-    'n',
-    '<leader>wh',
-    '<C-w>s',
-    vim.tbl_extend('force', opts, { desc = 'Window: Split Horizontal' })
-)
-
-vim.keymap.set(
-    'n',
-    '<leader>we',
-    '<C-w>=',
-    vim.tbl_extend('force', opts, { desc = 'Window: Set Equal Sizes' })
-)
-
-vim.keymap.set(
-    'n',
-    '<leader>wc',
-    '<cmd>close<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Window: Close' })
-)
-
 -- [[ Visual Mode ]]
 vim.keymap.set(
     'v',
@@ -245,58 +180,12 @@ vim.keymap.set(
     )
 )
 
--- [[ Buffer ]]
-vim.keymap.set(
-    'n',
-    '<leader>bx',
-    '<cmd>Bdelete!<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Buffer: Close' })
-)
-
-vim.api.nvim_create_user_command('BdeleteAll', function()
-    local buffers = vim.api.nvim_list_bufs()
-    for _, buf in ipairs(buffers) do
-        if
-            vim.api.nvim_buf_is_loaded(buf)
-            and buf ~= vim.api.nvim_get_current_buf()
-        then
-            vim.api.nvim_buf_delete(buf, { force = true })
-        end
-    end
-    vim.api.nvim_buf_delete(vim.api.nvim_get_current_buf(), { force = true })
-end, { desc = 'Buffer: Close All' })
-
-vim.keymap.set(
-    'n',
-    '<leader>bX',
-    '<cmd>BdeleteAll<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Buffer: Close All' })
-)
-
-vim.keymap.set(
-    'n',
-    '<leader>bn',
-    '<cmd>new<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Buffer: New' })
-)
-
 -- [[ Misc ]]
 vim.keymap.set(
     'n',
-    '<C-q>',
+    '<leader>q',
     '<cmd>q<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Quit' })
-)
-
-vim.keymap.set(
-    'n',
-    '<C-c>',
-    '<nop>',
-    vim.tbl_extend(
-        'force',
-        opts,
-        { desc = '[Modular] Disable Ctrl-c' }
-    )
+    vim.tbl_extend('force', opts, { desc = 'Close' })
 )
 
 vim.keymap.set(
@@ -306,13 +195,6 @@ vim.keymap.set(
     vim.tbl_extend(
         'force',
         opts,
-        { desc = '[Modular] Disable q' }
+        { desc = '[Modular] Disable q (macros)' }
     )
-)
-
-vim.keymap.set(
-    'n',
-    '<leader>ne',
-    ':!chmod +x %<CR>',
-    vim.tbl_extend('force', opts, { desc = 'Make Executable' })
 )
