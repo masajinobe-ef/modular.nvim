@@ -102,7 +102,29 @@ vim.keymap.set('n', '<leader>r', function()
         string.format('%%s/%s/%s/gc', escaped_search, escaped_replace)
 
     vim.cmd(command)
-end, { desc = 'Replace: Word' })
+end, { desc = 'Replace word' })
+
+-- [[ Replace word under cursor ]]
+vim.keymap.set('n', '<leader>R', function()
+    local search_word = vim.fn.expand('<cword>')
+    if search_word == '' then
+        print 'No word under cursor to search.'
+        return
+    end
+
+    local replace_word = vim.fn.input('Enter word to replace: ')
+    if replace_word == '' then
+        print 'Replace word cannot be empty.'
+        return
+    end
+
+    local escaped_search = search_word:gsub('/', '\\/')
+    local escaped_replace = replace_word:gsub('/', '\\/')
+
+    local command = string.format('%%s/%s/%s/gc', escaped_search, escaped_replace)
+
+    vim.cmd(command)
+end, { desc = 'Replace word under cursor' })
 
 -- [[ Searching ]]
 vim.keymap.set(
