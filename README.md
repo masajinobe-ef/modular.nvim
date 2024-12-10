@@ -4,10 +4,6 @@
   <img width="100%" src="docs/1.png" alt="1"/>
 </p>
 
-<p align="center">
-  <img width="100%" src="docs/2.png" alt="2"/>
-</p>
-
 ## Installation
 
 ### Install Neovim
