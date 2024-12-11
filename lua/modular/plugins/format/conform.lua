@@ -8,7 +8,7 @@ return {
             formatters_by_ft = {
                 sh = { 'shfmt' },
                 zsh = { 'shfmt' },
-                go = { 'goimports', 'gofmt' },
+                go = { 'goimports' },
                 kotlin = { 'ktlint' },
                 cpp = { 'clang-format' },
                 javascript = {
@@ -42,6 +42,11 @@ return {
                 stylua = {
                     command = 'stylua -f .stylua.toml .',
                 },
+
+                gofmt = {
+                    command = 'gofmt -w -s .',
+                },
+
             },
             -- Set default options for formatters
             default_format_opts = {
