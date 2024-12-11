@@ -7,6 +7,7 @@ return {
             lint.linters_by_ft = {
                 python = { 'ruff' },
                 kotlin = { 'ktlint' },
+                bash = { 'shellcheck' },
                 ['*'] = { 'codespell' },
             }
             local lint_augroup =
