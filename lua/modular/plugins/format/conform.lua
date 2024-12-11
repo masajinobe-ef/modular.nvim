@@ -46,7 +46,6 @@ return {
                 gofmt = {
                     command = 'gofmt -w -s .',
                 },
-
             },
             -- Set default options for formatters
             default_format_opts = {

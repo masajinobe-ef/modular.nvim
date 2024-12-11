@@ -230,10 +230,11 @@ return {
                 'ts_ls',
                 'stylua',
                 'yamlls',
+                'shellcheck',
             })
             require('mason').setup()
             require('mason-conform').setup {
-                ignore_install = {}, -- List of formatters to ignore during install
+                ignore_install = {},
             }
             require('mason-tool-installer').setup {
                 ensure_installed = ensure_installed,
