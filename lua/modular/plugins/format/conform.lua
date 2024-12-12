@@ -8,7 +8,9 @@ return {
             formatters_by_ft = {
                 sh = { 'shfmt' },
                 zsh = { 'shfmt' },
-                go = { 'goimports' },
+                python = { 'ruff' },
+                lua = { 'stylua' },
+                go = { 'goimports', 'gofmt' },
                 kotlin = { 'ktlint' },
                 cpp = { 'clang-format' },
                 javascript = {
@@ -32,19 +34,20 @@ return {
             },
             -- Custom args
             formatters = {
-                ruff = {
-                    command = 'ruff format .',
-                    -- env = {
-                    --     YAMLFIX_SEQUENCE_STYLE = "block_style",
-                    -- },
-                },
-
-                stylua = {
-                    command = 'stylua -f .stylua.toml .',
-                },
-
-                gofmt = {
-                    command = 'gofmt -w -s .',
+                -- ruff = {
+                --     command = 'ruff format .',
+                --     -- env = {
+                --     --     YAMLFIX_SEQUENCE_STYLE = "block_style",
+                --     -- },
+                -- },
+                -- stylua = {
+                --     command = 'stylua -f .stylua.toml .',
+                -- },
+                -- gofmt = {
+                --     command = 'gofmt -w -s .',
+                -- },
+                shfmt = {
+                    prepend_args = { '-i', '2', '-ci' },
                 },
             },
             -- Set default options for formatters

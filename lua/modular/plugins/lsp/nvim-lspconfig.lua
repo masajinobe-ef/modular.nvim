@@ -158,7 +158,6 @@ return {
                         },
                     },
                 },
-                marksman = {},
                 pylsp = {
                     settings = {
                         pylsp = {
@@ -232,6 +231,18 @@ return {
                 'yamlls',
                 'shellcheck',
             })
+
+            require('lspconfig').marksman.setup {
+                cmd = { 'marksman', 'server' },
+                filetypes = { 'markdown' },
+                root_dir = require('lspconfig.util').root_pattern('.git', '.'),
+                settings = {
+                    marksman = {
+                        -- Add any specific settings for marksman here
+                    },
+                },
+            }
+
             require('mason').setup()
             require('mason-conform').setup {
                 ignore_install = {},
