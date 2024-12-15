@@ -14,7 +14,7 @@ return {
             local filename = {
                 'filename',
                 file_status = false,
-                path = 0,
+                path = 1,
             }
             local hide_in_width = function()
                 return vim.fn.winwidth(0) > 79
