@@ -4,7 +4,7 @@ vim.opt.relativenumber = true
 
 -- Text settings
 vim.opt.wrap = false
-vim.opt.textwidth = 79
+vim.opt.textwidth = 80
 vim.opt.breakindent = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
@@ -23,7 +23,7 @@ vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.numberwidth = 4
 vim.opt.signcolumn = 'yes'
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = '81'
 
 -- Mouse settings
 vim.opt.mouse = 'a'
@@ -33,11 +33,11 @@ vim.opt.showmode = true
 
 -- Clipboard settings
 vim.schedule(function()
-    vim.opt.clipboard = 'unnamedplus'
+  vim.opt.clipboard = 'unnamedplus'
 end)
 
 -- Performance settings
-vim.opt.updatetime = 50
+vim.opt.updatetime = 1
 vim.opt.timeoutlen = 300
 
 -- Window settings
