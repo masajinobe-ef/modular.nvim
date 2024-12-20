@@ -7,9 +7,7 @@ return {
       'nvim-lua/plenary.nvim',
       {
         'nvim-telescope/telescope-fzf-native.nvim',
-
         build = 'make',
-
         cond = function()
           return vim.fn.executable 'make' == 1
         end,
@@ -26,6 +24,10 @@ return {
 
       require('telescope').setup {
         defaults = {
+          layout_strategy = 'horizontal',
+          layout_config = {
+            horizontal = { preview_width = 0.5 },
+          },
           mappings = {
             i = {
               ['<C-k>'] = actions.move_selection_previous,
@@ -48,8 +50,8 @@ return {
           },
           buffers = {
             initial_mode = 'normal',
-            sort_lastused = true,
-            -- sort_mru = true,
+            sort_lastused = false,
+            sort_mru = false,
             mappings = {
               n = {
                 ['d'] = actions.delete_buffer,
@@ -80,12 +82,10 @@ return {
         },
       }
 
-      -- Enable Telescope extensions if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
       pcall(require('telescope').load_extension, 'undo')
 
-      -- See `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
       vim.keymap.set(
         'n',
@@ -93,7 +93,6 @@ return {
         '<cmd>Telescope undo<cr>',
         { desc = 'Telescope: Undo Tree' }
       )
-
       vim.keymap.set(
         'n',
         '<leader>sk',
@@ -130,9 +129,7 @@ return {
         builtin.buffers,
         { desc = 'Telescope: Find Existing Buffers' }
       )
-      -- slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>s/', function()
-        -- you can pass additional configuration to telescope to change the theme, layout, etc.
         builtin.current_buffer_fuzzy_find(
           require('telescope.themes').get_dropdown {
             winblend = 10,
@@ -140,36 +137,35 @@ return {
           }
         )
       end, { desc = 'Telescope: Fuzzily Search in Buffer' })
-      -- shortcut for searching your neovim configuration files
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = 'Telescope: Neovim Files' })
-      -- vim.keymap.set(
-      --     'n',
-      --     '<leader>ss',
-      --     builtin.builtin,
-      --     { desc = 'Telescope' }
-      -- )
-      -- vim.keymap.set(
-      --     'n',
-      --     '<leader>sr',
-      --     builtin.resume,
-      --     { desc = 'Resume' }
-      -- )
-      -- vim.keymap.set(
-      --     'n',
-      --     '<leader>s.',
-      --     builtin.oldfiles,
-      --     { desc = 'Recent Files' }
-      -- )
-      -- it's also possible to pass additional configuration options.
-      --  see `:help telescope.builtin.live_grep()` for information about particular keys
-      -- vim.keymap.set('n', '<leader>s/', function()
-      --     builtin.live_grep {
-      --         grep_open_files = true,
-      --         prompt_title = 'live grep in open files',
-      --     }
-      -- end, { desc = 'Grep in Open Files' })
     end,
   },
 }
+-- vim.keymap.set(
+--     'n',
+--     '<leader>ss',
+--     builtin.builtin,
+--     { desc = 'Telescope' }
+-- )
+-- vim.keymap.set(
+--     'n',
+--     '<leader>sr',
+--     builtin.resume,
+--     { desc = 'Resume' }
+-- )
+-- vim.keymap.set(
+--     'n',
+--     '<leader>s.',
+--     builtin.oldfiles,
+--     { desc = 'Recent Files' }
+-- )
+-- it's also possible to pass additional configuration options.
+--  see `:help telescope.builtin.live_grep()` for information about particular keys
+-- vim.keymap.set('n', '<leader>s/', function()
+--     builtin.live_grep {
+--         grep_open_files = true,
+--         prompt_title = 'live grep in open files',
+--     }
+-- end, { desc = 'Grep in Open Files' })

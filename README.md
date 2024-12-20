@@ -1,9 +1,5 @@
 # modular.nvim
 
-<p align="center">
-  <img width="100%" src="docs/static/img/0.png" alt="0"/>
-</p>
-
 ## Installation
 
 ### Install Neovim

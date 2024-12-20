@@ -24,7 +24,7 @@ require('lazy').setup({
   -- Completions
   require 'modular/plugins/comp/Nvim-cmp',
   require 'modular/plugins/comp/Nvim-ts-autotag',
-  require 'modular/plugins/comp/Nvim-autopairs',
+  --require 'modular/plugins/comp/Nvim-autopairs',
   -- Linting
   require 'modular/plugins/lint/Nvim-lint',
   -- Formatting
