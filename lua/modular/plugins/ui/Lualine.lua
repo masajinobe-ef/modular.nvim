@@ -17,7 +17,7 @@ return {
         path = 1,
       }
       local hide_in_width = function()
-        return vim.fn.winwidth(0) > 79
+        return vim.fn.winwidth(0) > 80
       end
       local diagnostics = {
         'diagnostics',
@@ -48,12 +48,11 @@ return {
       require('lualine').setup {
         options = {
           icons_enabled = true,
-          theme = 'cyberdream',
+          theme = 'rose-pine',
           section_separators = { left = '', right = '' },
           component_separators = { left = '', right = '' },
           disabled_filetypes = {
-            'alpha',
-            'neo-tree',
+            -- 'neo-tree',
           },
           ignore_focus = {},
           always_divide_middle = true,

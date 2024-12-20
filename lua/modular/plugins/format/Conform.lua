@@ -5,7 +5,6 @@ return {
   dependencies = { 'mason.nvim' },
   config = function()
     require('conform').setup {
-      -- Set default options for formatters
       default_format_opts = {
         lsp_format = 'fallback',
         timeout_ms = 500,
@@ -71,15 +70,7 @@ return {
         ['*'] = { 'codespell' },
         ['_'] = { 'trim_whitespace' },
       },
-      formatters = {
-        -- stylua = {
-        --   -- env = {
-        --   --     -- YAMLFIX_SEQUENCE_STYLE = "block_style",
-        --   --     -- YAMLFIX_WHITELINES = "1",
-        --   --     -- YAMLFIX_LINE_LENGTH = "120",
-        --   -- },
-        -- },
-      },
+      formatters = {},
     }
   end,
 }

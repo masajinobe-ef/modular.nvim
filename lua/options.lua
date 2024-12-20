@@ -29,7 +29,7 @@ vim.opt.colorcolumn = '81'
 vim.opt.mouse = 'a'
 
 -- Mode settings
-vim.opt.showmode = true
+vim.opt.showmode = false
 
 -- Clipboard settings
 vim.schedule(function()
