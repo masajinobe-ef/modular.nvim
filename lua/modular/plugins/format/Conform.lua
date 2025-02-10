@@ -19,18 +19,18 @@ return {
         go = { 'goimports', 'gofmt' },
         kotlin = { 'ktlint' },
         cpp = { 'clang-format' },
-        javascript = {
-          'prettierd',
-          'prettier',
-          timeout_ms = 2000,
-          stop_after_first = true,
-        },
-        typescript = {
-          'prettierd',
-          'prettier',
-          timeout_ms = 2000,
-          stop_after_first = true,
-        },
+        -- javascript = {
+        --   'prettierd',
+        --   'prettier',
+        --   timeout_ms = 2000,
+        --   stop_after_first = true,
+        -- },
+        -- typescript = {
+        --   'prettierd',
+        --   'prettier',
+        --   timeout_ms = 2000,
+        --   stop_after_first = true,
+        -- },
         html = {
           'prettierd',
           'prettier',
