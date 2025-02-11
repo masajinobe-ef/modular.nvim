@@ -29,6 +29,9 @@ return {
         markdown = { 'prettierd' },
         yaml = { 'prettierd' },
         xml = { 'prettierd' },
+
+        ['*'] = { 'codespell' },
+        ['_'] = { 'trim_whitespace' },
       },
       formatters = {},
     }
