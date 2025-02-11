@@ -121,7 +121,7 @@ return {
 
       local servers = {
         bashls = {
-          filetypes = { 'sh', 'zsh' },
+          filetypes = { 'sh', 'bash' },
         },
         html = {
           filetypes = { 'html', 'twig', 'hbs' },
@@ -223,6 +223,12 @@ return {
         settings = {
           marksman = {},
         },
+      }
+
+      require('lspconfig').ts_ls.setup {
+        on_attach = function(client)
+          client.server_capabilities.documentFormattingProvider = false
+        end,
       }
 
       require('mason').setup()
