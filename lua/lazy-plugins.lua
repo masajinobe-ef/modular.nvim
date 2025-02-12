@@ -10,7 +10,6 @@ require('lazy').setup({
   require 'modular/plugins/util/Flash',
   require 'modular/plugins/util/Refactoring',
   require 'modular/plugins/util/Neotree',
-  require 'modular/plugins/util/Toggleterm',
   require 'modular/plugins/util/Markdown-preview',
   -- UI
   require 'modular/plugins/ui/Rose-pine',

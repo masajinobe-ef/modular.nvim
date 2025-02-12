@@ -11,6 +11,13 @@ return {
       { 'zapling/mason-conform.nvim' },
     },
     config = function()
+      vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+        pattern = '.env',
+        callback = function()
+          vim.bo.filetype = 'env' -- Set filetype to 'env'
+        end,
+      })
+
       vim.diagnostic.config {
         virtual_text = true,
       }
@@ -22,6 +29,16 @@ return {
         ),
 
         callback = function(event)
+          -- Disable LSP for .env files
+          local filename = vim.api.nvim_buf_get_name(event.buf)
+          if vim.fn.fnamemodify(filename, ':t') == '.env' then
+            local clients = vim.lsp.get_clients { bufnr = event.buf }
+            for _, client in ipairs(clients) do
+              vim.lsp.stop_client(client.id)
+            end
+            return -- Exit early to avoid setting up LSP features for .env files
+          end
+
           local map = function(keys, func, desc, mode)
             mode = mode or 'n'
             vim.keymap.set(
