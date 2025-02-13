@@ -45,8 +45,8 @@ return {
       end, { desc = 'Harpoon: Add' })
 
       vim.keymap.set('n', '<leader>c', function()
-        harpoon:list():remove()
-      end, { desc = 'Harpoon: Clean' })
+        harpoon:list():clear()
+      end, { desc = 'Harpoon: Clear' })
 
       vim.keymap.set('n', '<C-S-P>', function()
         harpoon:list():prev()
