@@ -44,28 +44,6 @@ return {
     end,
   },
   {
-    'echasnovski/mini.surround',
-    version = '*',
-    config = function()
-      require('mini.surround').setup {
-        highlight_duration = 500,
-        mappings = {
-          add = 'gsa',
-          delete = 'gsd',
-          find = 'gsf',
-          find_left = 'gsF',
-          highlight = 'gsh',
-          replace = 'gsr',
-          update_n_lines = 'gsn',
-        },
-        n_lines = 20,
-        respect_selection_type = false,
-        search_method = 'cover',
-        silent = false,
-      }
-    end,
-  },
-  {
     'echasnovski/mini.indentscope',
     version = '*',
     config = function()

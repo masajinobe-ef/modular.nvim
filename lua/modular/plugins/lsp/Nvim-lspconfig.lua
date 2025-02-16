@@ -76,18 +76,6 @@ return {
             'Type Definition'
           )
 
-          map(
-            '<leader>ls',
-            require('telescope.builtin').lsp_document_symbols,
-            'Document Symbols'
-          )
-
-          map(
-            '<leader>lS',
-            require('telescope.builtin').lsp_dynamic_workspace_symbols,
-            'Workspace Symbols'
-          )
-
           map('<leader>lr', vim.lsp.buf.rename, 'Rename')
 
           map(

@@ -40,21 +40,13 @@ return {
         toggle_telescope(harpoon:list())
       end, { desc = 'Harpoon: List' })
 
-      vim.keymap.set('n', '<leader>a', function()
+      vim.keymap.set('n', '<leader>ha', function()
         harpoon:list():add()
       end, { desc = 'Harpoon: Add' })
 
-      vim.keymap.set('n', '<leader>c', function()
+      vim.keymap.set('n', '<leader>hc', function()
         harpoon:list():clear()
       end, { desc = 'Harpoon: Clear' })
-
-      vim.keymap.set('n', '<C-S-P>', function()
-        harpoon:list():prev()
-      end, { desc = 'Harpoon: Prev' })
-
-      vim.keymap.set('n', '<C-S-N>', function()
-        harpoon:list():next()
-      end, { desc = 'Harpoon: Next' })
     end,
   },
 }

@@ -1,21 +1,5 @@
 local opts = { noremap = true, silent = true }
 
--- [[ Lazy: Plugin Manager ]]
-vim.keymap.set(
-  'n',
-  '<leader>L',
-  '<cmd>Lazy<CR>',
-  vim.tbl_extend('force', opts, { desc = 'Lazy: Plugin Manager' })
-)
-
--- [[ Mason: Package Manager ]]
-vim.keymap.set(
-  'n',
-  '<leader>M',
-  '<cmd>Mason<CR>',
-  vim.tbl_extend('force', opts, { desc = 'Mason: Package Manager' })
-)
-
 -- [[ Conform: Format ]]
 vim.api.nvim_create_user_command('Format', function(args)
   local range = nil
@@ -86,26 +70,44 @@ vim.keymap.set(
 )
 
 -- [[ Replace word ]]
-vim.keymap.set('n', '<leader>rw', function()
-  local search_word = vim.fn.input 'Enter word to search: '
-  if search_word == '' then
-    print 'Search word cannot be empty.'
-    return
+vim.keymap.set('n', '<leader>r', function()
+  local function escape_pattern(str)
+    return str:gsub('[%%%.%+%-%*%?%^%$%(%)%[%]]', '%%%1')
   end
 
-  local replace_word = vim.fn.input 'Enter word to replace: '
-  if replace_word == '' then
-    print 'Replace word cannot be empty.'
-    return
+  local function escape_replace(str)
+    return str:gsub('[%%\\]', '%%%1')
   end
 
-  local escaped_search = search_word:gsub('/', '\\/')
-  local escaped_replace = replace_word:gsub('/', '\\/')
+  vim.ui.input(
+    { prompt = 'Search for: ', default = vim.fn.expand '<cword>' },
+    function(search)
+      if not search or search == '' then
+        return
+      end
 
-  local command = string.format('%%s/%s/%s/gc', escaped_search, escaped_replace)
+      local escaped_search = escape_pattern(search)
+      if vim.fn.search(escaped_search, 'nw') == 0 then
+        return vim.notify(
+          '❌ Pattern not found: ' .. search,
+          vim.log.levels.WARN
+        )
+      end
 
-  vim.cmd(command)
-end, { desc = 'Replace word' })
+      vim.ui.input({ prompt = 'Replace with: ' }, function(replace)
+        if not replace then
+          return
+        end
+
+        local cmd =
+          string.format('%%s/%s/%s/gc', escaped_search, escape_replace(replace))
+        vim.cmd(cmd)
+
+        vim.cmd 'normal! ``'
+      end)
+    end
+  )
+end, { desc = 'Smart replace' })
 
 -- [[ Searching ]]
 vim.keymap.set(
