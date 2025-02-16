@@ -87,48 +87,56 @@ return {
       pcall(require('telescope').load_extension, 'undo')
 
       local builtin = require 'telescope.builtin'
+
       vim.keymap.set(
         'n',
         '<leader>su',
         '<cmd>Telescope undo<cr>',
         { desc = 'Telescope: Undo Tree' }
       )
+
       vim.keymap.set(
         'n',
         '<leader>sk',
         builtin.keymaps,
         { desc = 'Telescope: Keymaps' }
       )
+
       vim.keymap.set(
         'n',
         '<leader>sf',
         builtin.find_files,
         { desc = 'Telescope: Files' }
       )
+
       vim.keymap.set(
         'n',
         '<leader>sw',
         builtin.grep_string,
         { desc = 'Telescope: Word' }
       )
+
       vim.keymap.set(
         'n',
         '<leader>sg',
         builtin.live_grep,
         { desc = 'Telescope: Grep' }
       )
+
       vim.keymap.set(
         'n',
         '<leader>sd',
         builtin.diagnostics,
         { desc = 'Telescope: Diagnostics' }
       )
+
       vim.keymap.set(
         'n',
         '<leader>s<leader>',
         builtin.buffers,
         { desc = 'Telescope: Find Existing Buffers' }
       )
+
       vim.keymap.set('n', '<leader>s/', function()
         builtin.current_buffer_fuzzy_find(
           require('telescope.themes').get_dropdown {
@@ -137,35 +145,10 @@ return {
           }
         )
       end, { desc = 'Telescope: Fuzzily Search in Buffer' })
+
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = 'Telescope: Neovim Files' })
     end,
   },
 }
--- vim.keymap.set(
---     'n',
---     '<leader>ss',
---     builtin.builtin,
---     { desc = 'Telescope' }
--- )
--- vim.keymap.set(
---     'n',
---     '<leader>sr',
---     builtin.resume,
---     { desc = 'Resume' }
--- )
--- vim.keymap.set(
---     'n',
---     '<leader>s.',
---     builtin.oldfiles,
---     { desc = 'Recent Files' }
--- )
--- it's also possible to pass additional configuration options.
---  see `:help telescope.builtin.live_grep()` for information about particular keys
--- vim.keymap.set('n', '<leader>s/', function()
---     builtin.live_grep {
---         grep_open_files = true,
---         prompt_title = 'live grep in open files',
---     }
--- end, { desc = 'Grep in Open Files' })

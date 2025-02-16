@@ -2,7 +2,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      { -- Must be loaded before dependants
+      {
         'williamboman/mason.nvim',
         config = true,
       },
@@ -10,11 +10,13 @@ return {
       { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
       { 'zapling/mason-conform.nvim' },
     },
+
     config = function()
+      -- .env to env filetype
       vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         pattern = '.env',
         callback = function()
-          vim.bo.filetype = 'env' -- Set filetype to 'env'
+          vim.bo.filetype = 'env'
         end,
       })
 
@@ -36,7 +38,7 @@ return {
             for _, client in ipairs(clients) do
               vim.lsp.stop_client(client.id)
             end
-            return -- Exit early to avoid setting up LSP features for .env files
+            return
           end
 
           local map = function(keys, func, desc, mode)
@@ -55,41 +57,50 @@ return {
             require('telescope.builtin').lsp_definitions,
             'Goto Definition'
           )
+
           map(
             'gr',
             require('telescope.builtin').lsp_references,
             'Goto References'
           )
+
           map(
             'gI',
             require('telescope.builtin').lsp_implementations,
             'Goto Implementation'
           )
+
           map(
             '<leader>lD',
             require('telescope.builtin').lsp_type_definitions,
             'Type Definition'
           )
+
           map(
             '<leader>ls',
             require('telescope.builtin').lsp_document_symbols,
             'Document Symbols'
           )
+
           map(
             '<leader>lS',
             require('telescope.builtin').lsp_dynamic_workspace_symbols,
             'Workspace Symbols'
           )
+
           map('<leader>lr', vim.lsp.buf.rename, 'Rename')
+
           map(
             '<leader>lc',
             vim.lsp.buf.code_action,
             'Code Action',
             { 'n', 'x' }
           )
+
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
+
           if
             client
             and client.supports_method(
@@ -100,17 +111,20 @@ return {
               'kickstart-lsp-highlight',
               { clear = false }
             )
+
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.document_highlight,
             })
+
             vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
               buffer = event.buf,
               group = highlight_augroup,
               callback = vim.lsp.buf.clear_references,
             })
           end
+
           if
             client
             and client.supports_method(
@@ -120,6 +134,7 @@ return {
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {
               bufnr = event.buf,
             })
+
             map('<leader>lh', function()
               vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled {
                 bufnr = event.buf,
@@ -233,7 +248,9 @@ return {
         'shellcheck',
       })
 
-      require('lspconfig').marksman.setup {
+      local lsp = require 'lspconfig'
+
+      lsp.marksman.setup {
         cmd = { 'marksman', 'server' },
         filetypes = { 'markdown' },
         root_dir = require('lspconfig.util').root_pattern('.git', '.'),
@@ -242,12 +259,19 @@ return {
         },
       }
 
-      require('lspconfig').ts_ls.setup {
+      lsp.ts_ls.setup {
         on_attach = function(client)
           client.server_capabilities.documentFormattingProvider = false
         end,
       }
 
+      lsp.cssls.setup {
+        filetypes = { 'css', 'scss', 'less' },
+        single_file_support = false,
+        settings = {},
+      }
+
+      -- Mason
       require('mason').setup()
       require('mason-conform').setup {
         ignore_install = {},

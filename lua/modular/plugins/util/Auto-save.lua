@@ -26,6 +26,7 @@ return {
           end
           return false
         end,
+
         write_all_buffers = false,
         debounce_delay = 300,
         callbacks = {
