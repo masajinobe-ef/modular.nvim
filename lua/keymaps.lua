@@ -1,84 +1,40 @@
+local mappings = {
+  { 'n', '<leader>f', '<cmd>Format<CR>', 'Conform: Format' },
+  { 'x', '<leader>p', [["_dP]], 'Paste without overwriting clipboard' },
+  { { 'n', 'v' }, '<leader>d', [["_d]], 'Delete w/o yank' },
+  { 'v', 'p', '"_dP', 'Paste without losing last yanked text' },
+  { 'n', 'x', '"_x', 'Delete character without copying' },
+  { 'n', '<Esc>', '<cmd>nohlsearch<CR>', 'Clear search highlights' },
+  { 'n', '<C-d>', '<C-d>zz', 'Scroll down and center' },
+  { 'n', '<C-u>', '<C-u>zz', 'Scroll up and center' },
+  { 'v', '<', '<gv', 'Stay in indent mode when shifting left' },
+  { 'v', '>', '>gv', 'Stay in indent mode when shifting right' },
+  { 'n', 'n', 'nzzzv', 'Search next occurrence and center' },
+  { 'n', 'N', 'Nzzzv', 'Search previous occurrence and center' },
+  { 'n', '<leader>q', '<cmd>q<CR>', 'Close' },
+  { 'n', 'q', '<nop>', 'Disable q' },
+}
+
 local opts = { noremap = true, silent = true }
 
--- [[ Conform: Format ]]
-vim.api.nvim_create_user_command('Format', function(args)
-  local range = nil
-  if args.count ~= -1 then
-    local end_line =
-      vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
-    range = {
-      start = { args.line1, 0 },
-      ['end'] = { args.line2, end_line:len() },
-    }
-  end
-  require('conform').format {
-    async = true,
-    lsp_format = 'fallback',
-    range = range,
-  }
-end, {
-  desc = '[Modular] Format the current buffer or selected lines',
-  range = true,
-})
+local function desc(str)
+  return vim.tbl_extend('force', opts, { desc = str })
+end
 
-vim.keymap.set(
-  'n',
-  '<leader>f',
-  '<cmd>Format<CR>',
-  vim.tbl_extend('force', opts, { desc = 'Conform: Format' })
-)
-
--- [[ Clipboard ]]
-vim.keymap.set(
-  'x',
-  '<leader>p',
-  [["_dP]],
-  vim.tbl_extend(
-    'force',
-    opts,
-    { desc = '[Modular] Paste without overwriting clipboard' }
-  )
-)
-
-vim.keymap.set(
-  { 'n', 'v' },
-  '<leader>d',
-  [["_d]],
-  vim.tbl_extend('force', opts, { desc = 'Delete w/o yank' })
-)
-
-vim.keymap.set(
-  'v',
-  'p',
-  '"_dP',
-  vim.tbl_extend(
-    'force',
-    opts,
-    { desc = '[Modular] Paste without losing last yanked text' }
-  )
-)
-
-vim.keymap.set(
-  'n',
-  'x',
-  '"_x',
-  vim.tbl_extend(
-    'force',
-    opts,
-    { desc = '[Modular] Delete character without copying' }
-  )
-)
+for _, map in ipairs(mappings) do
+  vim.keymap.set(map[1], map[2], map[3], desc(map[4]))
+end
 
 -- [[ Replace word ]]
+local function escape_pattern(str)
+  return str:gsub('[%%%.%+%-%*%?%^%$%(%)%[%]]', '%%%1')
+end
+
+local function escape_replace(str)
+  return str:gsub('[%%\\]', '%%%1')
+end
+
 vim.keymap.set('n', '<leader>r', function()
-  local function escape_pattern(str)
-    return str:gsub('[%%%.%+%-%*%?%^%$%(%)%[%]]', '%%%1')
-  end
-
-  local function escape_replace(str)
-    return str:gsub('[%%\\]', '%%%1')
-  end
-
   vim.ui.input(
     { prompt = 'Search for: ', default = vim.fn.expand '<cword>' },
     function(search)
@@ -98,96 +54,30 @@ vim.keymap.set('n', '<leader>r', function()
         if not replace then
           return
         end
-
-        local cmd =
+        vim.cmd(
           string.format('%%s/%s/%s/gc', escaped_search, escape_replace(replace))
-        vim.cmd(cmd)
-
+        )
         vim.cmd 'normal! ``'
       end)
     end
   )
-end, { desc = 'Smart replace' })
+end, desc 'Smart replace')
 
--- [[ Searching ]]
-vim.keymap.set(
-  'n',
-  'n',
-  'nzzzv',
-  vim.tbl_extend(
-    'force',
-    opts,
-    { desc = '[Modular] Search next occurrence and center' }
-  )
-)
+-- [[ Conform: Format ]]
+vim.api.nvim_create_user_command('Format', function(args)
+  local range = nil
+  if args.count ~= -1 then
+    local end_line =
+      vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+    range = {
+      start = { args.line1, 0 },
+      ['end'] = { args.line2, end_line:len() },
+    }
+  end
 
-vim.keymap.set(
-  'n',
-  'N',
-  'Nzzzv',
-  vim.tbl_extend(
-    'force',
-    opts,
-    { desc = '[Modular] Search previous occurrence and center' }
-  )
-)
-
-vim.keymap.set(
-  'n',
-  '<Esc>',
-  '<cmd>nohlsearch<CR>',
-  vim.tbl_extend('force', opts, { desc = '[Modular] Clear search highlights' })
-)
-
--- [[ Scrolling ]]
-vim.keymap.set(
-  'n',
-  '<C-d>',
-  '<C-d>zz',
-  vim.tbl_extend('force', opts, { desc = '[Modular] Scroll down and center' })
-)
-
-vim.keymap.set(
-  'n',
-  '<C-u>',
-  '<C-u>zz',
-  vim.tbl_extend('force', opts, { desc = '[Modular] Scroll up and center' })
-)
-
--- [[ Visual Mode ]]
-vim.keymap.set(
-  'v',
-  '<',
-  '<gv',
-  vim.tbl_extend(
-    'force',
-    opts,
-    { desc = '[Modular] Stay in indent mode when shifting left' }
-  )
-)
-
-vim.keymap.set(
-  'v',
-  '>',
-  '>gv',
-  vim.tbl_extend(
-    'force',
-    opts,
-    { desc = '[Modular] Stay in indent mode when shifting right' }
-  )
-)
-
--- [[ Misc ]]
-vim.keymap.set(
-  'n',
-  '<leader>q',
-  '<cmd>q<CR>',
-  vim.tbl_extend('force', opts, { desc = 'Close' })
-)
-
-vim.keymap.set(
-  'n',
-  'q',
-  '<nop>',
-  vim.tbl_extend('force', opts, { desc = '[Modular] Disable q (macros)' })
-)
+  require('conform').format {
+    async = true,
+    lsp_format = 'fallback',
+    range = range,
+  }
+end, { desc = 'Format the current buffer or selected lines', range = true })
