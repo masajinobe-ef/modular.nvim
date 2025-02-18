@@ -55,13 +55,17 @@ vim.keymap.set('n', '<leader>r', function()
           return
         end
         vim.cmd(
-          string.format('%%s/%s/%s/gc', escaped_search, escape_replace(replace))
+          string.format(
+            '%%s/\\C%s/%s/gc',
+            escaped_search,
+            escape_replace(replace)
+          )
         )
         vim.cmd 'normal! ``'
       end)
     end
   )
-end, desc 'Smart replace')
+end, { desc = 'Smart replace' })
 
 -- [[ Conform: Format ]]
 vim.api.nvim_create_user_command('Format', function(args)
