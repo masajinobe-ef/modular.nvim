@@ -9,6 +9,7 @@ vim.g.loaded_netrwPlugin = 1
 -- Nerd Font
 vim.g.have_nerd_font = true
 
+-- Modular
 require 'options'
 require 'keymaps'
 require 'autocmds'
