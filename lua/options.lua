@@ -3,7 +3,7 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Text settings
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.textwidth = 80
 vim.opt.breakindent = true
 vim.opt.hlsearch = false
@@ -65,7 +65,7 @@ vim.opt.pumheight = 10
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.shortmess:append 'c'
 vim.opt.iskeyword:append '-'
-vim.opt.formatoptions:remove { 'c', 'r', 'o' }
+vim.opt.formatoptions:remove { 'c', 'r', 'o', 'a' }
 
 -- Backup settings
 vim.opt.swapfile = false
