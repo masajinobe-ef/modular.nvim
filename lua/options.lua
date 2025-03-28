@@ -1,77 +1,69 @@
--- Line number settings
+--[[ General Settings ]]
+vim.opt.mouse = 'a'
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.undofile = true
+vim.opt.fileencoding = 'utf-8'
+vim.opt.iskeyword:append '-'
+
+--[[ Interface Settings ]]
 vim.opt.number = true
 vim.opt.relativenumber = true
-
--- Text settings
-vim.opt.wrap = true
-vim.opt.textwidth = 80
-vim.opt.breakindent = true
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-vim.opt.fileencoding = 'utf-8'
-vim.opt.undofile = true
-
--- Search settings
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
--- Visual settings
-vim.opt.linebreak = true
-vim.opt.scrolloff = 8
-vim.opt.sidescrolloff = 8
+vim.opt.numberwidth = 4
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
-vim.opt.numberwidth = 4
 vim.opt.signcolumn = 'yes'
 vim.opt.colorcolumn = '81'
-
--- Mouse settings
-vim.opt.mouse = 'a'
-
--- Mode settings
 vim.opt.showmode = false
 
--- Clipboard settings
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
-
--- Performance settings
-vim.opt.updatetime = 1
-vim.opt.timeoutlen = 300
-
--- Window settings
+--[[ Window Management ]]
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 8
 
--- Whitespace settings
+--[[ Text Rendering ]]
+vim.opt.wrap = false
+vim.opt.linebreak = true
+vim.opt.breakindent = true
+vim.opt.textwidth = 80
+
+--[[ Search Settings ]]
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+vim.opt.incsearch = true
+
+--[[ Whitespace Handling ]]
 vim.opt.list = true
-vim.opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = {
+  tab = '  ',
+  trail = '·',
+  nbsp = '␣',
+}
 
--- Live substitution preview
-vim.opt.inccommand = 'split'
-
--- Indentation and tab settings
+--[[ Indentation & Tabs ]]
 vim.opt.autoindent = true
+vim.opt.smartindent = true
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
-vim.opt.smartindent = true
 
--- Interaction settings
-vim.opt.backspace = 'indent,eol,start'
-vim.opt.pumheight = 10
+--[[ Performance ]]
+vim.opt.updatetime = 1
+vim.opt.timeoutlen = 300
+
+--[[ Advanced Features ]]
+vim.opt.inccommand = 'split'
 vim.opt.completeopt = 'menuone,noselect'
-vim.opt.shortmess:append 'c'
-vim.opt.iskeyword:append '-'
+vim.opt.pumheight = 10
 vim.opt.formatoptions:remove { 'c', 'r', 'o', 'a' }
+vim.opt.formatoptions:append 't'
 
--- Backup settings
+--[[ Security/Backups ]]
 vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.writebackup = false
-vim.opt.undofile = true
 
--- Runtime path settings
+--[[ System Integration ]]
 vim.opt.runtimepath:remove '/usr/share/vim/vimfiles'
