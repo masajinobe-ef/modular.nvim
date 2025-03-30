@@ -30,7 +30,7 @@ vim.opt.textwidth = 80
 --[[ Search Settings ]]
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.hlsearch = true
+vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
 --[[ Whitespace Handling ]]
