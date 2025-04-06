@@ -109,7 +109,12 @@ return {
 
       sources = {
         { name = 'nvim_lsp' },
-        { name = 'buffer' },
+        {
+          name = 'buffer', -- Exclude buffer source for gitcommit and yaml
+          filetypes = function(ft)
+            return not vim.tbl_contains({ 'gitcommit', 'yaml', 'dockerfile' }, ft)
+          end,
+        },
         { name = 'path' },
         { name = 'luasnip' },
       },
