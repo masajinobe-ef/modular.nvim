@@ -112,7 +112,10 @@ return {
         {
           name = 'buffer', -- Exclude buffer source for gitcommit and yaml
           filetypes = function(ft)
-            return not vim.tbl_contains({ 'gitcommit', 'yaml', 'dockerfile' }, ft)
+            return not vim.tbl_contains(
+              { 'gitcommit', 'yaml', 'dockerfile' },
+              ft
+            )
           end,
         },
         { name = 'path' },
