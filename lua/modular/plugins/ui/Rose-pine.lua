@@ -45,24 +45,23 @@ return {
         h6 = 'foam',
       },
       palette = {
-        -- Override the builtin palette per variant
         moon = {
           palette = {
-            base = '#191724', -- rgb(25, 23, 36)
-            surface = '#1f1d2e', -- rgb(31, 29, 46)
-            overlay = '#26233a', -- rgb(38, 35, 58)
-            muted = '#6e6a86', -- rgb(110, 106, 134)
-            subtle = '#908caa', -- rgb(144, 140, 170)
-            text = '#e0def4', -- rgb(224, 222, 244)
-            love = '#ff4c4c', -- яркий красный
-            gold = '#f6c177', -- rgb(246, 193, 119)
-            rose = '#ffb3b3', -- светлый розовый
-            pine = '#4caf50', -- яркий зеленый
-            foam = '#9ccfd8', -- rgb(156, 207, 216)
-            iris = '#c4a7e7', -- rgb(196, 167, 231)
-            highlight_low = '#21202e', -- rgb(33, 32, 46)
-            highlight_med = '#403d52', -- rgb(64, 61, 82)
-            highlight_high = '#524f67', -- rgb(82, 79, 103)
+            base = '#191724',
+            surface = '#1f1d2e',
+            overlay = '#26233a',
+            muted = '#6e6a86',
+            subtle = '#908caa',
+            text = '#e0def4',
+            love = '#ff4c4c',
+            gold = '#f6c177',
+            rose = '#ffb3b3',
+            pine = '#4caf50',
+            foam = '#9ccfd8',
+            iris = '#c4a7e7',
+            highlight_low = '#21202e',
+            highlight_med = '#403d52',
+            highlight_high = '#524f67',
           },
         },
       },
