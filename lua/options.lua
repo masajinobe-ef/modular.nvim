@@ -22,7 +22,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
 --[[ Text Rendering ]]
-vim.opt.wrap = false
+vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.textwidth = 80
