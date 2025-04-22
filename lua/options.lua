@@ -22,7 +22,7 @@ vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 
 --[[ Text Rendering ]]
-vim.opt.wrap = true
+vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.textwidth = 80
@@ -57,8 +57,7 @@ vim.opt.timeoutlen = 300
 vim.opt.inccommand = 'split'
 vim.opt.completeopt = 'menuone,noselect'
 vim.opt.pumheight = 10
-vim.opt.formatoptions:remove { 'c', 'r', 'o', 'a' }
-vim.opt.formatoptions:append 't'
+vim.opt.formatoptions:remove { 'c', 'r', 'o', 'a', 't' }
 
 --[[ Security/Backups ]]
 vim.opt.swapfile = false

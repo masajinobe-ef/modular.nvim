@@ -45,9 +45,9 @@ end
 
 return {
   check = function()
-    vim.health.start 'modular.nvim'
+    vim.health.start 'kickstart.nvim'
 
-    vim.health.info [[Not every warning is a 'must-fix' in `:checkhealth`
+    vim.health.info [[NOTE: Not every warning is a 'must-fix' in `:checkhealth`
 
   Fix only warnings for plugins and languages you intend to use.
     Mason will give warnings for languages that are not installed.
