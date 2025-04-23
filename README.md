@@ -41,7 +41,7 @@ to make it easy to customize and extend your config.
 
 ### Install Neovim
 
-modular.nvim targets _only_ the latest
+Modular targets _only_ the latest
 ['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest
 ['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) of Neovim.
 If you are experiencing issues, please make sure you have the latest versions.
@@ -80,7 +80,7 @@ Neovim's configurations are located under the following paths, depending on your
 | Windows (cmd)        | `%localappdata%\nvim\`                    |
 | Windows (powershell) | `$env:LOCALAPPDATA\nvim\`                 |
 
-#### Clone modular.nvim
+#### Clone Modular
 
 <details><summary> Linux and Mac </summary>
 
