@@ -28,6 +28,8 @@
 Modular is a Neovim setup powered by [💤 lazy.nvim](https://github.com/folke/lazy.nvim)
 to make it easy to customize and extend your config.
 
+![Image](https://github.com/user-attachments/assets/dd760054-38d9-47fd-901e-b01c4980cb1b)
+
 ![Image](https://github.com/user-attachments/assets/3a3c48d4-14e5-4633-84c5-8ae07b02b6bf)
 
 ## ⚡️ Requirements
