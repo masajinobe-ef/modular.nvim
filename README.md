@@ -147,4 +147,4 @@ sudo pacman -S --noconfirm --needed gcc make git ripgrep fd unzip neovim
 ### License
 
 Based on [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim).
-This project is licensed under MIT. Please refer to the [LICENSE](LICENSE) file for detailed license information.
+This project is licensed under MIT. Please refer to the [LICENSE](LICENSE.md) file for detailed license information.
