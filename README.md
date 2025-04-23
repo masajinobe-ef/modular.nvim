@@ -1,4 +1,41 @@
-# modular.nvim
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Neovim-logo.svg/742px-Neovim-logo.svg.png">
+</div>
+
+<hr>
+
+<div align="center"><p>
+    <a href="https://github.com/masajinobe-ef/modular.nvim/releases/latest">
+      <img alt="Latest release" src="https://img.shields.io/github/v/release/masajinobe-ef/modular.nvim?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41&include_prerelease&sort=semver" />
+    </a>
+    <a href="https://github.com/masajinobe-ef/modular.nvim/pulse">
+      <img alt="Last commit" src="https://img.shields.io/github/last-commit/masajinobe-ef/modular.nvim?style=for-the-badge&logo=starship&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/>
+    </a>
+    <a href="https://github.com/masajinobe-ef/modular.nvim/blob/main/LICENSE">
+      <img alt="License" src="https://img.shields.io/github/license/masajinobe-ef/modular.nvim?style=for-the-badge&logo=starship&color=ee999f&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/masajinobe-ef/modular.nvim/stargazers">
+      <img alt="Stars" src="https://img.shields.io/github/stars/masajinobe-ef/modular.nvim?style=for-the-badge&logo=starship&color=c69ff5&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/masajinobe-ef/modular.nvim/issues">
+      <img alt="Issues" src="https://img.shields.io/github/issues/masajinobe-ef/modular.nvim?style=for-the-badge&logo=bilibili&color=F5E0DC&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+    <a href="https://github.com/masajinobe-ef/modular.nvim">
+      <img alt="Repo Size" src="https://img.shields.io/github/repo-size/masajinobe-ef/modular.nvim?color=%23DDB6F2&label=SIZE&logo=codesandbox&style=for-the-badge&logoColor=D9E0EE&labelColor=302D41" />
+    </a>
+</div>
+
+Modular is a Neovim setup powered by [💤 lazy.nvim](https://github.com/folke/lazy.nvim)
+to make it easy to customize and extend your config.
+
+![Image](https://github.com/user-attachments/assets/3a3c48d4-14e5-4633-84c5-8ae07b02b6bf)
+
+## ⚡️ Requirements
+
+- Neovim >= **0.9.0** (needs to be built with **LuaJIT**)
+- Git >= **2.19.0** (for partial clones support)
+- a [Nerd Font](https://www.nerdfonts.com/) **_(optional)_**
+- a **C** compiler for `nvim-treesitter`. See [here](https://github.com/nvim-treesitter/nvim-treesitter#requirements)
 
 ## Installation
 
