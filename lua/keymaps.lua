@@ -13,7 +13,7 @@ local mappings = {
   { 'n', 'N', 'Nzzzv', 'Search previous occurrence and center' },
   { 'n', '<leader>q', '<cmd>q<CR>', 'Close' },
   { 'n', 'q', '<nop>', 'Disable q' },
-  { 'i', 'q', '<Esc>', 'Escape from insert mode' },
+  -- { 'i', 'q', '<Esc>', 'Escape from insert mode' },
 }
 
 local opts = { noremap = true, silent = true }
