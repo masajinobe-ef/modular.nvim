@@ -17,12 +17,6 @@ return {
 
     'hrsh7th/cmp-vsnip',
     'hrsh7th/vim-vsnip',
-
-    'saadparwaiz1/cmp_luasnip',
-    {
-      'L3MON4D3/LuaSnip',
-      version = 'v2.*',
-    },
   },
 
   config = function()
@@ -53,11 +47,6 @@ return {
       TypeParameter = '󰊄',
     }
 
-    -- LuaSnip
-    local luasnip = require 'luasnip'
-    require('luasnip.loaders.from_vscode').lazy_load()
-    luasnip.config.setup {}
-
     -- cmp
     local cmp = require 'cmp'
     cmp.setup {
@@ -69,22 +58,14 @@ return {
         ['<CR>'] = cmp.mapping.confirm { select = true },
         ['<C-c>'] = cmp.mapping.complete {},
         ['<C-l>'] = cmp.mapping(function()
-          if luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
-          end
         end, { 'i', 's' }),
 
         ['<C-h>'] = cmp.mapping(function()
-          if luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
-          end
         end, { 'i', 's' }),
 
         ['<Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
           else
             fallback()
           end
@@ -93,8 +74,6 @@ return {
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-          elseif luasnip.locally_jumpable(-1) then
-            luasnip.jump(-1)
           else
             fallback()
           end
@@ -103,7 +82,6 @@ return {
 
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body)
         end,
       },
 
@@ -119,7 +97,6 @@ return {
           end,
         },
         { name = 'path' },
-        { name = 'luasnip' },
       },
 
       formatting = {
@@ -127,7 +104,6 @@ return {
         format = function(entry, vim_item)
           vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
           vim_item.menu = ({
-            luasnip = '[Snippet]',
             nvim_lsp = '[LSP]',
             buffer = '[Buffer]',
             path = '[Path]',

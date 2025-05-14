@@ -4,6 +4,7 @@ return {
     dependencies = {
       {
         'williamboman/mason.nvim',
+        dependencies = { 'mason-org/mason-registry' },
         config = true,
       },
       { 'williamboman/mason-lspconfig.nvim' },
@@ -160,7 +161,7 @@ return {
               diagnostics = {
                 enable = true,
                 globals = { 'vim' }, -- Ignore 'vim' as undefined global
-                -- disable = { 'missing-fields' },
+                disable = { 'missing-fields' },
               },
             },
           },
