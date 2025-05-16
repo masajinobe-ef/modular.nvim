@@ -23,6 +23,7 @@ return {
 
       vim.diagnostic.config {
         virtual_text = true,
+        signs = false,
       }
 
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -90,9 +91,10 @@ return {
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
 
+          -- Fixed: Use colon syntax for supports_method
           if
             client
-            and client.supports_method(
+            and client:supports_method(
               vim.lsp.protocol.Methods.textDocument_documentHighlight
             )
           then
@@ -114,9 +116,10 @@ return {
             })
           end
 
+          -- Fixed: Use colon syntax for supports_method
           if
             client
-            and client.supports_method(
+            and client:supports_method(
               vim.lsp.protocol.Methods.textDocument_inlayHint
             )
           then
@@ -147,25 +150,24 @@ return {
         html = {
           filetypes = { 'html', 'twig', 'hbs' },
         },
-        lua_ls = {
-          settings = {
-            Lua = {
-              runtime = { version = 'LuaJIT' },
-              completion = { callSnippet = 'Replace' },
-              telemetry = { enable = false },
-              checkThirdParty = false,
-              library = {
-                '${3rd}/luv/library',
-                unpack(vim.api.nvim_get_runtime_file('', true)),
-              },
-              diagnostics = {
-                enable = true,
-                globals = { 'vim' }, -- Ignore 'vim' as undefined global
-                disable = { 'missing-fields' },
-              },
-            },
-          },
-        },
+        -- lua_ls = {
+        --   settings = {
+        --     Lua = {
+        --       runtime = { version = 'LuaJIT' },
+        --       completion = { callSnippet = 'Replace' },
+        --       telemetry = { enable = false },
+        --       checkThirdParty = false,
+        --       workspace = {
+        --         '${3rd}/luv/library',
+        --         vim.api.nvim_get_runtime_file('lua', true),
+        --       },
+        --       diagnostics = {
+        --         enable = true,
+        --         disable = { 'undefined-global', 'missing-fields' },
+        --       },
+        --     },
+        --   },
+        -- },
         pylsp = {
           settings = {
             pylsp = {
@@ -225,7 +227,7 @@ return {
         'html',
         'jsonls',
         'kotlin_language_server',
-        'lua_ls',
+        --'lua_ls',
         'marksman',
         'pylsp',
         'ruff',

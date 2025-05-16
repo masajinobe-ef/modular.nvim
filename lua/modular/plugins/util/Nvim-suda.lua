@@ -1,6 +1,7 @@
 return {
-  'masajinobe-ef/suda.nvim',
-  config = function()
-    require('suda').setup {}
-  end,
+  -- 'masajinobe-ef/suda.nvim',
+  -- --dependencies = { 'nvim-lua/plenary.nvim' },
+  -- config = function()
+  --   require('suda').setup {}
+  -- end,
 }
