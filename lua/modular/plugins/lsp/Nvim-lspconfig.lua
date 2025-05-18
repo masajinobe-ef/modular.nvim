@@ -220,6 +220,7 @@ return {
         'bashls',
         'clangd',
         'cssls',
+        'nil_ls',
         'taplo',
         'dockerls',
         'docker_compose_language_service',
@@ -227,8 +228,6 @@ return {
         'html',
         'jsonls',
         'kotlin_language_server',
-        --'lua_ls',
-        'marksman',
         'pylsp',
         'ruff',
         'rust_analyzer',
@@ -238,6 +237,7 @@ return {
         'stylua',
         'yamlls',
         'shellcheck',
+        --'lua_ls',
       })
 
       local lsp = require 'lspconfig'

@@ -14,6 +14,7 @@ return {
       formatters_by_ft = {
         lua = { 'stylua' },
         sh = { 'shfmt' },
+        nix = { 'nixfmt' },
         bash = { 'shfmt' },
         python = { 'ruff' },
         go = { 'goimports', 'gofmt' },
