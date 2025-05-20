@@ -36,7 +36,8 @@ return {
         ['*'] = { 'codespell' },
         ['_'] = { 'trim_whitespace' },
       },
-      formatters = {},
+      formatters = { },
+     },
     }
   end,
 }
