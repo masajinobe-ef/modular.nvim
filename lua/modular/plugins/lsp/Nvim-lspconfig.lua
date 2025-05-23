@@ -2,19 +2,19 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-   {
-      --   'williamboman/mason.nvim',
-      --   dependencies = { 'mason-org/mason-registry' },
-      --   config = true,
-      -- },
-      -- { 'williamboman/mason-lspconfig.nvim' },
-      -- { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
+      {
+        'williamboman/mason.nvim',
+        dependencies = { 'mason-org/mason-registry' },
+        config = true,
+      },
+      { 'williamboman/mason-lspconfig.nvim' },
+      { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
       -- { 'zapling/mason-conform.nvim' },
       { 'stevearc/conform.nvim' },
     },
 
     config = function()
-      local is_nixos = vim.fn.filereadable('/etc/NIXOS') == 1
+      local is_nixos = vim.fn.filereadable '/etc/NIXOS' == 1
 
       vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
         pattern = '.env',
@@ -53,17 +53,46 @@ return {
             )
           end
 
-          map('gd', require('telescope.builtin').lsp_definitions, 'Goto Definition')
-          map('gr', require('telescope.builtin').lsp_references, 'Goto References')
-          map('gI', require('telescope.builtin').lsp_implementations, 'Goto Implementation')
-          map('<leader>lD', require('telescope.builtin').lsp_type_definitions, 'Type Definition')
+          map(
+            'gd',
+            require('telescope.builtin').lsp_definitions,
+            'Goto Definition'
+          )
+          map(
+            'gr',
+            require('telescope.builtin').lsp_references,
+            'Goto References'
+          )
+          map(
+            'gI',
+            require('telescope.builtin').lsp_implementations,
+            'Goto Implementation'
+          )
+          map(
+            '<leader>lD',
+            require('telescope.builtin').lsp_type_definitions,
+            'Type Definition'
+          )
           map('<leader>lr', vim.lsp.buf.rename, 'Rename')
-          map('<leader>lc', vim.lsp.buf.code_action, 'Code Action', { 'n', 'x' })
+          map(
+            '<leader>lc',
+            vim.lsp.buf.code_action,
+            'Code Action',
+            { 'n', 'x' }
+          )
           map('gD', vim.lsp.buf.declaration, 'Goto Declaration')
 
           local client = vim.lsp.get_client_by_id(event.data.client_id)
-          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
-            local highlight_augroup = vim.api.nvim_create_augroup('kickstart-lsp-highlight', { clear = false })
+          if
+            client
+            and client:supports_method(
+              vim.lsp.protocol.Methods.textDocument_documentHighlight
+            )
+          then
+            local highlight_augroup = vim.api.nvim_create_augroup(
+              'kickstart-lsp-highlight',
+              { clear = false }
+            )
             vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
               buffer = event.buf,
               group = highlight_augroup,
@@ -76,10 +105,19 @@ return {
             })
           end
 
-          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+          if
+            client
+            and client:supports_method(
+              vim.lsp.protocol.Methods.textDocument_inlayHint
+            )
+          then
+            vim.lsp.inlay_hint.enable(
+              not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+            )
             map('<leader>lh', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+              vim.lsp.inlay_hint.enable(
+                not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf }
+              )
             end, 'Toggle Inlay Hints')
           end
         end,
@@ -111,11 +149,11 @@ return {
           },
         },
         ruff_lsp = {
-          cmd = { vim.fn.exepath('ruff-lsp') } or nil,
+          cmd = { vim.fn.exepath 'ruff-lsp' } or nil,
           init_options = {
             settings = {
-              executable = is_nixos and vim.fn.exepath('ruff') or nil,
-              args = { "--preview" },
+              executable = is_nixos and vim.fn.exepath 'ruff' or nil,
+              args = { '--preview' },
             },
           },
           commands = {
@@ -143,10 +181,23 @@ return {
 
       local ensure_installed = vim.tbl_keys(servers)
       vim.list_extend(ensure_installed, {
-        'clangd', 'cssls', 'nil_ls', 'taplo', 'dockerls',
-        'docker_compose_language_service', 'gopls', 'jsonls',
-        'kotlin_language_server', 'rust_analyzer', 'sqlls',
-        'tailwindcss', 'ts_ls', 'stylua', 'yamlls', 'shellcheck', 'ruff_lsp'
+        'clangd',
+        'cssls',
+        'nil_ls',
+        'taplo',
+        'dockerls',
+        'docker_compose_language_service',
+        'gopls',
+        'jsonls',
+        'kotlin_language_server',
+        'rust_analyzer',
+        'sqlls',
+        'tailwindcss',
+        'ts_ls',
+        'stylua',
+        'yamlls',
+        'shellcheck',
+        'ruff_lsp',
       })
 
       require('lspconfig').marksman.setup {
@@ -166,26 +217,29 @@ return {
         single_file_support = false,
       }
 
-      -- require('mason').setup()
+      require('mason').setup()
       -- require('mason-conform').setup {
       --   auto_install = not is_nixos,
       --   ignore_install = {}
       -- }
-      --
-      -- require('mason-tool-installer').setup {
-      --   ensure_installed = is_nixos and {} or ensure_installed
-      -- }
-      --
-      -- require('mason-lspconfig').setup {
-      --   handlers = {
-      --     function(server_name)
-      --       local server = servers[server_name] or {}
-      --       server.capabilities = vim.tbl_deep_extend('force', capabilities, server.capabilities or {})
-      --       require('lspconfig')[server_name].setup(server)
-      --     end,
-      --   },
-      -- }
 
+      require('mason-tool-installer').setup {
+        ensure_installed = is_nixos and {} or ensure_installed,
+      }
+
+      require('mason-lspconfig').setup {
+        handlers = {
+          function(server_name)
+            local server = servers[server_name] or {}
+            server.capabilities = vim.tbl_deep_extend(
+              'force',
+              capabilities,
+              server.capabilities or {}
+            )
+            require('lspconfig')[server_name].setup(server)
+          end,
+        },
+      }
     end,
   },
 }
