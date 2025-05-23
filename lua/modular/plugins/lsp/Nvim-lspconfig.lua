@@ -2,14 +2,14 @@ return {
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      {
-        'williamboman/mason.nvim',
-        dependencies = { 'mason-org/mason-registry' },
-        config = true,
-      },
-      { 'williamboman/mason-lspconfig.nvim' },
-      { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
-      { 'zapling/mason-conform.nvim' },
+   {
+      --   'williamboman/mason.nvim',
+      --   dependencies = { 'mason-org/mason-registry' },
+      --   config = true,
+      -- },
+      -- { 'williamboman/mason-lspconfig.nvim' },
+      -- { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
+      -- { 'zapling/mason-conform.nvim' },
       { 'stevearc/conform.nvim' },
     },
 
@@ -166,25 +166,25 @@ return {
         single_file_support = false,
       }
 
-      require('mason').setup()
-      require('mason-conform').setup {
-        auto_install = not is_nixos,
-        ignore_install = {}
-      }
-
-      require('mason-tool-installer').setup {
-        ensure_installed = is_nixos and {} or ensure_installed
-      }
-
-      require('mason-lspconfig').setup {
-        handlers = {
-          function(server_name)
-            local server = servers[server_name] or {}
-            server.capabilities = vim.tbl_deep_extend('force', capabilities, server.capabilities or {})
-            require('lspconfig')[server_name].setup(server)
-          end,
-        },
-      }
+      -- require('mason').setup()
+      -- require('mason-conform').setup {
+      --   auto_install = not is_nixos,
+      --   ignore_install = {}
+      -- }
+      --
+      -- require('mason-tool-installer').setup {
+      --   ensure_installed = is_nixos and {} or ensure_installed
+      -- }
+      --
+      -- require('mason-lspconfig').setup {
+      --   handlers = {
+      --     function(server_name)
+      --       local server = servers[server_name] or {}
+      --       server.capabilities = vim.tbl_deep_extend('force', capabilities, server.capabilities or {})
+      --       require('lspconfig')[server_name].setup(server)
+      --     end,
+      --   },
+      -- }
 
     end,
   },

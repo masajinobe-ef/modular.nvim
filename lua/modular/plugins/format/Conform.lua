@@ -2,7 +2,7 @@ return {
   'stevearc/conform.nvim',
   event = 'VimEnter',
   lazy = false,
-  dependencies = { 'mason.nvim' },
+  -- dependencies = { 'mason.nvim' },
   config = function()
     local is_nixos = vim.fn.filereadable('/etc/NIXOS') == 1
 
@@ -71,12 +71,12 @@ return {
       formatters = {}
     }
 
-    if is_nixos then
-      -- Отключаем Mason для форматтеров в NixOS
-      require('mason').setup {
-        PATH = 'skip', -- Предотвращает модификацию PATH
-        registries = { 'mason-registry' } -- Оставляем пустым
-      }
-    end
+    -- if is_nixos then
+    --   -- Отключаем Mason для форматтеров в NixOS
+    --   require('mason').setup {
+    --     PATH = 'skip', -- Предотвращает модификацию PATH
+    --     registries = { 'mason-registry' } -- Оставляем пустым
+    --   }
+    -- end
   end
 }
