@@ -186,13 +186,6 @@ return {
         },
       }
 
-      if is_nixos then
-        vim.env.PATH = table.concat({
-          vim.env.PATH,
-          vim.fn.expand('~/.nix-profile/bin'),
-          '/run/current-system/sw/bin'
-        }, ':')
-      end
     end,
   },
 }
