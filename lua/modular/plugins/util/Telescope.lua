@@ -30,8 +30,8 @@ return {
           },
           mappings = {
             i = {
-              ['<C-k>'] = actions.move_selection_previous,
-              ['<C-j>'] = actions.move_selection_next,
+              ['<C-u>'] = actions.move_selection_previous,
+              ['<C-d>'] = actions.move_selection_next,
               ['<C-l>'] = actions.select_default,
             },
             n = {
