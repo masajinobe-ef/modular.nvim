@@ -40,7 +40,7 @@ return {
 
         -- Python
         ruff = { cmd = { vim.fn.exepath 'ruff', 'server' } }, -- Python LSP
-        pyright = { cmd = { vim.fn.exepath 'pyright' } }, -- Type checker
+        -- pyright = { cmd = { vim.fn.exepath 'pyright' } }, -- Type checker
       }
 
       -- Init servers func
