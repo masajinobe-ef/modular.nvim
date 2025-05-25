@@ -11,8 +11,8 @@ return {
       local diag = vim.diagnostic
 
       diag.config {
-        virtual_text = true, -- Disable inline text
-        signs = false, -- Disable gutter signs
+        virtual_text = true, -- Inline text
+        signs = true, -- Gutter signs
         underline = true, -- Highlight problematic code
         update_in_insert = false,
         severity_sort = true,
@@ -36,10 +36,11 @@ return {
         nil_ls = { cmd = { vim.fn.exepath 'nil' } }, -- nix
         taplo = { cmd = { vim.fn.exepath 'taplo' } }, -- toml
         yamlls = { cmd = { vim.fn.exepath 'yaml-language-server' } }, -- yaml
-        marksman = { cmd = { vim.fn.exepath 'marksman' } }, -- Markdown
+        marksman = { cmd = { vim.fn.exepath 'marksman' } }, -- markdown
 
-        ruff = { cmd = { vim.fn.exepath 'ruff', 'server' } }, -- Ruff LSP for Python
-        pyright = { cmd = { vim.fn.exepath 'pyright' } }, -- Static Type Checker for Python
+        -- Python
+        ruff = { cmd = { vim.fn.exepath 'ruff', 'server' } }, -- Python LSP
+        pyright = { cmd = { vim.fn.exepath 'pyright' } }, -- Type checker
       }
 
       -- Init servers func
