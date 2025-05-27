@@ -57,8 +57,7 @@ return {
                     stdin = false,
                 },
                 trim_whitespace = {
-                    command = is_nixos and vim.fn.exepath 'trim_whitespace'
-                        or 'trim_whitespace',
+                    command = is_nixos and vim.fn.exepath 'trim_whitespace' or 'trim_whitespace',
                     args = { '--trim' },
                     stdin = false,
                 },
