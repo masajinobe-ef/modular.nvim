@@ -2,69 +2,105 @@ return {
     'hrsh7th/nvim-cmp',
     dependencies = {
         'hrsh7th/cmp-nvim-lsp',
-        'hrsh7th/cmp-nvim-lua',
         'hrsh7th/cmp-buffer',
         'hrsh7th/cmp-path',
+        'hrsh7th/cmp-nvim-lua',
 
-        -- Snippets
-        'rafamadriz/friendly-snippets',
-
-        'echasnovski/mini.snippets',
-        'abeldekat/cmp-mini-snippets',
-
-        'dcampos/nvim-snippy',
+        {
+            'dcampos/nvim-snippy',
+            config = function()
+                require('snippy').setup({
+                    mappings = {
+                        is = {
+                            ['<Tab>'] = 'expand_or_advance',
+                            ['<S-Tab>'] = 'previous',
+                        },
+                    },
+                })
+            end
+        },
         'dcampos/cmp-snippy',
 
-        'hrsh7th/cmp-vsnip',
-        'hrsh7th/vim-vsnip',
+        {
+            'windwp/nvim-autopairs',
+            event = 'InsertEnter',
+            config = function()
+                require('nvim-autopairs').setup({
+                    check_ts = true,
+                    ts_config = {
+                        lua = { 'string' },
+                        javascript = { 'template_string' },
+                    },
+                    disable_filetype = { "TelescopePrompt", "spectre_panel" },
+                })
+            end,
+        },
+        {
+            'windwp/nvim-ts-autotag',
+            config = function()
+                require('nvim-ts-autotag').setup({
+                    enable_close_on_slash = false,
+                    filetypes = {
+                        'html', 'xml', 'javascript', 'typescript',
+                        'javascriptreact', 'typescriptreact', 'svelte',
+                        'vue', 'tsx', 'jsx', 'rescript', 'php',
+                    }
+                })
+            end,
+        },
     },
 
     config = function()
+        local cmp = require 'cmp'
+        local snippy = require 'snippy'
         local kind_icons = {
-            Text = '󰉿',
-            Method = 'm',
+            Text = '',
+            Method = '',
             Function = '󰊕',
-            Constructor = '',
-            Field = '',
-            Variable = '󰆧',
-            Class = '󰌗',
-            Interface = '',
-            Module = '',
-            Property = '',
-            Unit = '',
-            Value = '󰎠',
-            Enum = '',
-            Keyword = '󰌋',
-            Color = '󰏘',
-            File = '󰈙',
-            Reference = '',
-            Folder = '󰉋',
-            EnumMember = '',
-            Constant = '󰇽',
-            Struct = '',
-            Event = '',
-            Operator = '󰆕',
-            TypeParameter = '󰊄',
+            Constructor = '',
+            Field = '',
+            Variable = '',
+            Class = '',
+            Interface = '',
+            Module = '',
+            Property = '',
+            Unit = '',
+            Value = '',
+            Enum = '',
+            Keyword = '',
+            Snippet = '',
+            Color = '',
+            File = '',
+            Reference = '',
+            Folder = '',
+            EnumMember = '',
+            Constant = '',
+            Struct = '',
+            Event = '',
+            Operator = '',
+            TypeParameter = '',
         }
 
-        -- cmp
-        local cmp = require 'cmp'
         cmp.setup {
-            completion = { completeopt = 'menu,menuone,noinsert' },
+            completion = {
+                completeopt = 'menu,menuone,noinsert',
+                keyword_length = 1,
+            },
 
             mapping = cmp.mapping.preset.insert {
-                ['<C-j>'] = cmp.mapping.select_next_item(),
-                ['<C-k>'] = cmp.mapping.select_prev_item(),
-                ['<CR>'] = cmp.mapping.confirm { select = true },
-                ['<C-c>'] = cmp.mapping.complete {},
-                ['<C-l>'] = cmp.mapping(function()
-                end, { 'i', 's' }),
-
-                ['<C-h>'] = cmp.mapping(function()
-                end, { 'i', 's' }),
+                ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+                ['<CR>'] = cmp.mapping.confirm({
+                    select = true,
+                    behavior = cmp.ConfirmBehavior.Replace
+                }),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<C-e>'] = cmp.mapping.abort(),
 
                 ['<Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
+                    if snippy.can_expand_or_advance() then
+                        snippy.expand_or_advance()
+                    elseif cmp.visible() then
                         cmp.select_next_item()
                     else
                         fallback()
@@ -72,7 +108,9 @@ return {
                 end, { 'i', 's' }),
 
                 ['<S-Tab>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
+                    if snippy.can_jump(-1) then
+                        snippy.previous()
+                    elseif cmp.visible() then
                         cmp.select_prev_item()
                     else
                         fallback()
@@ -82,35 +120,55 @@ return {
 
             snippet = {
                 expand = function(args)
+                    require('snippy').expand_snippet(args.body)
                 end,
             },
 
-            sources = {
-                { name = 'nvim_lsp' },
+            sources = cmp.config.sources({
+                { name = 'nvim_lsp', priority = 1000 },
+                { name = 'snippy',   priority = 750 },
+                { name = 'nvim_lua', priority = 650 },
+                { name = 'path',     priority = 500 },
                 {
-                    name = 'buffer', -- Exclude buffer source for gitcommit and yaml
-                    filetypes = function(ft)
-                        return not vim.tbl_contains(
-                            { 'gitcommit', 'yaml', 'dockerfile' },
-                            ft
-                        )
-                    end,
+                    name = 'buffer',
+                    priority = 250,
+                    option = {
+                        get_bufnrs = function()
+                            return vim.api.nvim_list_bufs()
+                        end
+                    }
                 },
-                { name = 'path' },
-            },
+            }),
 
             formatting = {
                 fields = { 'kind', 'abbr', 'menu' },
-                format = function(entry, vim_item)
-                    vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
-                    vim_item.menu = ({
+                format = function(entry, item)
+                    item.kind = string.format('%s %s', kind_icons[item.kind] or '?', item.kind)
+                    item.menu = ({
                         nvim_lsp = '[LSP]',
-                        buffer = '[Buffer]',
-                        path = '[Path]',
-                    })[entry.source.name]
-                    return vim_item
+                        snippy = '[SNP]',
+                        buffer = '[BUF]',
+                        path = '[PATH]',
+                        nvim_lua = '[LUA]',
+                    })[entry.source.name] or string.upper(entry.source.name)
+
+                    return item
                 end,
             },
+
+            experimental = {
+                ghost_text = {
+                    hl_group = 'Comment',
+                },
+            },
+
+            window = {
+                completion = cmp.config.window.bordered(),
+                documentation = cmp.config.window.bordered(),
+            }
         }
+
+        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
 }
