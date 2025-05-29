@@ -52,9 +52,6 @@ return {
             end
 
             local servers = {
-                bashls = { cmd = { get_bin('bash-language-server'), 'start' } },
-                clangd = { cmd = { get_bin('clangd') } },
-                gopls = { cmd = { get_bin('gopls') } },
                 lua_ls = {
                     cmd = { get_bin('lua-language-server') },
                     settings = {
@@ -69,7 +66,21 @@ return {
                         }
                     }
                 },
-                nil_ls = { cmd = { get_bin('nil') } },
+
+                nil_ls = {
+                    cmd = { get_bin('nil'), '--stdio' },
+                    settings = {
+                        nil = {
+                            formatting = {
+                                command = "diagnostics",
+                            },
+                        },
+                    },
+                },
+
+                bashls = { cmd = { get_bin('bash-language-server'), 'start' } },
+                clangd = { cmd = { get_bin('clangd') } },
+                gopls = { cmd = { get_bin('gopls') } },
                 taplo = { cmd = { get_bin('taplo') } },
                 yamlls = { cmd = { get_bin('yaml-language-server') } },
                 ruff = { cmd = { get_bin('ruff'), 'server' } },
