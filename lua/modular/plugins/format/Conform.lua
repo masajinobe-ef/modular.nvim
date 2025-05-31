@@ -3,9 +3,17 @@ return {
     event = 'VimEnter',
     lazy = false,
     config = function()
-        local is_nixos = vim.fn.filereadable('/etc/NIXOS') == 1
+        local function get_bin(pkg)
+            local exepath = vim.fn.exepath(pkg)
+            return exepath ~= '' and exepath or pkg
+        end
 
         require('conform').setup {
+            -- format_on_save = {
+            --     timeout_ms = 500,
+            --     lsp_fallback = true,
+            -- },
+
             formatters_by_ft = {
                 lua = { 'stylua' },
                 nix = { 'nixfmt' },
@@ -29,39 +37,102 @@ return {
                 less = { 'prettierd' },
                 toml = { 'taplo' },
                 graphql = { 'prettierd' },
-                ['*'] = { 'codespell' },
-                ['_'] = { 'trim_whitespace' },
+                terraform = { 'terraform_fmt' },
+                hcl = { 'terraform_fmt' },
             },
             formatters = {
                 stylua = {
-                    command = is_nixos and vim.fn.exepath 'stylua' or 'stylua',
+                    command = get_bin 'stylua',
                     args = { '--search-parent-directories', '-' },
                     stdin = true,
                 },
                 nixfmt = {
-                    command = is_nixos and vim.fn.exepath 'nixfmt' or 'nixfmt',
+                    command = get_bin 'nixfmt',
                     stdin = true,
                 },
                 ruff_format = {
-                    command = is_nixos and vim.fn.exepath 'ruff' or 'ruff',
-                    args = { 'format', '-' },
+                    command = get_bin 'ruff',
+                    args = { 'format', '--quiet', '-' },
                     stdin = true,
                 },
                 prettierd = {
-                    command = is_nixos and vim.fn.exepath 'prettierd' or 'prettierd',
+                    command = get_bin 'prettierd',
                     stdin = true,
                 },
-                codespell = {
-                    command = is_nixos and vim.fn.exepath 'codespell' or 'codespell',
-                    args = { '--quiet', '2' },
-                    stdin = false,
+                rubocop = {
+                    command = get_bin 'rubocop',
+                    args = {
+                        '--auto-correct',
+                        '--format',
+                        'quiet',
+                        '--stderr',
+                        '--stdin',
+                        '$FILENAME',
+                    },
+                    stdin = true,
                 },
-                trim_whitespace = {
-                    command = is_nixos and vim.fn.exepath 'trim_whitespace' or 'trim_whitespace',
-                    args = { '--trim' },
-                    stdin = false,
+                gofmt = {
+                    command = get_bin 'gofmt',
+                    stdin = true,
+                },
+                rustfmt = {
+                    command = get_bin 'rustfmt',
+                    args = { '--edition=2021' },
+                    stdin = true,
+                },
+                ktlint = {
+                    command = get_bin 'ktlint',
+                    args = { '--format', '--stdin' },
+                    stdin = true,
+                },
+                shfmt = {
+                    command = get_bin 'shfmt',
+                    args = { '-i', '2' },
+                    stdin = true,
+                },
+                taplo = {
+                    command = get_bin 'taplo',
+                    args = { 'format', '-' },
+                    stdin = true,
+                },
+                terraform_fmt = {
+                    command = get_bin 'terraform',
+                    args = { 'fmt', '-' },
+                    stdin = true,
                 },
             },
         }
+
+        vim.api.nvim_create_user_command('Format', function(args)
+            local range = nil
+            if args.count ~= -1 then
+                local end_line = vim.api.nvim_buf_get_lines(
+                    0,
+                    args.line2 - 1,
+                    args.line2,
+                    true
+                )[1]
+                range = {
+                    start = { args.line1, 0 },
+                    ['end'] = { args.line2, end_line:len() },
+                }
+            end
+
+            require('conform').format {
+                async = true,
+                lsp_format = 'fallback',
+                range = range,
+            }
+        end, {
+            desc = 'Format the current buffer or selected lines',
+            range = true,
+        })
+
+        vim.keymap.set(
+            { 'n', 'v' },
+            '<leader>f',
+            '<cmd>Format<CR>',
+            { desc = 'Format buffer or selection' }
+        )
     end,
 }

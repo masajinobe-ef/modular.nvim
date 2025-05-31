@@ -29,12 +29,12 @@ return {
     },
 
     config = function()
-        for type, icon in pairs({
-            Error = " ",
-            Warn  = " ",
-            Info  = " ",
-            Hint  = "󰌵",
-        }) do
+        for type, icon in pairs {
+            Error = ' ',
+            Warn = ' ',
+            Info = ' ',
+            Hint = '󰌵',
+        } do
             vim.fn.sign_define(
                 'DiagnosticSign' .. type,
                 { text = icon, texthl = 'DiagnosticSign' .. type }
@@ -71,19 +71,20 @@ return {
                     default = '*',
                     highlight = 'NeoTreeFileIcon',
                     provider = function(config, node)
-                        if node.type == "file" or node.type == "terminal" then
+                        if node.type == 'file' or node.type == 'terminal' then
                             local name = node:get_name()
-                            local ext = vim.fn.fnamemodify(name, ":e")
-                            local icon, hl = require("nvim-web-devicons").get_icon(name, ext)
+                            local ext = vim.fn.fnamemodify(name, ':e')
+                            local icon, hl =
+                                require('nvim-web-devicons').get_icon(name, ext)
 
                             if not icon then
-                                icon = config.default or "*"
-                                hl = "DevIconDefault"
+                                icon = config.default or '*'
+                                hl = 'DevIconDefault'
                             end
 
                             return {
                                 text = icon,
-                                highlight = hl
+                                highlight = hl,
                             }
                         end
                     end,
@@ -99,15 +100,15 @@ return {
                 },
                 git_status = {
                     symbols = {
-                        added     = '✚',
-                        modified  = '',
-                        deleted   = '✖',
-                        renamed   = '󰁕',
+                        added = '✚',
+                        modified = '',
+                        deleted = '✖',
+                        renamed = '󰁕',
                         untracked = '',
-                        ignored   = '',
-                        unstaged  = '󰄱',
-                        staged    = '',
-                        conflict  = '',
+                        ignored = '',
+                        unstaged = '󰄱',
+                        staged = '',
+                        conflict = '',
                     },
                 },
                 file_size = {
@@ -117,18 +118,18 @@ return {
                 last_modified = {
                     enabled = true,
                     required_width = 88,
-                    format = "%Y-%m-%d %H:%M",
+                    format = '%Y-%m-%d %H:%M',
                 },
                 created = {
                     enabled = false,
                     required_width = 110,
-                    format = "%Y-%m-%d",
+                    format = '%Y-%m-%d',
                 },
                 symlink_target = {
                     enabled = false,
                     text_format = function(target)
-                        return "➛ " .. target
-                    end
+                        return '➛ ' .. target
+                    end,
                 },
             },
             window = {
@@ -168,7 +169,7 @@ return {
                     ['i'] = 'show_file_details',
                     ['h'] = 'close_node',
                     ['/'] = 'noop',
-                }
+                },
             },
             filesystem = {
                 filtered_items = {
@@ -178,7 +179,7 @@ return {
                     hide_hidden = false,
                     hide_by_name = {
                         'node_modules',
-                        '.git'
+                        '.git',
                     },
                     never_show = { '.DS_Store', 'thumbs.db' },
                 },
@@ -199,8 +200,8 @@ return {
                         ['<c-x>'] = 'clear_filter',
                         ['[g'] = 'prev_git_modified',
                         [']g'] = 'next_git_modified',
-                    }
-                }
+                    },
+                },
             },
             buffers = {
                 follow_current_file = {
@@ -214,23 +215,23 @@ return {
                 window = {
                     position = 'float',
                     mappings = {
-                        ['A']  = 'git_add_all',
+                        ['A'] = 'git_add_all',
                         ['gu'] = 'git_unstage_file',
                         ['ga'] = 'git_add_file',
                         ['gr'] = 'git_revert_file',
                         ['gc'] = 'git_commit',
                         ['gp'] = 'git_push',
                         ['gg'] = 'git_commit_and_push',
-                    }
-                }
-            }
+                    },
+                },
+            },
         }
 
         vim.keymap.set('n', '<leader>e', '<cmd>Neotree toggle<CR>', {
-            desc = 'Toggle Explorer'
+            desc = 'Toggle Explorer',
         })
         vim.keymap.set('n', '<leader>o', '<cmd>Neotree focus<CR>', {
-            desc = 'Focus Explorer'
+            desc = 'Focus Explorer',
         })
-    end
+    end,
 }

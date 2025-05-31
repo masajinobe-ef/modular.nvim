@@ -76,8 +76,10 @@ return {
                     folder_empty = '󰜌',
                     provider = function(icon, node, state)
                         if node.type == 'file' or node.type == 'terminal' then
-                            local success, web_devicons = pcall(require, 'nvim-web-devicons')
-                            local name = node.type == 'terminal' and 'terminal' or node.name
+                            local success, web_devicons =
+                                pcall(require, 'nvim-web-devicons')
+                            local name = node.type == 'terminal' and 'terminal'
+                                or node.name
                             if success then
                                 local devicon, hl = web_devicons.get_icon(name)
                                 icon.text = devicon or icon.text

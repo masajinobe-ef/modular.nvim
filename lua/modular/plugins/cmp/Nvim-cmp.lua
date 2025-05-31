@@ -9,15 +9,15 @@ return {
         {
             'dcampos/nvim-snippy',
             config = function()
-                require('snippy').setup({
+                require('snippy').setup {
                     mappings = {
                         is = {
                             ['<Tab>'] = 'expand_or_advance',
                             ['<S-Tab>'] = 'previous',
                         },
                     },
-                })
-            end
+                }
+            end,
         },
         'dcampos/cmp-snippy',
 
@@ -25,27 +25,36 @@ return {
             'windwp/nvim-autopairs',
             event = 'InsertEnter',
             config = function()
-                require('nvim-autopairs').setup({
+                require('nvim-autopairs').setup {
                     check_ts = true,
                     ts_config = {
                         lua = { 'string' },
                         javascript = { 'template_string' },
                     },
-                    disable_filetype = { "TelescopePrompt", "spectre_panel" },
-                })
+                    disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
+                }
             end,
         },
         {
             'windwp/nvim-ts-autotag',
             config = function()
-                require('nvim-ts-autotag').setup({
+                require('nvim-ts-autotag').setup {
                     enable_close_on_slash = false,
                     filetypes = {
-                        'html', 'xml', 'javascript', 'typescript',
-                        'javascriptreact', 'typescriptreact', 'svelte',
-                        'vue', 'tsx', 'jsx', 'rescript', 'php',
-                    }
-                })
+                        'html',
+                        'xml',
+                        'javascript',
+                        'typescript',
+                        'javascriptreact',
+                        'typescriptreact',
+                        'svelte',
+                        'vue',
+                        'tsx',
+                        'jsx',
+                        'rescript',
+                        'php',
+                    },
+                }
             end,
         },
     },
@@ -88,12 +97,16 @@ return {
             },
 
             mapping = cmp.mapping.preset.insert {
-                ['<C-j>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-                ['<C-k>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
-                ['<CR>'] = cmp.mapping.confirm({
+                ['<C-j>'] = cmp.mapping.select_next_item {
+                    behavior = cmp.SelectBehavior.Select,
+                },
+                ['<C-k>'] = cmp.mapping.select_prev_item {
+                    behavior = cmp.SelectBehavior.Select,
+                },
+                ['<CR>'] = cmp.mapping.confirm {
                     select = true,
-                    behavior = cmp.ConfirmBehavior.Replace
-                }),
+                    behavior = cmp.ConfirmBehavior.Replace,
+                },
                 ['<C-Space>'] = cmp.mapping.complete(),
                 ['<C-e>'] = cmp.mapping.abort(),
 
@@ -124,33 +137,39 @@ return {
                 end,
             },
 
-            sources = cmp.config.sources({
+            sources = cmp.config.sources {
                 { name = 'nvim_lsp', priority = 1000 },
-                { name = 'snippy',   priority = 750 },
+                { name = 'snippy', priority = 750 },
                 { name = 'nvim_lua', priority = 650 },
-                { name = 'path',     priority = 500 },
+                { name = 'path', priority = 500 },
                 {
                     name = 'buffer',
                     priority = 250,
                     option = {
                         get_bufnrs = function()
                             return vim.api.nvim_list_bufs()
-                        end
-                    }
+                        end,
+                    },
                 },
-            }),
+            },
 
             formatting = {
                 fields = { 'kind', 'abbr', 'menu' },
                 format = function(entry, item)
-                    item.kind = string.format('%s %s', kind_icons[item.kind] or '?', item.kind)
+                    item.kind = string.format(
+                        '%s %s',
+                        kind_icons[item.kind] or '?',
+                        item.kind
+                    )
                     item.menu = ({
                         nvim_lsp = '[LSP]',
                         snippy = '[SNP]',
                         buffer = '[BUF]',
                         path = '[PATH]',
                         nvim_lua = '[LUA]',
-                    })[entry.source.name] or string.upper(entry.source.name)
+                    })[entry.source.name] or string.upper(
+                        entry.source.name
+                    )
 
                     return item
                 end,
@@ -165,10 +184,10 @@ return {
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
-            }
+            },
         }
 
-        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+        local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
         cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
     end,
 }

@@ -1,6 +1,7 @@
 local function load_plugins()
     local plugins = {}
-    local categories = { 'util', 'ui', 'syntax', 'lsp', 'cmp', 'lint', 'format' }
+    local categories =
+        { 'util', 'ui', 'syntax', 'lsp', 'cmp', 'lint', 'format' }
 
     for _, category in ipairs(categories) do
         local plugins_dir = vim.fn.stdpath 'config'
@@ -14,7 +15,10 @@ local function load_plugins()
         for _, file in ipairs(files) do
             if file:sub(-4) == '.lua' then
                 local plugin_name = file:sub(1, -5)
-                local plugin_path = 'modular/plugins/' .. category .. '/' .. plugin_name
+                local plugin_path = 'modular/plugins/'
+                    .. category
+                    .. '/'
+                    .. plugin_name
                 local fine, plugin = pcall(require, plugin_path)
                 if fine then
                     table.insert(plugins, plugin)
