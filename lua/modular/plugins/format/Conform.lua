@@ -16,7 +16,6 @@ return {
 
             formatters_by_ft = {
                 lua = { 'stylua' },
-                nix = { 'nixfmt' },
                 python = { 'ruff_format' },
                 javascript = { 'prettierd' },
                 javascriptreact = { 'prettierd' },
@@ -28,76 +27,37 @@ return {
                 yaml = { 'prettierd' },
                 markdown = { 'prettierd' },
                 vue = { 'prettierd' },
-                ruby = { 'rubocop' },
-                go = { 'gofmt' },
-                rust = { 'rustfmt' },
-                kotlin = { 'ktlint' },
-                sh = { 'shfmt' },
-                scss = { 'prettierd' },
-                less = { 'prettierd' },
                 toml = { 'taplo' },
-                graphql = { 'prettierd' },
-                terraform = { 'terraform_fmt' },
-                hcl = { 'terraform_fmt' },
+                sh = { 'shfmt' },
             },
             formatters = {
+
                 stylua = {
                     command = get_bin 'stylua',
                     args = { '--search-parent-directories', '-' },
                     stdin = true,
                 },
-                nixfmt = {
-                    command = get_bin 'nixfmt',
-                    stdin = true,
-                },
+
                 ruff_format = {
                     command = get_bin 'ruff',
                     args = { 'format', '--quiet', '-' },
                     stdin = true,
                 },
+
                 prettierd = {
                     command = get_bin 'prettierd',
                     stdin = true,
                 },
-                rubocop = {
-                    command = get_bin 'rubocop',
-                    args = {
-                        '--auto-correct',
-                        '--format',
-                        'quiet',
-                        '--stderr',
-                        '--stdin',
-                        '$FILENAME',
-                    },
-                    stdin = true,
-                },
-                gofmt = {
-                    command = get_bin 'gofmt',
-                    stdin = true,
-                },
-                rustfmt = {
-                    command = get_bin 'rustfmt',
-                    args = { '--edition=2021' },
-                    stdin = true,
-                },
-                ktlint = {
-                    command = get_bin 'ktlint',
-                    args = { '--format', '--stdin' },
-                    stdin = true,
-                },
-                shfmt = {
-                    command = get_bin 'shfmt',
-                    args = { '-i', '2' },
-                    stdin = true,
-                },
+
                 taplo = {
                     command = get_bin 'taplo',
                     args = { 'format', '-' },
                     stdin = true,
                 },
-                terraform_fmt = {
-                    command = get_bin 'terraform',
-                    args = { 'fmt', '-' },
+
+                shfmt = {
+                    command = get_bin 'shfmt',
+                    args = { '-i', '2' },
                     stdin = true,
                 },
             },

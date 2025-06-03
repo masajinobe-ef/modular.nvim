@@ -33,32 +33,6 @@ return {
                 ignore_exitcode = true,
             })
 
-            configure_linter('ktlint', {
-                cmd = get_bin 'ktlint',
-                args = { '--relative', '--stdin' },
-                stdin = true,
-                stream = 'stderr',
-            })
-
-            configure_linter('shellcheck', {
-                cmd = get_bin 'shellcheck',
-                args = { '--format', 'gcc', '--external-sources', '-' },
-                stdin = true,
-            })
-
-            configure_linter('eslint_d', {
-                cmd = get_bin 'eslint_d',
-                args = {
-                    '--stdin',
-                    '--stdin-filename',
-                    '$FILENAME',
-                    '--format',
-                    'compact',
-                },
-                stdin = true,
-                stream = 'both',
-            })
-
             configure_linter('luacheck', {
                 cmd = get_bin 'luacheck',
                 args = {
@@ -74,99 +48,90 @@ return {
                 stdin = true,
             })
 
-            configure_linter('golangci-lint', {
-                cmd = get_bin 'golangci-lint',
+            configure_linter('nixpkgs-lint', {
+                cmd = get_bin 'nixpkgs-lint',
                 args = {
-                    'run',
-                    '--out-format',
-                    'line-number',
-                    '--path-prefix',
-                    '$DIRNAME',
+                    '--format',
+                    'json',
+                    '--include-unfinished-lints',
+                    '--stdin',
                 },
-                stdin = false,
+                stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
             })
 
             configure_linter('yamllint', {
                 cmd = get_bin 'yamllint',
-                args = { '--format', 'parsable', '-' },
+                args = {
+                    '-',
+                    '--format',
+                    'parsable',
+                    '--no-warnings',
+                },
                 stdin = true,
-            })
-
-            configure_linter('markdownlint', {
-                cmd = get_bin 'markdownlint',
-                args = { '--stdin' },
-                stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
             })
 
             configure_linter('hadolint', {
                 cmd = get_bin 'hadolint',
-                args = { '-' },
-                stdin = true,
-            })
-
-            configure_linter('jsonlint', {
-                cmd = get_bin 'jsonlint',
-                args = { '--compact' },
-                stdin = true,
-            })
-
-            configure_linter('stylelint', {
-                cmd = get_bin 'stylelint',
                 args = {
-                    '--formatter',
+                    '-',
+                    '--no-fail',
+                    '-f',
                     'json',
-                    '--stdin-filename',
-                    '$FILENAME',
                 },
                 stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
             })
 
-            configure_linter('tflint', {
-                cmd = get_bin 'tflint',
-                args = { '--format=default', '--force' },
-                stdin = false,
-            })
-
-            configure_linter('htmlhint', {
-                cmd = get_bin 'htmlhint',
-                args = { '--format', 'unix', '--stdin' },
-                stdin = true,
-            })
-
-            configure_linter('rubocop', {
-                cmd = get_bin 'rubocop',
+            configure_linter('shellcheck', {
+                cmd = get_bin 'shellcheck',
                 args = {
-                    '--format',
-                    'emacs',
-                    '--force-exclusion',
-                    '--stdin',
-                    '$FILENAME',
+                    '-',
+                    '--severity',
+                    'warning',
                 },
                 stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
+            })
+
+            configure_linter('markdownlint-cli', {
+                cmd = get_bin 'markdownlint',
+                args = {
+                    '-',
+                    '-q',
+                },
+                stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
+            })
+
+            configure_linter('rslint', {
+                cmd = get_bin 'rslint',
+                args = {
+                    '-',
+                    '--fix',
+                },
+                stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
             })
 
             lint.linters_by_ft = {
                 python = { 'ruff' },
-                kotlin = { 'ktlint' },
-                bash = { 'shellcheck' },
-                sh = { 'shellcheck' },
-                javascript = { 'eslint_d' },
-                typescript = { 'eslint_d' },
-                javascriptreact = { 'eslint_d' },
-                typescriptreact = { 'eslint_d' },
                 lua = { 'luacheck' },
-                go = { 'golangci-lint' },
+                nix = { 'nixpkgs-lint' },
                 yaml = { 'yamllint' },
-                markdown = { 'markdownlint' },
                 dockerfile = { 'hadolint' },
-                json = { 'jsonlint' },
-                css = { 'stylelint' },
-                scss = { 'stylelint' },
-                terraform = { 'tflint' },
-                hcl = { 'tflint' },
-                html = { 'htmlhint' },
-                vue = { 'eslint_d' },
-                ruby = { 'rubocop' },
+                sh = { 'shellcheck' },
+                bash = { 'shellcheck' },
+                zsh = { 'shellcheck' },
+                markdown = { 'markdownlint-cli' },
+                typescript = { 'rslint' },
             }
 
             local lint_augroup =
