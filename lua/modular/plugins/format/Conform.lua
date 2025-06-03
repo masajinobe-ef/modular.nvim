@@ -31,7 +31,6 @@ return {
                 sh = { 'shfmt' },
             },
             formatters = {
-
                 stylua = {
                     command = get_bin 'stylua',
                     args = { '--search-parent-directories', '-' },
@@ -60,6 +59,7 @@ return {
                     args = { '-i', '2' },
                     stdin = true,
                 },
+
             },
         }
 

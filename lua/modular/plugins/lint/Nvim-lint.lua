@@ -17,22 +17,6 @@ return {
                 end
             end
 
-            configure_linter('ruff', {
-                cmd = get_bin 'ruff',
-                args = {
-                    'check',
-                    '--quiet',
-                    '--exit-zero',
-                    '--format=text',
-                    '--stdin-filename',
-                    '$FILENAME',
-                    '-',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
-
             configure_linter('luacheck', {
                 cmd = get_bin 'luacheck',
                 args = {
@@ -61,18 +45,18 @@ return {
                 ignore_exitcode = true,
             })
 
-            configure_linter('yamllint', {
-                cmd = get_bin 'yamllint',
-                args = {
-                    '-',
-                    '--format',
-                    'parsable',
-                    '--no-warnings',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
+            -- configure_linter('yamllint', {
+            --     cmd = get_bin 'yamllint',
+            --     args = {
+            --         '-',
+            --         '--format',
+            --         'parsable',
+            --         '--no-warnings',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
 
             configure_linter('hadolint', {
                 cmd = get_bin 'hadolint',
@@ -122,10 +106,9 @@ return {
             })
 
             lint.linters_by_ft = {
-                python = { 'ruff' },
                 lua = { 'luacheck' },
                 nix = { 'nixpkgs-lint' },
-                yaml = { 'yamllint' },
+                -- yaml = { 'yamllint' },
                 dockerfile = { 'hadolint' },
                 sh = { 'shellcheck' },
                 bash = { 'shellcheck' },

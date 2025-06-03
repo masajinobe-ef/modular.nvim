@@ -84,7 +84,9 @@ return {
                     cmd = { get_bin 'lua-language-server' },
                     settings = {
                         Lua = {
-                            diagnostics = { globals = { 'vim', 'setup' } },
+                            diagnostics = {
+                                globals = { 'vim', 'setup', 'util' },
+                            },
                             telemetry = { enable = false },
                             runtime = { version = 'LuaJIT' },
                             workspace = {
@@ -99,15 +101,58 @@ return {
                 },
 
                 pyright = {
-                    cmd = { get_bin 'pyright-langserver', '--stdio' },
+                    cmd = { get_bin('pyright-langserver'), '--stdio' },
                     settings = {
                         python = {
                             analysis = {
-                                typeCheckingMode = 'basic',
+                                typeCheckingMode = "basic",
+                                autoImportCompletions = true,
+                                diagnosticSeverityOverrides = {
+                                    reportMissingModuleSource = "warning",
+                                    reportUnusedImport = "warning",
+                                    reportUnusedVariable = "warning",
+                                    reportMissingTypeArgument = "error",
+                                },
+                                useLibraryCodeForTypes = true,
+                                diagnosticMode = "workspace",
+                                typeCheckingMode = "strict",
                             },
                         },
                     },
-                },
+                }
+
+                -- pylyzer = {
+                --     cmd = { get_bin 'pylyzer', '--server' },
+                --     settings = {
+                --         python = {
+                --             analysis = {
+                --                 typeCheckingMode = 'basic',
+                --                 strict = false,
+                --                 autoImportCompletions = true,
+                --                 useLibraryCodeForTypes = true,
+                --             },
+                --             runtime = {
+                --                 version = '3.13',
+                --                 virtualEnvironments = {
+                --                     useActive = true,
+                --                 },
+                --             },
+                --         },
+                --         workspace = {
+                --             checkOnSave = true,
+                --             rootPatterns = {
+                --                 'pyproject.toml',
+                --                 'setup.py',
+                --                 '.git',
+                --             },
+                --             symbol = {
+                --                 search = {
+                --                     scope = 'workspace',
+                --                 },
+                --             },
+                --         },
+                --     },
+                -- },
 
                 ts_ls = {
                     cmd = { get_bin 'typescript-language-server', '--stdio' },
@@ -137,16 +182,16 @@ return {
                     -- },
                 },
 
-                taplo = {
-                    cmd = { get_bin 'taplo', 'lsp' },
-                    -- settings = {
-                    --     toml = {
-                    --         format = {
-                    --             enable = true,
-                    --         },
-                    --     },
-                    -- },
-                },
+                -- taplo = {
+                --     cmd = { get_bin 'taplo', 'lsp' },
+                --     -- settings = {
+                --     --     toml = {
+                --     --         format = {
+                --     --             enable = true,
+                --     --         },
+                --     --     },
+                --     -- },
+                -- },
 
                 nil_ls = {
                     cmd = { get_bin 'nil', '--stdio' },
