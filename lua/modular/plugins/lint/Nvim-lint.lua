@@ -32,55 +32,6 @@ return {
                 stdin = true,
             })
 
-            configure_linter('nixpkgs-lint', {
-                cmd = get_bin 'nixpkgs-lint',
-                args = {
-                    '--format',
-                    'json',
-                    '--include-unfinished-lints',
-                    '--stdin',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
-
-            configure_linter('hadolint', {
-                cmd = get_bin 'hadolint',
-                args = {
-                    '-',
-                    '--no-fail',
-                    '-f',
-                    'json',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
-
-            configure_linter('shellcheck', {
-                cmd = get_bin 'shellcheck',
-                args = {
-                    '-',
-                    '--severity',
-                    'warning',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
-
-            configure_linter('rslint', {
-                cmd = get_bin 'rslint',
-                args = {
-                    '-',
-                    '--fix',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
-
             configure_linter('ruff', {
                 cmd = get_bin('ruff'),
                 args = {
@@ -96,6 +47,55 @@ return {
                 ignore_exitcode = true,
             })
 
+            -- configure_linter('nixpkgs-lint', {
+            --     cmd = get_bin 'nixpkgs-lint',
+            --     args = {
+            --         '--format',
+            --         'json',
+            --         '--include-unfinished-lints',
+            --         '--stdin',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
+
+            -- configure_linter('hadolint', {
+            --     cmd = get_bin 'hadolint',
+            --     args = {
+            --         '-',
+            --         '--no-fail',
+            --         '-f',
+            --         'json',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
+
+            -- configure_linter('shellcheck', {
+            --     cmd = get_bin 'shellcheck',
+            --     args = {
+            --         '-',
+            --         '--severity',
+            --         'warning',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
+
+            -- configure_linter('rslint', {
+            --     cmd = get_bin 'rslint',
+            --     args = {
+            --         '-',
+            --         '--fix',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
+
             -- configure_linter('markdownlint-cli', {
             --     cmd = get_bin 'markdownlint',
             --     args = {
@@ -106,7 +106,6 @@ return {
             --     stream = 'stdout',
             --     ignore_exitcode = true,
             -- })
-
 
             -- configure_linter('yamllint', {
             --     cmd = get_bin 'yamllint',
@@ -123,13 +122,13 @@ return {
 
             lint.linters_by_ft = {
                 lua = { 'luacheck' },
-                nix = { 'nixpkgs-lint' },
-                dockerfile = { 'hadolint' },
-                sh = { 'shellcheck' },
-                bash = { 'shellcheck' },
-                zsh = { 'shellcheck' },
-                typescript = { 'rslint' },
                 python = { 'ruff' },
+                -- typescript = { 'rslint' },
+                -- nix = { 'nixpkgs-lint' },
+                -- dockerfile = { 'hadolint' },
+                -- sh = { 'shellcheck' },
+                -- bash = { 'shellcheck' },
+                -- zsh = { 'shellcheck' },
                 -- markdown = { 'markdownlint-cli' },
                 -- yaml = { 'yamllint' },
             }
