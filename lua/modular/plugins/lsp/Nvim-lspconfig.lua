@@ -80,6 +80,8 @@ return {
             end
 
             local servers = {
+
+                -- Lua
                 lua_ls = {
                     cmd = { get_bin 'lua-language-server' },
                     settings = {
@@ -100,87 +102,160 @@ return {
                     },
                 },
 
-                pyright = {
-                    cmd = { get_bin('pyright-langserver'), '--stdio' },
-                    settings = {
-                        python = {
-                            analysis = {
-                                typeCheckingMode = "basic",
-                                autoImportCompletions = true,
-                                diagnosticSeverityOverrides = {
-                                    reportMissingModuleSource = "warning",
-                                    reportUnusedImport = "warning",
-                                    reportUnusedVariable = "warning",
-                                    reportMissingTypeArgument = "error",
-                                },
-                                useLibraryCodeForTypes = true,
-                                diagnosticMode = "workspace",
-                                typeCheckingMode = "strict",
-                            },
-                        },
-                    },
-                }
-
-                -- pylyzer = {
-                --     cmd = { get_bin 'pylyzer', '--server' },
+                -- pyright = {
+                --     cmd = { get_bin 'pyright-langserver', '--stdio' },
+                --     before_init = function(_, config)
+                --         local root_dir = config.root_dir
+                --         local uv_venv_path = nil
+                --
+                --         local uv_toml = io.open(root_dir .. '/uv.toml')
+                --         if uv_toml then
+                --             uv_toml:close()
+                --             local handle = io.popen('uv venv --path 2>/dev/null')
+                --             if handle then
+                --                 local result = handle:read('*a'):gsub('%s+', '')
+                --                 handle:close()
+                --                 if result ~= '' and vim.fn.isdirectory(result) == 1 then
+                --                     uv_venv_path = result
+                --                 end
+                --             end
+                --         end
+                --
+                --         if not uv_venv_path then
+                --             local uv_paths = {
+                --                 root_dir .. '/.venv',
+                --                 root_dir .. '/.uv-venv',
+                --                 root_dir .. '/.uv/.venv',
+                --                 root_dir .. '/venv',
+                --             }
+                --             for _, path in ipairs(uv_paths) do
+                --                 if vim.fn.isdirectory(path) == 1 then
+                --                     uv_venv_path = path
+                --                     break
+                --                 end
+                --             end
+                --         end
+                --
+                --         if not uv_venv_path then
+                --             local nix_python = vim.fn.system(
+                --                 'nix-shell --run "which python" 2>/dev/null'
+                --             ):gsub('%s+', '')
+                --             if nix_python ~= '' and vim.fn.executable(nix_python) == 1 then
+                --                 config.settings.python = {
+                --                     pythonPath = nix_python,
+                --                     analysis = {
+                --                         autoSearchPaths = true,
+                --                         useLibraryCodeForTypes = true,
+                --                     }
+                --                 }
+                --                 return
+                --             end
+                --         end
+                --
+                --         if uv_venv_path then
+                --             config.settings.python = config.settings.python or {}
+                --             config.settings.python.pythonPath = uv_venv_path .. '/bin/python'
+                --
+                --             config.settings.python.analysis = config.settings.python.analysis or {}
+                --             config.settings.python.analysis.venvPath = vim.fn.fnamemodify(uv_venv_path, ':h')
+                --             config.settings.python.analysis.venv = vim.fn.fnamemodify(uv_venv_path, ':t')
+                --
+                --             local site_packages = uv_venv_path .. '/lib/python*/site-packages'
+                --             config.settings.python.analysis.extraPaths = { site_packages }
+                --         end
+                --     end,
+                --
                 --     settings = {
                 --         python = {
                 --             analysis = {
-                --                 typeCheckingMode = 'basic',
-                --                 strict = false,
-                --                 autoImportCompletions = true,
+                --                 typeCheckingMode = "basic",
+                --                 diagnosticMode = "workspace",
+                --                 autoSearchPaths = true,
                 --                 useLibraryCodeForTypes = true,
-                --             },
-                --             runtime = {
-                --                 version = '3.13',
-                --                 virtualEnvironments = {
-                --                     useActive = true,
-                --                 },
-                --             },
-                --         },
-                --         workspace = {
-                --             checkOnSave = true,
-                --             rootPatterns = {
-                --                 'pyproject.toml',
-                --                 'setup.py',
-                --                 '.git',
-                --             },
-                --             symbol = {
-                --                 search = {
-                --                     scope = 'workspace',
-                --                 },
+                --                 -- diagnosticSeverityOverrides = {
+                --                 --     reportUnusedVariable = "error",
+                --                 --     reportUnusedImport = "error",
+                --                 --     reportMissingImports = "error",
+                --                 --     reportUndefinedVariable = "error",
+                --                 --     reportUnboundVariable = "error",
+                --                 --     reportDuplicateImport = "error",
+                --                 --     reportOptionalMemberAccess = "none",
+                --                 --     reportPrivateImportUsage = "none",
+                --                 --     reportMissingTypeStubs = "none",
+                --                 -- },
                 --             },
                 --         },
                 --     },
+                --     filetypes = { "python" },
+                --     root_dir = function(fname)
+                --         return require('lspconfig.util').root_pattern(
+                --             'uv.toml', 'pyproject.toml', 'setup.py', 'requirements.txt', '.git'
+                --         )(fname) or vim.fn.getcwd()
+                --     end,
                 -- },
 
+                -- Typescript
                 ts_ls = {
                     cmd = { get_bin 'typescript-language-server', '--stdio' },
-                    -- settings = {
-                    --     tsserver = {
-                    --         enable = true,
-                    --     },
-                    -- },
+                    settings = {
+                        tsserver = {
+                            enable = true,
+                        },
+                    },
                 },
 
-                yamlls = {
-                    cmd = { get_bin 'yaml-language-server', '--stdio' },
-                    -- settings = {
-                    --     yaml = {
-                    --         schemas = {},
-                    --         validate = true,
-                    --     },
-                    -- },
-                },
-
+                -- Markdown
                 marksman = {
                     cmd = { get_bin 'marksman', 'server' },
-                    -- settings = {
-                    --     markdown = {
-                    --         lint = true,
-                    --     },
-                    -- },
+                    settings = {
+                        markdown = {
+                            lint = true,
+                        },
+                    },
                 },
+
+                -- Nix
+                nil_ls = {
+                    cmd = { get_bin 'nil', '--stdio' },
+                    settings = {
+                        ['nil'] = {
+                            formatting = {
+                                command = 'diagnostics',
+                            },
+                        },
+                    },
+                },
+
+                -- Shell (Bash, Zsh, Sh)
+                bashls = {
+                    cmd = { get_bin 'bash-language-server', 'start' },
+                    settings = {
+                        bash = {
+                            diagnostics = {
+                                enable = true,
+                            },
+                        },
+                    },
+                },
+
+                -- yamlls = {
+                --     cmd = { get_bin 'yaml-language-server', '--stdio' },
+                --     -- settings = {
+                --     --     yaml = {
+                --     --         schemas = {},
+                --     --         validate = true,
+                --     --     },
+                --     -- },
+                -- },
+
+                -- dockerls = {
+                --     cmd = { get_bin 'dockerfile-language-server', '--stdio' },
+                --     -- settings = {
+                --     --     dockerfile = {
+                --     --         lint = true,
+                --     --     },
+                --     -- },
+                -- },
 
                 -- taplo = {
                 --     cmd = { get_bin 'taplo', 'lsp' },
@@ -193,36 +268,6 @@ return {
                 --     -- },
                 -- },
 
-                nil_ls = {
-                    cmd = { get_bin 'nil', '--stdio' },
-                    settings = {
-                        ['nil'] = {
-                            formatting = {
-                                command = 'diagnostics',
-                            },
-                        },
-                    },
-                },
-
-                -- dockerls = {
-                --     cmd = { get_bin 'dockerfile-language-server', '--stdio' },
-                --     -- settings = {
-                --     --     dockerfile = {
-                --     --         lint = true,
-                --     --     },
-                --     -- },
-                -- },
-
-                bashls = {
-                    cmd = { get_bin 'bash-language-server', 'start' },
-                    -- settings = {
-                    --     bash = {
-                    --         diagnostics = {
-                    --             enable = true,
-                    --         },
-                    --     },
-                    -- },
-                },
             }
 
             for server, config in pairs(servers) do

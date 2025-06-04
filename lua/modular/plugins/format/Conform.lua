@@ -16,7 +16,7 @@ return {
 
             formatters_by_ft = {
                 lua = { 'stylua' },
-                python = { 'ruff_format' },
+                python = { 'ruff' },
                 javascript = { 'prettierd' },
                 javascriptreact = { 'prettierd' },
                 typescript = { 'prettierd' },
@@ -31,13 +31,14 @@ return {
                 sh = { 'shfmt' },
             },
             formatters = {
+
                 stylua = {
                     command = get_bin 'stylua',
                     args = { '--search-parent-directories', '-' },
                     stdin = true,
                 },
 
-                ruff_format = {
+                ruff = {
                     command = get_bin 'ruff',
                     args = { 'format', '--quiet', '-' },
                     stdin = true,

@@ -45,19 +45,6 @@ return {
                 ignore_exitcode = true,
             })
 
-            -- configure_linter('yamllint', {
-            --     cmd = get_bin 'yamllint',
-            --     args = {
-            --         '-',
-            --         '--format',
-            --         'parsable',
-            --         '--no-warnings',
-            --     },
-            --     stdin = true,
-            --     stream = 'stdout',
-            --     ignore_exitcode = true,
-            -- })
-
             configure_linter('hadolint', {
                 cmd = get_bin 'hadolint',
                 args = {
@@ -83,17 +70,6 @@ return {
                 ignore_exitcode = true,
             })
 
-            configure_linter('markdownlint-cli', {
-                cmd = get_bin 'markdownlint',
-                args = {
-                    '-',
-                    '-q',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
-
             configure_linter('rslint', {
                 cmd = get_bin 'rslint',
                 args = {
@@ -105,16 +81,57 @@ return {
                 ignore_exitcode = true,
             })
 
+            configure_linter('ruff', {
+                cmd = get_bin('ruff'),
+                args = {
+                    'check',
+                    '--no-fix',
+                    '--quiet',
+                    '--exit-zero',
+                    '--format=json',
+                    '-',
+                },
+                stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
+            })
+
+            -- configure_linter('markdownlint-cli', {
+            --     cmd = get_bin 'markdownlint',
+            --     args = {
+            --         '-',
+            --         '-q',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
+
+
+            -- configure_linter('yamllint', {
+            --     cmd = get_bin 'yamllint',
+            --     args = {
+            --         '-',
+            --         '--format',
+            --         'parsable',
+            --         '--no-warnings',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
+
             lint.linters_by_ft = {
                 lua = { 'luacheck' },
                 nix = { 'nixpkgs-lint' },
-                -- yaml = { 'yamllint' },
                 dockerfile = { 'hadolint' },
                 sh = { 'shellcheck' },
                 bash = { 'shellcheck' },
                 zsh = { 'shellcheck' },
-                markdown = { 'markdownlint-cli' },
                 typescript = { 'rslint' },
+                python = { 'ruff' },
+                -- markdown = { 'markdownlint-cli' },
+                -- yaml = { 'yamllint' },
             }
 
             local lint_augroup =
