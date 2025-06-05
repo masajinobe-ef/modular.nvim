@@ -102,6 +102,41 @@ return {
                     },
                 },
 
+                clangd = {
+                    cmd = { get_bin 'clangd' },
+                    settings = {
+                        clangd = {
+                            arguments = {
+                                '--background-index',
+                                '--clang-tidy',
+                                '--header-insertion=iwyu',
+                                '--completion-style=detailed',
+                                '--function-arg-placeholders',
+                                '--fallback-style=llvm',
+                            },
+                            fallbackStyle = 'llvm',
+                            usePlaceholders = true,
+                            completeUnimported = true,
+                            semanticHighlighting = true,
+                        },
+                    },
+                    filetypes = {
+                        'c',
+                        'cpp',
+                        'objc',
+                        'objcpp',
+                        'cuda',
+                        'proto',
+                    },
+                    root_dir = function(fname)
+                        return require('lspconfig.util').root_pattern(
+                            'compile_commands.json',
+                            'compile_flags.txt',
+                            '.git'
+                        )(fname) or vim.fn.getcwd()
+                    end,
+                },
+
                 -- pyright = {
                 --     cmd = { get_bin 'pyright-langserver', '--stdio' },
                 --     before_init = function(_, config)
@@ -267,7 +302,6 @@ return {
                 --     --     },
                 --     -- },
                 -- },
-
             }
 
             for server, config in pairs(servers) do

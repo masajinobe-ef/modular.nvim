@@ -33,7 +33,7 @@ return {
             })
 
             configure_linter('ruff', {
-                cmd = get_bin('ruff'),
+                cmd = get_bin 'ruff',
                 args = {
                     'check',
                     '--no-fix',
@@ -47,18 +47,29 @@ return {
                 ignore_exitcode = true,
             })
 
-            -- configure_linter('nixpkgs-lint', {
-            --     cmd = get_bin 'nixpkgs-lint',
-            --     args = {
-            --         '--format',
-            --         'json',
-            --         '--include-unfinished-lints',
-            --         '--stdin',
-            --     },
-            --     stdin = true,
-            --     stream = 'stdout',
-            --     ignore_exitcode = true,
-            -- })
+            configure_linter('clang-tidy', {
+                cmd = get_bin 'clang-tidy',
+                args = {
+                    '--quiet',
+                    '$FILENAME',
+                },
+                stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
+            })
+
+            configure_linter('nixpkgs-lint', {
+                cmd = get_bin 'nixpkgs-lint',
+                args = {
+                    '--format',
+                    'json',
+                    '--include-unfinished-lints',
+                    '--stdin',
+                },
+                stdin = true,
+                stream = 'stdout',
+                ignore_exitcode = true,
+            })
 
             -- configure_linter('hadolint', {
             --     cmd = get_bin 'hadolint',
@@ -123,8 +134,8 @@ return {
             lint.linters_by_ft = {
                 lua = { 'luacheck' },
                 python = { 'ruff' },
+                nix = { 'nixpkgs-lint' },
                 -- typescript = { 'rslint' },
-                -- nix = { 'nixpkgs-lint' },
                 -- dockerfile = { 'hadolint' },
                 -- sh = { 'shellcheck' },
                 -- bash = { 'shellcheck' },

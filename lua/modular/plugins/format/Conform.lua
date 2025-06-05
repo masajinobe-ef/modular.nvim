@@ -17,6 +17,7 @@ return {
             formatters_by_ft = {
                 lua = { 'stylua' },
                 python = { 'ruff' },
+
                 javascript = { 'prettierd' },
                 javascriptreact = { 'prettierd' },
                 typescript = { 'prettierd' },
@@ -27,10 +28,30 @@ return {
                 yaml = { 'prettierd' },
                 markdown = { 'prettierd' },
                 vue = { 'prettierd' },
+
                 toml = { 'taplo' },
                 sh = { 'shfmt' },
+
+                c = { 'clang_format' },
+                cpp = { 'clang_format' },
+                h = { 'clang_format' },
+                hpp = { 'clang_format' },
+                objc = { 'clang_format' },
+                objcpp = { 'clang_format' },
             },
+
             formatters = {
+
+                clang_format = {
+                    command = get_bin 'clang-format',
+                    args = {
+                        '-assume-filename',
+                        '$FILENAME',
+                        '--style=file',
+                        '--fallback-style=LLVM',
+                    },
+                    stdin = true,
+                },
 
                 stylua = {
                     command = get_bin 'stylua',
@@ -60,7 +81,6 @@ return {
                     args = { '-i', '2' },
                     stdin = true,
                 },
-
             },
         }
 
