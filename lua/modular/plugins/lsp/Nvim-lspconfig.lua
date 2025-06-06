@@ -137,13 +137,26 @@ return {
 
                 -- Python
                 ruff = {
-                    cmd = { get_bin 'ruff' },
+                    cmd = { get_bin 'ruff', 'server' },
                     filetypes = { "python" },
                     root_dir = function(fname)
                         return require('lspconfig.util').root_pattern(
-                            'pyproject.toml', 'requirements.txt', '.git'
+                            'pyproject.toml', 'requirements.txt', '.git', 'ruff.toml', 'setup.py'
                         )(fname) or vim.fn.getcwd()
                     end,
+                    init_options = {
+                        settings = {
+                            lint = {
+                                enable = true,
+                                -- Add rule exceptions if needed
+                                -- select = ["E", "F", "W"],
+                                -- ignore = ["E501"],
+                            },
+                            format = {
+                                enable = false
+                            }
+                        }
+                    },
                 },
 
                 -- Typescript
