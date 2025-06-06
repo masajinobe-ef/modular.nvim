@@ -21,42 +21,42 @@ return {
         },
         'dcampos/cmp-snippy',
 
-        {
-            'windwp/nvim-autopairs',
-            event = 'InsertEnter',
-            config = function()
-                require('nvim-autopairs').setup {
-                    check_ts = true,
-                    ts_config = {
-                        lua = { 'string' },
-                        javascript = { 'template_string' },
-                    },
-                    disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
-                }
-            end,
-        },
-        {
-            'windwp/nvim-ts-autotag',
-            config = function()
-                require('nvim-ts-autotag').setup {
-                    enable_close_on_slash = false,
-                    filetypes = {
-                        'html',
-                        'xml',
-                        'javascript',
-                        'typescript',
-                        'javascriptreact',
-                        'typescriptreact',
-                        'svelte',
-                        'vue',
-                        'tsx',
-                        'jsx',
-                        'rescript',
-                        'php',
-                    },
-                }
-            end,
-        },
+        -- {
+        --     'windwp/nvim-autopairs',
+        --     event = 'InsertEnter',
+        --     config = function()
+        --         require('nvim-autopairs').setup {
+        --             check_ts = true,
+        --             ts_config = {
+        --                 lua = { 'string' },
+        --                 javascript = { 'template_string' },
+        --             },
+        --             disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
+        --         }
+        --     end,
+        -- },
+        -- {
+        --     'windwp/nvim-ts-autotag',
+        --     config = function()
+        --         require('nvim-ts-autotag').setup {
+        --             enable_close_on_slash = false,
+        --             filetypes = {
+        --                 'html',
+        --                 'xml',
+        --                 'javascript',
+        --                 'typescript',
+        --                 'javascriptreact',
+        --                 'typescriptreact',
+        --                 'svelte',
+        --                 'vue',
+        --                 'tsx',
+        --                 'jsx',
+        --                 'rescript',
+        --                 'php',
+        --             },
+        --         }
+        --     end,
+        -- },
     },
 
     config = function()
@@ -139,9 +139,9 @@ return {
 
             sources = cmp.config.sources {
                 { name = 'nvim_lsp', priority = 1000 },
-                { name = 'snippy', priority = 750 },
+                { name = 'snippy',   priority = 750 },
                 { name = 'nvim_lua', priority = 650 },
-                { name = 'path', priority = 500 },
+                { name = 'path',     priority = 500 },
                 {
                     name = 'buffer',
                     priority = 250,
