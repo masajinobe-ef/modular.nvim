@@ -9,77 +9,115 @@ return {
         end
 
         require('conform').setup {
-            -- format_on_save = {
-            --     timeout_ms = 500,
-            --     lsp_fallback = true,
-            -- },
-
             formatters_by_ft = {
+
                 lua = { 'stylua' },
                 python = { 'ruff' },
 
+                -- Shell family
+                sh = { 'shfmt' },
+                bash = { 'shfmt' },
+                zsh = { 'shfmt' },
+
+                -- JavaScript family
                 javascript = { 'prettierd' },
                 javascriptreact = { 'prettierd' },
                 typescript = { 'prettierd' },
                 typescriptreact = { 'prettierd' },
+
+                -- Web formats
                 html = { 'prettierd' },
                 css = { 'prettierd' },
                 json = { 'prettierd' },
-                yaml = { 'prettierd' },
-                markdown = { 'prettierd' },
-                vue = { 'prettierd' },
 
+                -- Config files
+                yaml = { 'yamlfmt' },
                 toml = { 'taplo' },
-                sh = { 'shfmt' },
 
+                -- Documentation
+                markdown = { 'prettierd' },
+
+                -- C family
                 c = { 'clang_format' },
                 cpp = { 'clang_format' },
                 h = { 'clang_format' },
                 hpp = { 'clang_format' },
                 objc = { 'clang_format' },
                 objcpp = { 'clang_format' },
+
+                -- Docker
+                dockerfile = { 'hadolint' },
+                dockercompose = { 'yamlfmt' },
             },
 
             formatters = {
 
-                clang_format = {
-                    command = get_bin 'clang-format',
-                    args = {
-                        '-assume-filename',
-                        '$FILENAME',
-                        '--style=file',
-                        '--fallback-style=LLVM',
-                    },
-                    stdin = true,
-                },
-
+                -- lua
                 stylua = {
                     command = get_bin 'stylua',
                     args = { '--search-parent-directories', '-' },
                     stdin = true,
                 },
 
+                -- python
                 ruff = {
                     command = get_bin 'ruff',
                     args = { 'format', '--quiet', '-' },
                     stdin = true,
                 },
 
+                -- sh/bash/zsh
+                shfmt = {
+                    command = get_bin 'shfmt',
+                    args = { '-i', '2', '-s', '-' },
+                    stdin = true,
+                },
+
+                -- js/ts/jsx/tsx/html/css/json/markdown
                 prettierd = {
                     command = get_bin 'prettierd',
                     stdin = true,
                 },
 
+                -- yaml
+                yamlfmt = {
+                    command = get_bin 'yamlfmt',
+                    args = { 'format', '-' },
+                    stdin = true,
+                },
+
+
+                -- toml
                 taplo = {
                     command = get_bin 'taplo',
                     args = { 'format', '-' },
                     stdin = true,
                 },
 
-                shfmt = {
-                    command = get_bin 'shfmt',
-                    args = { '-i', '2' },
+                -- c/c++
+                clang_format = {
+                    command = get_bin 'clang-format',
+                    args = {
+                        '--assume-filename',
+                        '{__FILE}',
+                        '--style=file',
+                        '--fallback-style=LLVM',
+                    },
                     stdin = true,
+                },
+
+                -- docker
+                hadolint = {
+                    command = get_bin('hadolint'),
+                    args = { '--format', 'json', '-' },
+                    stdin = true,
+                    output = function(output)
+                        local ok, json = pcall(vim.json.decode, output)
+                        if ok and json.fixed then
+                            return json.fixed
+                        end
+                        return output
+                    end
                 },
             },
         }
