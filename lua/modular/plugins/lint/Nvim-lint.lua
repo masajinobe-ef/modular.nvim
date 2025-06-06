@@ -34,20 +34,20 @@ return {
             })
 
             -- Python
-            configure_linter('ruff', {
-                cmd = get_bin 'ruff',
-                args = {
-                    'check',
-                    '--no-fix',
-                    '--quiet',
-                    '--exit-zero',
-                    '--format=json',
-                    '-',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
+            -- configure_linter('ruff', {
+            --     cmd = get_bin 'ruff',
+            --     args = {
+            --         'check',
+            --         '--no-fix',
+            --         '--quiet',
+            --         '--exit-zero',
+            --         '--format=json',
+            --         '-',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
 
             -- C/C++
             configure_linter('clang-tidy', {
