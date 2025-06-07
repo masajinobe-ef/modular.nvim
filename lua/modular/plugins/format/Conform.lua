@@ -112,7 +112,7 @@ return {
                 -- rust
                 rustfmt = {
                     command = get_bin('rustfmt'),
-                    args = { '--emit', 'stdout', '--quiet', '-' },
+                    args = { '--emit', 'stdout', '--quiet' },
                     stdin = true,
                     cwd = function(ctx)
                         return vim.fs.dirname(ctx.filename)

@@ -93,13 +93,16 @@ return {
                             runtime = { version = 'LuaJIT' },
                             workspace = {
                                 checkThirdParty = false,
-                                library = vim.api.nvim_get_runtime_file('', true),
+                                library = vim.api.nvim_get_runtime_file(
+                                    '',
+                                    true
+                                ),
                             },
                             hint = {
                                 enable = true,
                                 arrayIndex = 'Disable',
                             },
-                            codelens = { enable = true }
+                            codelens = { enable = true },
                         },
                     },
                 },
@@ -125,7 +128,12 @@ return {
                         },
                     },
                     filetypes = {
-                        'c', 'cpp', 'objc', 'objcpp', 'cuda', 'proto'
+                        'c',
+                        'cpp',
+                        'objc',
+                        'objcpp',
+                        'cuda',
+                        'proto',
                     },
                     root_dir = function(fname)
                         return require('lspconfig.util').root_pattern(
@@ -143,20 +151,28 @@ return {
                     settings = {
                         ['rust-analyzer'] = {
                             checkOnSave = {
-                                command = "clippy",
-                                extraArgs = { "--no-deps" },
+                                command = 'clippy',
+                                extraArgs = { '--no-deps' },
                             },
                             diagnostics = {
-                                disabled = { "unresolved-macro" },
+                                disabled = { 'unresolved-macro' },
                             },
                             cargo = {
                                 autoreload = true,
                                 buildScripts = {
                                     enable = true,
                                 },
+                                features = 'all',
                             },
                             procMacro = {
-                                enable = true
+                                enable = true,
+                            },
+                            workspace = {
+                                symbol = {
+                                    search = {
+                                        scope = 'workspace_and_dependencies',
+                                    },
+                                },
                             },
                         },
                     },
@@ -171,10 +187,14 @@ return {
                 -- Python
                 ruff = {
                     cmd = { get_bin 'ruff', 'server' },
-                    filetypes = { "python" },
+                    filetypes = { 'python' },
                     root_dir = function(fname)
                         return require('lspconfig.util').root_pattern(
-                            'pyproject.toml', 'requirements.txt', '.git', 'ruff.toml', 'setup.py'
+                            'pyproject.toml',
+                            'requirements.txt',
+                            '.git',
+                            'ruff.toml',
+                            'setup.py'
                         )(fname) or vim.fn.getcwd()
                     end,
                     init_options = {
@@ -186,9 +206,9 @@ return {
                                 -- ignore = ["E501"],
                             },
                             format = {
-                                enable = false
-                            }
-                        }
+                                enable = false,
+                            },
+                        },
                     },
                 },
 
@@ -210,8 +230,8 @@ return {
                             lint = {
                                 enabled = true,
                                 validateReferences = true,
-                                validateLinks = true
-                            }
+                                validateLinks = true,
+                            },
                         },
                     },
                 },
@@ -221,8 +241,8 @@ return {
                     cmd = { get_bin 'nil', '--stdio' },
                     settings = {
                         ['nil'] = {
-                            formatting = { command = { "nixpkgs-fmt" } },
-                            diagnostics = { ignored = { "unused_binding" } }
+                            formatting = { command = { 'nixpkgs-fmt' } },
+                            diagnostics = { ignored = { 'unused_binding' } },
                         },
                     },
                 },
@@ -234,7 +254,7 @@ return {
                         bash = {
                             diagnostics = {
                                 enable = true,
-                                globbing = "warn"
+                                globbing = 'warn',
                             },
                         },
                     },
@@ -246,10 +266,10 @@ return {
                     settings = {
                         yaml = {
                             schemas = {
-                                kubernetes = "/*.yaml"
+                                kubernetes = '/*.yaml',
                             },
                             validate = true,
-                            format = { enable = true }
+                            format = { enable = true },
                         },
                     },
                 },
@@ -257,8 +277,8 @@ return {
                 -- Docker
                 dockerls = {
                     cmd = { get_bin 'docker-language-server', '--stdio' },
-                    filetypes = { "dockerfile" },
-                    root_dir = lsp.util.root_pattern("Dockerfile", ".git"),
+                    filetypes = { 'dockerfile' },
+                    root_dir = lsp.util.root_pattern('Dockerfile', '.git'),
                 },
 
                 -- TOML (taplo with formatting)
@@ -267,7 +287,7 @@ return {
                     settings = {
                         toml = {
                             format = { enable = true },
-                            diagnostics = { enabled = true }
+                            diagnostics = { enabled = true },
                         },
                     },
                 },
