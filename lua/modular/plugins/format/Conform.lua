@@ -45,6 +45,9 @@ return {
                 objc = { 'clang_format' },
                 objcpp = { 'clang_format' },
 
+                -- Rust
+                rust = { 'rustfmt' },
+
                 -- Docker
                 dockerfile = { 'hadolint' },
                 dockercompose = { 'yamlfmt' },
@@ -52,21 +55,21 @@ return {
 
             formatters = {
 
-                -- lua
+                -- Lua
                 stylua = {
                     command = get_bin 'stylua',
                     args = { '--search-parent-directories', '-' },
                     stdin = true,
                 },
 
-                -- python
+                -- Python
                 ruff = {
                     command = get_bin 'ruff',
                     args = { 'format', '--quiet', '-' },
                     stdin = true,
                 },
 
-                -- sh/bash/zsh
+                -- Shell (sh/bash/zsh)
                 shfmt = {
                     command = get_bin 'shfmt',
                     args = { '-i', '2', '-s', '-' },
@@ -104,6 +107,16 @@ return {
                         '--fallback-style=LLVM',
                     },
                     stdin = true,
+                },
+
+                -- rust
+                rustfmt = {
+                    command = get_bin('rustfmt'),
+                    args = { '--emit', 'stdout', '--quiet', '-' },
+                    stdin = true,
+                    cwd = function(ctx)
+                        return vim.fs.dirname(ctx.filename)
+                    end,
                 },
 
                 -- docker

@@ -33,34 +33,6 @@ return {
                 stdin = true,
             })
 
-            -- Python
-            -- configure_linter('ruff', {
-            --     cmd = get_bin 'ruff',
-            --     args = {
-            --         'check',
-            --         '--no-fix',
-            --         '--quiet',
-            --         '--exit-zero',
-            --         '--format=json',
-            --         '-',
-            --     },
-            --     stdin = true,
-            --     stream = 'stdout',
-            --     ignore_exitcode = true,
-            -- })
-
-            -- C/C++
-            configure_linter('clang-tidy', {
-                cmd = get_bin 'clang-tidy',
-                args = {
-                    '--quiet',
-                    '$FILENAME',
-                },
-                stdin = false, -- Use filename instead of stdin
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
-
             -- Docker
             configure_linter('hadolint', {
                 cmd = get_bin 'hadolint',
@@ -70,7 +42,7 @@ return {
                     'json',
                     '$FILENAME',
                 },
-                stdin = false, -- Use filename instead of stdin
+                stdin = false,
                 stream = 'stdout',
                 ignore_exitcode = true,
             })
@@ -82,7 +54,7 @@ return {
                     '--format=json',
                     '$FILENAME',
                 },
-                stdin = false, -- Use filename instead of stdin
+                stdin = false,
                 stream = 'stdout',
                 ignore_exitcode = true,
             })
@@ -124,10 +96,26 @@ return {
                 ignore_exitcode = true,
             })
 
+            -- Python
+            -- configure_linter('ruff', {
+            --     cmd = get_bin 'ruff',
+            --     args = {
+            --         'check',
+            --         '--no-fix',
+            --         '--quiet',
+            --         '--exit-zero',
+            --         '--format=json',
+            --         '-',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
+
             lint.linters_by_ft = {
 
                 lua = { 'luacheck' },
-                python = { 'ruff' },
+                -- python = { 'ruff' },
 
                 -- Shell family
                 sh = { 'shellcheck' },
@@ -153,12 +141,12 @@ return {
                 markdown = { 'markdownlint' },
 
                 -- C family
-                c = { 'clang-tidy' },
-                cpp = { 'clang-tidy' },
-                h = { 'clang-tidy' },
-                hpp = { 'clang-tidy' },
-                objc = { 'clang-tidy' },
-                objcpp = { 'clang-tidy' },
+                -- c = { 'clang-tidy' },
+                -- cpp = { 'clang-tidy' },
+                -- h = { 'clang-tidy' },
+                -- hpp = { 'clang-tidy' },
+                -- objc = { 'clang-tidy' },
+                -- objcpp = { 'clang-tidy' },
 
                 -- Docker
                 dockerfile = { 'hadolint' },

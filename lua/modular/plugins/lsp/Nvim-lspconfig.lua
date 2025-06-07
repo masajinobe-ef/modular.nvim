@@ -104,6 +104,7 @@ return {
                     },
                 },
 
+                -- C/C++
                 clangd = {
                     cmd = { get_bin 'clangd' },
                     settings = {
@@ -115,6 +116,7 @@ return {
                                 '--completion-style=detailed',
                                 '--function-arg-placeholders',
                                 '--fallback-style=llvm',
+                                '--stdlib=libc++',
                             },
                             fallbackStyle = 'llvm',
                             usePlaceholders = true,
@@ -131,6 +133,37 @@ return {
                             'compile_flags.txt',
                             '.git',
                             'CMakeLists.txt'
+                        )(fname) or vim.fn.getcwd()
+                    end,
+                },
+
+                -- Rust
+                rust_analyzer = {
+                    cmd = { get_bin 'rust-analyzer' },
+                    settings = {
+                        ['rust-analyzer'] = {
+                            checkOnSave = {
+                                command = "clippy",
+                                extraArgs = { "--no-deps" },
+                            },
+                            diagnostics = {
+                                disabled = { "unresolved-macro" },
+                            },
+                            cargo = {
+                                autoreload = true,
+                                buildScripts = {
+                                    enable = true,
+                                },
+                            },
+                            procMacro = {
+                                enable = true
+                            },
+                        },
+                    },
+                    root_dir = function(fname)
+                        return require('lspconfig.util').root_pattern(
+                            'Cargo.toml',
+                            'rust-project.json'
                         )(fname) or vim.fn.getcwd()
                     end,
                 },
@@ -167,16 +200,6 @@ return {
                             enable = true,
                         },
                     },
-                },
-
-                -- JSON (with schema support)
-                jsonls = {
-                    cmd = { get_bin 'vscode-json-language-server', '--stdio' },
-                    settings = {
-                        json = {
-                            validate = { enable = true }
-                        }
-                    }
                 },
 
                 -- Markdown
@@ -217,6 +240,7 @@ return {
                     },
                 },
 
+                -- YAML
                 yamlls = {
                     cmd = { get_bin 'yaml-language-server', '--stdio' },
                     settings = {
@@ -230,6 +254,7 @@ return {
                     },
                 },
 
+                -- Docker
                 dockerls = {
                     cmd = { get_bin 'docker-language-server', '--stdio' },
                     filetypes = { "dockerfile" },
