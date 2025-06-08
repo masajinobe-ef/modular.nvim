@@ -269,17 +269,17 @@ return {
                                 kubernetes = '/*.yaml',
                             },
                             validate = true,
-                            format = { enable = true },
+                            format = { enable = false },
                         },
                     },
                 },
 
                 -- Docker
-                dockerls = {
-                    cmd = { get_bin 'docker-language-server', '--stdio' },
-                    filetypes = { 'dockerfile' },
-                    root_dir = lsp.util.root_pattern('Dockerfile', '.git'),
-                },
+                -- dockerls = {
+                --     cmd = { get_bin 'docker-language-server', '--stdio' },
+                --     filetypes = { 'dockerfile' },
+                --     root_dir = lsp.util.root_pattern('Dockerfile', '.git'),
+                -- },
 
                 -- TOML (taplo with formatting)
                 taplo = {

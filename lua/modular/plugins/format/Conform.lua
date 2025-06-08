@@ -31,7 +31,7 @@ return {
                 json = { 'prettierd' },
 
                 -- Config files
-                yaml = { 'yamlfmt' },
+                -- yaml = { 'yamlfmt' },
                 toml = { 'taplo' },
 
                 -- Documentation
@@ -48,9 +48,6 @@ return {
                 -- Rust
                 rust = { 'rustfmt' },
 
-                -- Docker
-                dockerfile = { 'hadolint' },
-                dockercompose = { 'yamlfmt' },
             },
 
             formatters = {
@@ -83,11 +80,11 @@ return {
                 },
 
                 -- yaml
-                yamlfmt = {
-                    command = get_bin 'yamlfmt',
-                    args = { 'format', '-' },
-                    stdin = true,
-                },
+                -- yamlfmt = {
+                --     command = get_bin 'yamlfmt',
+                --     args = { 'format', '-' },
+                --     stdin = true,
+                -- },
 
 
                 -- toml
@@ -119,19 +116,6 @@ return {
                     end,
                 },
 
-                -- docker
-                hadolint = {
-                    command = get_bin('hadolint'),
-                    args = { '--format', 'json', '-' },
-                    stdin = true,
-                    output = function(output)
-                        local ok, json = pcall(vim.json.decode, output)
-                        if ok and json.fixed then
-                            return json.fixed
-                        end
-                        return output
-                    end
-                },
             },
         }
 
