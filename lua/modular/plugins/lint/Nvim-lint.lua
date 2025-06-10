@@ -86,15 +86,15 @@ return {
             })
 
             -- Markdown
-            configure_linter('markdownlint', {
-                cmd = get_bin 'markdownlint',
-                args = {
-                    '--stdin',
-                },
-                stdin = true,
-                stream = 'stderr',
-                ignore_exitcode = true,
-            })
+            -- configure_linter('markdownlint', {
+            --     cmd = get_bin 'markdownlint',
+            --     args = {
+            --         '--stdin',
+            --     },
+            --     stdin = true,
+            --     stream = 'stderr',
+            --     ignore_exitcode = true,
+            -- })
 
             -- Python
             -- configure_linter('ruff', {
