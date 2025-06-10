@@ -86,7 +86,6 @@ return {
                 --     stdin = true,
                 -- },
 
-
                 -- toml
                 taplo = {
                     command = get_bin 'taplo',
