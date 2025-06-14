@@ -113,7 +113,7 @@ return {
                     },
                 },
                 file_size = {
-                    enabled = true,
+                    enabled = false,
                     required_width = 64,
                 },
                 type = {
