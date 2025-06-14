@@ -30,10 +30,6 @@ return {
                 css = { 'prettierd' },
                 json = { 'prettierd' },
 
-                -- Config files
-                -- yaml = { 'yamlfmt' },
-                toml = { 'taplo' },
-
                 -- Documentation
                 markdown = { 'prettierd' },
 
@@ -47,6 +43,10 @@ return {
 
                 -- Rust
                 rust = { 'rustfmt' },
+
+                -- Config files
+                -- yaml = { 'yamlfmt' },
+                -- toml = { 'taplo' },
 
             },
 
@@ -79,20 +79,6 @@ return {
                     stdin = true,
                 },
 
-                -- yaml
-                -- yamlfmt = {
-                --     command = get_bin 'yamlfmt',
-                --     args = { 'format', '-' },
-                --     stdin = true,
-                -- },
-
-                -- toml
-                taplo = {
-                    command = get_bin 'taplo',
-                    args = { 'format', '-' },
-                    stdin = true,
-                },
-
                 -- c/c++
                 clang_format = {
                     command = get_bin 'clang-format',
@@ -114,6 +100,20 @@ return {
                         return vim.fs.dirname(ctx.filename)
                     end,
                 },
+
+                -- yaml
+                -- yamlfmt = {
+                --     command = get_bin 'yamlfmt',
+                --     args = { 'format', '-' },
+                --     stdin = true,
+                -- },
+
+                -- toml
+                -- taplo = {
+                --     command = get_bin 'taplo',
+                --     args = { 'format', '-' },
+                --     stdin = true,
+                -- },
 
             },
         }

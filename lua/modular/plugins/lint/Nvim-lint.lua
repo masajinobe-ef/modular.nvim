@@ -34,18 +34,18 @@ return {
             })
 
             -- Docker
-            configure_linter('hadolint', {
-                cmd = get_bin 'hadolint',
-                args = {
-                    '--no-fail',
-                    '-f',
-                    'json',
-                    '$FILENAME',
-                },
-                stdin = false,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
+            -- configure_linter('hadolint', {
+            --     cmd = get_bin 'hadolint',
+            --     args = {
+            --         '--no-fail',
+            --         '-f',
+            --         'json',
+            --         '$FILENAME',
+            --     },
+            --     stdin = false,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
 
             -- Shell
             configure_linter('shellcheck', {
@@ -74,16 +74,16 @@ return {
             })
 
             -- YAML
-            configure_linter('yamllint', {
-                cmd = get_bin 'yamllint',
-                args = {
-                    '--format=parsable',
-                    '-',
-                },
-                stdin = true,
-                stream = 'stdout',
-                ignore_exitcode = true,
-            })
+            -- configure_linter('yamllint', {
+            --     cmd = get_bin 'yamllint',
+            --     args = {
+            --         '--format=parsable',
+            --         '-',
+            --     },
+            --     stdin = true,
+            --     stream = 'stdout',
+            --     ignore_exitcode = true,
+            -- })
 
             -- Markdown
             -- configure_linter('markdownlint', {
@@ -133,10 +133,6 @@ return {
                 css = { 'eslint_d' },
                 json = { 'eslint_d' },
 
-                -- Config files
-                yaml = { 'yamllint' },
-                toml = {},
-
                 -- Documentation
                 markdown = { 'markdownlint' },
 
@@ -149,7 +145,11 @@ return {
                 -- objcpp = { 'clang-tidy' },
 
                 -- Docker
-                dockerfile = { 'hadolint' },
+                -- dockerfile = { 'hadolint' },
+
+                -- Config files
+                -- yaml = { 'yamllint' },
+                -- toml = {},
 
             }
 

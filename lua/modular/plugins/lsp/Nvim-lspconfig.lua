@@ -260,19 +260,30 @@ return {
                     },
                 },
 
+                -- TOML (taplo with formatting)
+                -- taplo = {
+                --     cmd = { get_bin 'taplo', 'lsp', 'stdio' },
+                --     settings = {
+                --         toml = {
+                --             format = { enable = true },
+                --             diagnostics = { enabled = true },
+                --         },
+                --     },
+                -- },
+
                 -- YAML
-                yamlls = {
-                    cmd = { get_bin 'yaml-language-server', '--stdio' },
-                    settings = {
-                        yaml = {
-                            schemas = {
-                                kubernetes = '/*.yaml',
-                            },
-                            validate = true,
-                            format = { enable = false },
-                        },
-                    },
-                },
+                -- yamlls = {
+                --     cmd = { get_bin 'yaml-language-server', '--stdio' },
+                --     settings = {
+                --         yaml = {
+                --             schemas = {
+                --                 kubernetes = '/*.yaml',
+                --             },
+                --             validate = true,
+                --             format = { enable = false },
+                --         },
+                --     },
+                -- },
 
                 -- Docker
                 -- dockerls = {
@@ -281,16 +292,6 @@ return {
                 --     root_dir = lsp.util.root_pattern('Dockerfile', '.git'),
                 -- },
 
-                -- TOML (taplo with formatting)
-                taplo = {
-                    cmd = { get_bin 'taplo', 'lsp', 'stdio' },
-                    settings = {
-                        toml = {
-                            format = { enable = true },
-                            diagnostics = { enabled = true },
-                        },
-                    },
-                },
             }
 
             for server, config in pairs(servers) do
