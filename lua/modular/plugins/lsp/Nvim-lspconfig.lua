@@ -222,20 +222,6 @@ return {
                     },
                 },
 
-                -- Markdown
-                marksman = {
-                    cmd = { get_bin 'marksman', 'server' },
-                    settings = {
-                        markdown = {
-                            lint = {
-                                enabled = true,
-                                validateReferences = true,
-                                validateLinks = true,
-                            },
-                        },
-                    },
-                },
-
                 -- Nix
                 nil_ls = {
                     cmd = { get_bin 'nil', '--stdio' },
@@ -259,6 +245,20 @@ return {
                         },
                     },
                 },
+
+                -- Markdown
+                -- marksman = {
+                --     cmd = { get_bin 'marksman', 'server' },
+                --     settings = {
+                --         markdown = {
+                --             lint = {
+                --                 enabled = true,
+                --                 validateReferences = true,
+                --                 validateLinks = true,
+                --             },
+                --         },
+                --     },
+                -- },
 
                 -- TOML (taplo with formatting)
                 -- taplo = {

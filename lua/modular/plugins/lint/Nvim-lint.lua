@@ -134,7 +134,7 @@ return {
                 json = { 'eslint_d' },
 
                 -- Documentation
-                markdown = { 'markdownlint' },
+                -- markdown = { 'markdownlint' },
 
                 -- C family
                 -- c = { 'clang-tidy' },
